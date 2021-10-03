@@ -25,6 +25,8 @@ final class IconPickerCollectionViewManager: NSObject, UICollectionViewDataSourc
     
     var sections = TagCategory.allCases.map { SectionModel(category: $0) }
     
+    var selectedItems: [SectionModel.Item] = []
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         sections.count
     }
@@ -68,9 +70,21 @@ final class IconPickerCollectionViewManager: NSObject, UICollectionViewDataSourc
             for: indexPath) as? WasingTagCell
         else { return .init() }
         
-        cell.imageView.image = UIImage(named: item.imageName)
+        cell.imageView.image = UIImage(named: item.imageName)?.withRenderingMode(.alwaysTemplate)
+        cell.tintColor = selectedItems.contains(where: { $0.imageName == item.imageName }) ? .washdColors.unitedNationsBlue : .washdColors.celeste
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = sections[indexPath.section].tags[indexPath.item]
+        if let index = selectedItems.firstIndex(where: { $0.imageName == item.imageName }) {
+            selectedItems.remove(at: index)
+        } else {
+            selectedItems.append(item)
+        }
+        
+        collectionView.reloadItems(at: [indexPath])
     }
 }
 
