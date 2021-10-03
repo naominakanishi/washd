@@ -83,7 +83,6 @@ final class IconPickerCollectionViewManager: NSObject, UICollectionViewDataSourc
         } else {
             selectedItems.append(item)
         }
-        
         collectionView.reloadItems(at: [indexPath])
     }
 }
