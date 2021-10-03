@@ -2,6 +2,10 @@ import UIKit
 
 final class NewEntryView: UIView {
     
+    struct Actions {
+        let openIconPicker: () -> Void
+    }
+    
     enum LayoutMetrics {
         static let horizontalMargin: CGFloat = 30
         static let interPromptSpacing: CGFloat = 30
@@ -60,12 +64,62 @@ final class NewEntryView: UIView {
         label.font = .appFont.montserrat(.semiBold, 20).uiFont
         return label
     }()
+    
     private lazy var colorsDropdown: DropdownPicker = {
         let view = DropdownPicker()
         view.dataSource = self
         return view
     }()
     
+    private lazy var iconsPromptLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Quais os ícones em sua etiqueta?"
+        label.font = .appFont.montserrat(.semiBold, 20).uiFont
+        return label
+    }()
+    
+    private lazy var openIconPickerView: UIView = {
+        let view = UIView()
+        
+        view.backgroundColor = .washdColors.lightGray
+        view.layer.cornerRadius = 10
+        view.addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(openIconPicker)
+        ))
+        
+        return view
+    }()
+    
+    private lazy var iconPickerStackView: UIStackView = {
+        let view = UIStackView()
+        let chevron = UIImage(systemName: "chevron.right")
+        let label = UILabel()
+        
+        view.addArrangedSubview(label)
+        view.addArrangedSubview(UIImageView(image: chevron))
+        
+        label.text = "Selecione"
+        label.font = .appFont.montserrat(.light, 14).uiFont
+        label.textColor = .washdColors.hintText
+        
+        return view
+    }()
+    
+    private let doneButton: UIButton = {
+        let button = UIButton()
+        
+        button.backgroundColor = .washdColors.unitedNationsBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+        button.setTitle("Criar Item", for: .normal)
+        button.titleLabel?.font = .appFont.montserrat(.semiBold, 16).uiFont
+        
+        return button
+    }()
+    
+    var actions: Actions?
     
     init() {
         super.init(frame: .zero)
@@ -80,20 +134,27 @@ final class NewEntryView: UIView {
     
     func addSubviews() {
         addSubviews(titleLabel,
-                    contentScrollView)
+                    contentScrollView,
+                    doneButton
+        )
         contentScrollView.addSubviews(
             namePrompt,
             nameEntryTextField,
             categoryPrompt,
             categoriesDropdown,
             colorsPromptLabel,
-            colorsDropdown)
+            colorsDropdown,
+            iconsPromptLabel,
+            openIconPickerView
+        )
+        openIconPickerView.addSubview(iconPickerStackView)
     }
     
     func constraintSubviews() {
         titleLabel.layout(using: [
             titleLabel.topAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.topAnchor
+                equalTo: safeAreaLayoutGuide.topAnchor,
+                constant: 20
             ),
             titleLabel.widthAnchor.constraint(
                 equalTo: contentScrollView.widthAnchor
@@ -102,7 +163,6 @@ final class NewEntryView: UIView {
                 equalTo: contentScrollView.centerXAnchor
             )
         ])
-        
         contentScrollView.layout(using: [
             contentScrollView.topAnchor.constraint(
                 equalTo: titleLabel.bottomAnchor,
@@ -119,6 +179,21 @@ final class NewEntryView: UIView {
             )
         
         ])
+        doneButton.layout(using: [
+            doneButton.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: LayoutMetrics.horizontalMargin
+            ),
+            doneButton.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -LayoutMetrics.horizontalMargin
+            ),
+            doneButton.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -LayoutMetrics.horizontalMargin
+            ),
+            doneButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
         
         namePrompt.layout(using: [
             namePrompt.topAnchor.constraint(
@@ -131,7 +206,6 @@ final class NewEntryView: UIView {
                 equalTo: contentScrollView.centerXAnchor
             )
         ])
-        
         nameEntryTextField.layout(using: [
             nameEntryTextField.topAnchor.constraint(
                 equalTo: namePrompt.bottomAnchor,
@@ -157,7 +231,6 @@ final class NewEntryView: UIView {
                 equalTo: contentScrollView.centerXAnchor
             )
         ])
-        
         categoriesDropdown.layout(using: [
             categoriesDropdown.topAnchor.constraint(
                 equalTo: categoryPrompt.bottomAnchor,
@@ -183,7 +256,6 @@ final class NewEntryView: UIView {
                 equalTo: contentScrollView.centerXAnchor
             )
         ])
-        
         colorsDropdown.layout(using: [
             colorsDropdown.topAnchor.constraint(
                 equalTo: colorsPromptLabel.bottomAnchor,
@@ -195,26 +267,62 @@ final class NewEntryView: UIView {
             colorsDropdown.centerXAnchor.constraint(
                 equalTo: contentScrollView.centerXAnchor
             ),
-            colorsDropdown.bottomAnchor.constraint(
+        ])
+        
+        iconsPromptLabel.layout(using: [
+            iconsPromptLabel.topAnchor.constraint(
+                equalTo: colorsDropdown.bottomAnchor,
+                constant: LayoutMetrics.interPromptSpacing
+            ),
+            iconsPromptLabel.widthAnchor.constraint(
+                equalTo: contentScrollView.widthAnchor
+            ),
+            iconsPromptLabel.centerXAnchor.constraint(
+                equalTo: contentScrollView.centerXAnchor
+            ),
+        ])
+        openIconPickerView.layout(using: [
+            openIconPickerView.topAnchor.constraint(
+                equalTo: iconsPromptLabel.bottomAnchor,
+                constant: LayoutMetrics.innerPromptSpacing
+            ),
+            openIconPickerView.widthAnchor.constraint(
+                equalTo: contentScrollView.widthAnchor
+            ),
+            openIconPickerView.centerXAnchor.constraint(
+                equalTo: contentScrollView.centerXAnchor
+            ),
+            openIconPickerView.bottomAnchor.constraint(
                 equalTo: contentScrollView.bottomAnchor
             )
         ])
         
+        iconPickerStackView.layout(using: [
+            iconPickerStackView.topAnchor.constraint(
+                equalTo: openIconPickerView.topAnchor,
+                constant: 16
+            ),
+            iconPickerStackView.leadingAnchor.constraint(
+                equalTo: openIconPickerView.leadingAnchor,
+                constant: 8
+            ),
+            iconPickerStackView.trailingAnchor.constraint(
+                equalTo: openIconPickerView.trailingAnchor,
+                constant: -16
+            ),
+            iconPickerStackView.bottomAnchor.constraint(
+                equalTo: openIconPickerView.bottomAnchor,
+                constant: -16
+            ),
+        ])
     }
     
     func configureAdditionalSettings() {
         backgroundColor = .washdColors.background
     }
-}
-
-extension UIView {
-    func addSubviews(_ views: UIView...) {
-        views.forEach { addSubview($0) }
-    }
     
-    func layout(using constraints: [NSLayoutConstraint]) {
-        translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(constraints)
+    @objc private func openIconPicker() {
+        actions?.openIconPicker()
     }
 }
 
@@ -230,7 +338,5 @@ extension NewEntryView: DropdownDataSource {
         return .init(name: "Diferente \(index.row)")
     }
     
-    func stateDidChange() {
-//        contentScrollView.resizeScrollViewContentSize()
-    }
+    func stateDidChange() {}
 }

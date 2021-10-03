@@ -50,14 +50,17 @@ final class ClosetViewController: UIViewController {
     
     @objc
     private func handleAddPiece() {
-        
+        present(NewEntryViewController(), animated: true, completion: nil)
     }
 }
 
 
 extension ClosetViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    var closet: Closet { ClosetDatabase.instance.closet() }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return closet.clothes.count
     }
     
     
@@ -67,6 +70,10 @@ extension ClosetViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClothesCell") as! ClothesCell
+        let clothing = closet.clothes[indexPath.item]
+        
+        
+        
         return cell
     }
     

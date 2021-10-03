@@ -27,6 +27,12 @@
 		11A0194527096C8100BDF309 /* TagCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0194427096C8100BDF309 /* TagCategory.swift */; };
 		11A0194727096CA600BDF309 /* ClothingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0194627096CA600BDF309 /* ClothingColor.swift */; };
 		11A0194A27096CF000BDF309 /* TagDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0194927096CF000BDF309 /* TagDatabase.swift */; };
+		11A0194C27096E3A00BDF309 /* ClosetDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0194B27096E3A00BDF309 /* ClosetDatabase.swift */; };
+		11A0194E270A03B500BDF309 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0194D270A03B500BDF309 /* UIView+Extensions.swift */; };
+		11A01950270A09AC00BDF309 /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0194F270A09AC00BDF309 /* IconPickerViewController.swift */; };
+		11A01953270A190A00BDF309 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01952270A190A00BDF309 /* HeaderCell.swift */; };
+		11A01955270A192100BDF309 /* WasingTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01954270A192100BDF309 /* WasingTagCell.swift */; };
+		11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */; };
 		11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD33AA2708ED9800FBA29C /* Colors.swift */; };
 		11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18C92708E71000473615 /* AppDelegate.swift */; };
 		11EF18CC2708E71000473615 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18CB2708E71000473615 /* SceneDelegate.swift */; };
@@ -59,6 +65,12 @@
 		11A0194427096C8100BDF309 /* TagCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCategory.swift; sourceTree = "<group>"; };
 		11A0194627096CA600BDF309 /* ClothingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingColor.swift; sourceTree = "<group>"; };
 		11A0194927096CF000BDF309 /* TagDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDatabase.swift; sourceTree = "<group>"; };
+		11A0194B27096E3A00BDF309 /* ClosetDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetDatabase.swift; sourceTree = "<group>"; };
+		11A0194D270A03B500BDF309 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		11A0194F270A09AC00BDF309 /* IconPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
+		11A01952270A190A00BDF309 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		11A01954270A192100BDF309 /* WasingTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasingTagCell.swift; sourceTree = "<group>"; };
+		11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerCollectionViewManager.swift; sourceTree = "<group>"; };
 		11AD33AA2708ED9800FBA29C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		11EF18C62708E71000473615 /* washd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = washd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11EF18C92708E71000473615 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +101,7 @@
 				11AD33AA2708ED9800FBA29C /* Colors.swift */,
 				1135AF30270929380030B003 /* Font.swift */,
 				1135AF36270930690030B003 /* TextField.swift */,
+				11A0194D270A03B500BDF309 /* UIView+Extensions.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -151,8 +164,20 @@
 			children = (
 				11A0193D27096BDF00BDF309 /* Model */,
 				11A0194927096CF000BDF309 /* TagDatabase.swift */,
+				11A0194B27096E3A00BDF309 /* ClosetDatabase.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		11A01951270A18FC00BDF309 /* IconPicker */ = {
+			isa = PBXGroup;
+			children = (
+				11A0194F270A09AC00BDF309 /* IconPickerViewController.swift */,
+				11A01952270A190A00BDF309 /* HeaderCell.swift */,
+				11A01954270A192100BDF309 /* WasingTagCell.swift */,
+				11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */,
+			);
+			path = IconPicker;
 			sourceTree = "<group>";
 		};
 		11EF18BD2708E71000473615 = {
@@ -174,6 +199,7 @@
 		11EF18C82708E71000473615 /* washd */ = {
 			isa = PBXGroup;
 			children = (
+				11A01951270A18FC00BDF309 /* IconPicker */,
 				11A0194827096CE000BDF309 /* Data */,
 				11A0193A27094FF000BDF309 /* washd.entitlements */,
 				11A0193727094A0F00BDF309 /* Closet */,
@@ -271,13 +297,19 @@
 				11EF18DE2708E89500473615 /* NFCReader.swift in Sources */,
 				11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */,
 				11A0194327096C5900BDF309 /* ClothingType.swift in Sources */,
+				11A0194C27096E3A00BDF309 /* ClosetDatabase.swift in Sources */,
 				1135AF2627090B680030B003 /* DropdownOption.swift in Sources */,
 				1135AF2827090B890030B003 /* DropdownDataSource.swift in Sources */,
 				11A0194A27096CF000BDF309 /* TagDatabase.swift in Sources */,
 				1135AF37270930690030B003 /* TextField.swift in Sources */,
+				11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */,
+				11A01953270A190A00BDF309 /* HeaderCell.swift in Sources */,
 				11A0193C2709538700BDF309 /* ClothesCell.swift in Sources */,
+				11A01955270A192100BDF309 /* WasingTagCell.swift in Sources */,
 				11A0194527096C8100BDF309 /* TagCategory.swift in Sources */,
+				11A0194E270A03B500BDF309 /* UIView+Extensions.swift in Sources */,
 				11EF18CE2708E71000473615 /* NewEntryViewController.swift in Sources */,
+				11A01950270A09AC00BDF309 /* IconPickerViewController.swift in Sources */,
 				11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */,
 				11A0194727096CA600BDF309 /* ClothingColor.swift in Sources */,
 				1135AF2F27090FA30030B003 /* NewEntryView.swift in Sources */,
@@ -430,6 +462,7 @@
 		11EF18DB2708E71200473615 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
@@ -450,6 +483,7 @@
 		11EF18DC2708E71200473615 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;

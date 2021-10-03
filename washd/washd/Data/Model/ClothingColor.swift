@@ -1,4 +1,4 @@
-enum ClothingColor {
+enum ClothingColor: Codable {
     case white
     case black
     case lightColors

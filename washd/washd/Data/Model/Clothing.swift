@@ -1,12 +1,12 @@
 import Foundation
 
-struct Closet {
+struct Closet: Codable {
     let clothes: [Clothing]
 }
 
-struct Clothing {
+struct Clothing: Codable {
     let name: String
-    let image: String
+    let image: Data?
     let type: ClothingType
     let color: ClothingColor
     let nfcTagId: UUID?
