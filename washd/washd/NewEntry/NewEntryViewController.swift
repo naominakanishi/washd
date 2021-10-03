@@ -2,12 +2,13 @@ import UIKit
 
 class NewEntryViewController: UIViewController {
     
+    let newEntryView = NewEntryView()
+    
     override func loadView() {
-        let view = NewEntryView()
-        view.actions = .init(
+        newEntryView.actions = .init(
             openIconPicker: openIconPicker
         )
-        self.view = view
+        self.view = newEntryView
     }
     
     override func viewDidLoad() {
@@ -15,7 +16,12 @@ class NewEntryViewController: UIViewController {
     }
     
     private func openIconPicker() {
-        present(IconPickerViewController(), animated: true, completion: nil)
+        let controller = IconPickerViewController()
+        controller.onDone = { items in
+            self.newEntryView.selectedTags = items
+            controller.dismiss(animated: true, completion: nil)
+        }
+        present(controller, animated: true, completion: nil)
     }
 }
 

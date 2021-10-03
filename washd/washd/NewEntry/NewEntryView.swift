@@ -1,6 +1,6 @@
 import UIKit
 
-final class NewEntryView: UIView {
+final class NewEntryView: UIView, UIScrollViewDelegate  {
     
     struct Actions {
         let openIconPicker: () -> Void
@@ -16,6 +16,7 @@ final class NewEntryView: UIView {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isDirectionalLockEnabled = true
+        view.delegate = self
         return view
     }()
     
@@ -40,7 +41,9 @@ final class NewEntryView: UIView {
             .font: UIFont.appFont.montserrat(.light, 14).uiFont,
             .foregroundColor: UIColor.washdColors.hintText
         ])
+        view.font = .appFont.montserrat(.regular, 16).uiFont
         view.layer.cornerRadius = 10
+        view.addTarget(self, action: #selector(handleTap), for: .editingDidEndOnExit)
         return view
     }()
     
@@ -92,17 +95,19 @@ final class NewEntryView: UIView {
     
     private lazy var iconPickerStackView: UIStackView = {
         let view = UIStackView()
-        let chevron = UIImage(systemName: "chevron.right")
+        view.addArrangedSubview(selectedLabel)
+        view.addArrangedSubview(chevronImage)
+        view.spacing = 8
+        return view
+    }()
+    
+    private lazy var chevronImage = UIImageView(image: .init(systemName: "chevron.right"))
+    private lazy var selectedLabel: UILabel = {
         let label = UILabel()
-        
-        view.addArrangedSubview(label)
-        view.addArrangedSubview(UIImageView(image: chevron))
-        
         label.text = "Selecione"
         label.font = .appFont.montserrat(.light, 14).uiFont
         label.textColor = .washdColors.hintText
-        
-        return view
+        return label
     }()
     
     private let doneButton: UIButton = {
@@ -120,6 +125,27 @@ final class NewEntryView: UIView {
     }()
     
     var actions: Actions?
+    var selectedTags: [WashingTag] = [] {
+        didSet {
+            iconPickerStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+            if selectedTags.isEmpty {
+                iconPickerStackView.addArrangedSubview(selectedLabel)
+            } else {
+                selectedTags.forEach {
+                    let imageView = UIImageView(image: .init(named: $0.imageNames.first!))
+                    iconPickerStackView.addArrangedSubview(imageView)
+                    imageView.layout(using: [
+                        imageView.widthAnchor.constraint(equalToConstant: 16),
+                        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+                    ])
+                    imageView.contentMode = .scaleAspectFit
+                }
+                iconPickerStackView.addArrangedSubview(.init())
+            }
+            
+            iconPickerStackView.addArrangedSubview(chevronImage)
+        }
+    }
     
     init() {
         super.init(frame: .zero)
@@ -150,6 +176,76 @@ final class NewEntryView: UIView {
         openIconPickerView.addSubview(iconPickerStackView)
     }
     
+    func configureAdditionalSettings() {
+        backgroundColor = .washdColors.background
+        addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(handleTap)
+        ))
+    }
+    
+    @objc private func openIconPicker() {
+        actions?.openIconPicker()
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        endEditing(true)
+    }
+    
+    @objc private func handleTap() {
+        endEditing(true)
+    }
+}
+
+extension NewEntryView: DropdownDataSource {
+    func numberOfOptions(_ dropdown: DropdownPicker) -> Int {
+        if dropdown == categoriesDropdown {
+            return ClothingType.allCases.count
+        }
+        
+        return ClothingColor.allCases.count
+    }
+    
+    func option(_ dropdown: DropdownPicker, at index: IndexPath) -> DropdownOption {
+        let name: String
+        
+        if dropdown == categoriesDropdown {
+            let item: ClothingType = .allCases[index.row]
+            switch item {
+            case .top:
+                name = "Top"
+            case .bottom:
+                name = "Bottom"
+            case .dresses:
+                name = "Peça única"
+            case .underwear:
+                name = "Roupa íntima"
+            case .sleepwear:
+                name = "Pijama"
+            case .fitness:
+                name = "Fitness"
+            }
+        } else {
+            let item: ClothingColor = .allCases[index.row]
+            switch item {
+            case .white:
+                name = "Branca"
+            case .black:
+                name = "Preta"
+            case .lightColors:
+                name = "Colorida clara"
+            case .darkColors:
+                name = "Colorida escura"
+            }
+        }
+        
+        return .init(name: name)
+    }
+    
+    func stateDidChange() {}
+}
+
+// MARK: - Constraints
+extension NewEntryView {
     func constraintSubviews() {
         titleLabel.layout(using: [
             titleLabel.topAnchor.constraint(
@@ -316,27 +412,4 @@ final class NewEntryView: UIView {
             ),
         ])
     }
-    
-    func configureAdditionalSettings() {
-        backgroundColor = .washdColors.background
-    }
-    
-    @objc private func openIconPicker() {
-        actions?.openIconPicker()
-    }
-}
-
-extension NewEntryView: DropdownDataSource {
-    func numberOfOptions(_ dropdown: DropdownPicker) -> Int {
-        return 100
-    }
-    
-    func option(_ dropdown: DropdownPicker, at index: IndexPath) -> DropdownOption {
-        if dropdown == categoriesDropdown {
-            return .init(name: "Igual \(index.row)")
-        }
-        return .init(name: "Diferente \(index.row)")
-    }
-    
-    func stateDidChange() {}
 }

@@ -19,6 +19,7 @@ final class IconPickerViewController: UIViewController {
         button.layer.borderColor = UIColor.black.cgColor
         button.setTitle("Pronto", for: .normal)
         button.titleLabel?.font = .appFont.montserrat(.semiBold, 16).uiFont
+        button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
         
         return button
     }()
