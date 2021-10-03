@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "do-not-bleach.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

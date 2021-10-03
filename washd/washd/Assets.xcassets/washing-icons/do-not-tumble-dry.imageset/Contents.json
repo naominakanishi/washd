@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "do-not-tumble-dry.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
