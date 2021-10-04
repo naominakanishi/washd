@@ -9,6 +9,8 @@ final class ClosetViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(ClothesCell.self, forCellReuseIdentifier: "ClothesCell")
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -17,11 +19,7 @@ final class ClosetViewController: UIViewController {
         configureNavigationBar()
         addSubviews()
         constraintSubviews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-            present(NewEntryViewController(), animated: true, completion: nil)
+        view.backgroundColor = .washdColors.background
     }
     
     private func addSubviews() {
@@ -34,28 +32,37 @@ final class ClosetViewController: UIViewController {
                 equalTo: view.safeAreaLayoutGuide.topAnchor
             ),
             closetTableView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor
+                equalTo: view.leadingAnchor,
+                constant: 30
             ),
             closetTableView.bottomAnchor.constraint(
                 equalTo: view.bottomAnchor
             ),
             closetTableView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor
+                equalTo: view.trailingAnchor,
+                constant: -30
             ),
         ])
     }
     
     private func configureNavigationBar() {
-        navigationItem.rightBarButtonItem = .init(
-            image: .add,
-            style: .done,
-            target: self,
-            action: #selector(handleAddPiece))
+        let moreButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        moreButton.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
+        moreButton.tintColor = .black
+        moreButton.addTarget(self, action: #selector(handleAddPiece), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
+        title = "Suas roupas"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     @objc
     private func handleAddPiece() {
-        present(NewEntryViewController(), animated: true, completion: nil)
+        let controller = NewEntryViewController()
+        controller.completion = {
+            self.closetTableView.reloadData()
+        }
+        present(controller, animated: true, completion: nil)
     }
 }
 
@@ -76,14 +83,8 @@ extension ClosetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClothesCell") as! ClothesCell
         let clothing = closet.clothes[indexPath.item]
-        
-        
-        
+        cell.configure(using: clothing)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        tableView.frame.height / 5
     }
 }
 

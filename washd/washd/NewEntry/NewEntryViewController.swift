@@ -17,6 +17,8 @@ class NewEntryViewController: UIViewController, NFCReaderDelegate {
     
     let newEntryView = NewEntryView()
     
+    var completion: (() -> Void)?
+    
     private var currentSession: NFCReader?
     private var currentTag: WashdTag? {
         didSet {
@@ -29,7 +31,8 @@ class NewEntryViewController: UIViewController, NFCReaderDelegate {
     override func loadView() {
         newEntryView.actions = .init(
             openIconPicker: openIconPicker,
-            openScanner: openScanner
+            openScanner: openScanner,
+            doneAction: createPiece
         )
         self.view = newEntryView
     }
@@ -51,5 +54,24 @@ class NewEntryViewController: UIViewController, NFCReaderDelegate {
         currentSession = .init()
         currentSession?.delegate = self
         currentSession?.begin()
+    }
+    
+    private func createPiece() {
+        guard let name: String = newEntryView.name,
+              let type: ClothingType = newEntryView.selectedType,
+              let color: ClothingColor = newEntryView.selectedColor
+        else { return }
+                
+        let clothing = Clothing(
+            name: name,
+            image: nil,
+            type: type,
+            color: color,
+            nfcTagId: UUID(uuidString: currentTag?.id ?? ""),
+            washingTags: newEntryView.selectedTags
+        )
+        ClosetDatabase.instance.add(clothing: clothing)
+        completion?()
+        dismiss(animated: true, completion: nil)
     }
 }

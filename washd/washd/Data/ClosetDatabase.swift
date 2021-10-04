@@ -13,6 +13,12 @@ final class ClosetDatabase {
         return decoded
     }
     
+    func add(clothing: Clothing) {
+        var closet = closet()
+        closet.clothes.append(clothing)
+        set(closet: closet)
+    }
+    
     func set(closet: Closet) {
         guard let data = try? JSONEncoder().encode(closet)
         else { return }

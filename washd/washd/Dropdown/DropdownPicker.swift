@@ -16,7 +16,7 @@ final class DropdownPicker: UIView {
             dataSource?.stateDidChange()
         }
     }
-    private var currentSelectedOption: DropdownOption?
+    var currentSelectedIndex: Int?
     
     weak var dataSource: DropdownDataSource?
     
@@ -135,8 +135,8 @@ final class DropdownPicker: UIView {
             self.optionsTableView.reloadData()
         }
         
-        if let currentOption = currentSelectedOption {
-            selectionLabel.text = currentOption.name
+        if let currentOptionIndex = currentSelectedIndex {
+            selectionLabel.text = dataSource?.option(self, at: .init(row: currentOptionIndex, section: 0)).name
         } else {
             selectionLabel.text = "Selecionar"
         }
@@ -171,8 +171,7 @@ extension DropdownPicker: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let option = dataSource?.option(self, at: indexPath)
-        currentSelectedOption = option
+        currentSelectedIndex = indexPath.row
         render(state: .closed)
     }
 }

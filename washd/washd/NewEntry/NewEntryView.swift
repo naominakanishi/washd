@@ -5,6 +5,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
     struct Actions {
         let openIconPicker: () -> Void
         let openScanner: () -> Void
+        let doneAction: () -> Void
     }
     
     enum LayoutMetrics {
@@ -18,7 +19,6 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isDirectionalLockEnabled = true
         view.delegate = self
-        view.contentInset = .init(top: 0, left: 0, bottom: 0, right: 2000)
         view.isDirectionalLockEnabled = true
         return view
     }()
@@ -44,11 +44,12 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
             .font: UIFont.appFont.montserrat(.light, 14).uiFont,
             .foregroundColor: UIColor.washdColors.hintText
         ])
-        view.font = .appFont.montserrat(.regular, 16).uiFont
+        view.font = .appFont.montserrat(.regular, 14).uiFont
         view.layer.cornerRadius = 10
         view.addTarget(self, action: #selector(dismissKeyboard), for: .editingDidEndOnExit)
         return view
     }()
+    var name: String? { nameEntryTextField.text }
     
     private lazy var categoryPrompt: UILabel = {
         let label = UILabel()
@@ -63,6 +64,11 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         view.setContentHuggingPriority(.required, for: .vertical)
         return view
     }()
+    var selectedType: ClothingType? {
+        guard let selected = categoriesDropdown.currentSelectedIndex
+        else { return nil }
+        return ClothingType.allCases[selected]
+    }
     
     private lazy var colorsPromptLabel: UILabel = {
         let label = UILabel()
@@ -76,6 +82,12 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         view.dataSource = self
         return view
     }()
+    
+    var selectedColor: ClothingColor? {
+        guard let selected = colorsDropdown.currentSelectedIndex
+        else { return nil }
+        return ClothingColor.allCases[selected]
+    }
     
     private lazy var iconsPromptLabel: UILabel = {
         let label = UILabel()
@@ -133,6 +145,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         button.layer.borderColor = UIColor.black.cgColor
         button.setTitle("Criar Item", for: .normal)
         button.titleLabel?.font = .appFont.montserrat(.semiBold, 16).uiFont
+        button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
         
         return button
     }()
@@ -220,6 +233,10 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
 
 @objc
 private extension NewEntryView {
+    
+    func handleDone() {
+        actions?.doneAction()
+    }
     
     func openIconPicker() {
         actions?.openIconPicker()

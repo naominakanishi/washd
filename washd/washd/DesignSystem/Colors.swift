@@ -1,10 +1,10 @@
 import UIKit
 
 enum Colors {
-    static let background: UIColor = .init(hex: 0xFAFCFC)
+    static let background: UIColor = .init(hex: 0xEBF4F4)
     static let unitedNationsBlue: UIColor = .init(hex: 0x4A8FE7)
     static let lightGray: UIColor = .init(hex: 0xE5E5E5)
-    static let celeste: UIColor = .init(hex: 0xDDF4F6)
+    static let celeste: UIColor = .init(hex: 0xC8EDF1)
     static let hintText: UIColor = .init(hex: 0x333333).withAlphaComponent(0.5)
 }
  

@@ -1,7 +1,7 @@
 import Foundation
 
 struct Closet: Codable {
-    let clothes: [Clothing]
+    var clothes: [Clothing]
 }
 
 struct Clothing: Codable {
