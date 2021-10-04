@@ -19,6 +19,11 @@ final class ClosetViewController: UIViewController {
         constraintSubviews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+            present(NewEntryViewController(), animated: true, completion: nil)
+    }
+    
     private func addSubviews() {
         view.addSubviews(closetTableView)
     }

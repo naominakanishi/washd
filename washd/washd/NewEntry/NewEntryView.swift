@@ -4,6 +4,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
     
     struct Actions {
         let openIconPicker: () -> Void
+        let openScanner: () -> Void
     }
     
     enum LayoutMetrics {
@@ -17,6 +18,8 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isDirectionalLockEnabled = true
         view.delegate = self
+        view.contentInset = .init(top: 0, left: 0, bottom: 0, right: 2000)
+        view.isDirectionalLockEnabled = true
         return view
     }()
     
@@ -43,7 +46,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         ])
         view.font = .appFont.montserrat(.regular, 16).uiFont
         view.layer.cornerRadius = 10
-        view.addTarget(self, action: #selector(handleTap), for: .editingDidEndOnExit)
+        view.addTarget(self, action: #selector(dismissKeyboard), for: .editingDidEndOnExit)
         return view
     }()
     
@@ -80,7 +83,6 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         label.font = .appFont.montserrat(.semiBold, 20).uiFont
         return label
     }()
-    
     private lazy var openIconPickerView: UIView = {
         let view = UIView()
         
@@ -92,7 +94,6 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         
         return view
     }()
-    
     private lazy var iconPickerStackView: UIStackView = {
         let view = UIStackView()
         view.addArrangedSubview(selectedLabel)
@@ -109,6 +110,18 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         label.textColor = .washdColors.hintText
         return label
     }()
+    
+    private lazy var nfcPicker = AreaPicker(
+        image: .init(named: "nfc-scan-icon"),
+        title: "Atrelar a uma tag NFC?",
+        text: "Toque para escanear a tag",
+        tapAction: { self.actions?.openScanner() })
+    
+    private lazy var photoPicker = AreaPicker(
+        image: .init(systemName: "camera"),
+        title: "Escolha uma foto",
+        text: "Toque para escolher uma imagem",
+        tapAction: {})
     
     private let doneButton: UIButton = {
         let button = UIButton()
@@ -152,6 +165,20 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         addSubviews()
         constraintSubviews()
         configureAdditionalSettings()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setupKeyboardDismissGesture),
+            name: UIApplication.keyboardDidShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(removeKeyboardDismissGesture),
+            name: UIApplication.keyboardDidHideNotification,
+            object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
      
     required init?(coder: NSCoder) {
@@ -171,28 +198,47 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
             colorsPromptLabel,
             colorsDropdown,
             iconsPromptLabel,
-            openIconPickerView
+            openIconPickerView,
+            nfcPicker,
+            photoPicker
         )
         openIconPickerView.addSubview(iconPickerStackView)
     }
     
     func configureAdditionalSettings() {
         backgroundColor = .washdColors.background
-        addGestureRecognizer(UITapGestureRecognizer(
-            target: self, action: #selector(handleTap)
-        ))
-    }
-    
-    @objc private func openIconPicker() {
-        actions?.openIconPicker()
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         endEditing(true)
     }
     
-    @objc private func handleTap() {
+    func renderPickedNFC() {
+        nfcPicker.renderDoneState(message: "Tag atrelada!")
+    }
+}
+
+@objc
+private extension NewEntryView {
+    
+    func openIconPicker() {
+        actions?.openIconPicker()
+    }
+    
+    func dismissKeyboard() {
         endEditing(true)
+    }
+    
+    func setupKeyboardDismissGesture() {
+        addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(dismissKeyboard)
+        ))
+    }
+    
+    func removeKeyboardDismissGesture() {
+        gestureRecognizers?
+            .filter { $0 is UITapGestureRecognizer }
+            .forEach(removeGestureRecognizer)
     }
 }
 
@@ -271,7 +317,8 @@ extension NewEntryView {
                 equalTo: centerXAnchor
             ),
             contentScrollView.bottomAnchor.constraint(
-                equalTo: bottomAnchor
+                equalTo: doneButton.topAnchor,
+                constant: -8
             )
         
         ])
@@ -388,9 +435,33 @@ extension NewEntryView {
             openIconPickerView.centerXAnchor.constraint(
                 equalTo: contentScrollView.centerXAnchor
             ),
-            openIconPickerView.bottomAnchor.constraint(
+        ])
+        
+        nfcPicker.layout(using: [
+            nfcPicker.topAnchor.constraint(
+                equalTo: openIconPickerView.bottomAnchor,
+                constant: LayoutMetrics.interPromptSpacing),
+            nfcPicker.widthAnchor.constraint(
+                equalTo: contentScrollView.widthAnchor
+            ),
+            nfcPicker.centerXAnchor.constraint(
+                equalTo: contentScrollView.centerXAnchor
+            ),
+        ])
+        
+        photoPicker.layout(using: [
+            photoPicker.topAnchor.constraint(
+                equalTo: nfcPicker.bottomAnchor,
+                constant: LayoutMetrics.interPromptSpacing),
+            photoPicker.widthAnchor.constraint(
+                equalTo: contentScrollView.widthAnchor
+            ),
+            photoPicker.centerXAnchor.constraint(
+                equalTo: contentScrollView.centerXAnchor
+            ),
+            photoPicker.bottomAnchor.constraint(
                 equalTo: contentScrollView.bottomAnchor
-            )
+            ),
         ])
         
         iconPickerStackView.layout(using: [

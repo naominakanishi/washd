@@ -27,6 +27,10 @@ final class NFCReader: NSObject {
     func begin() {
         session.begin()
     }
+    
+    func end() {
+        session.invalidate()
+    }
 }
 
 extension NFCReader: NFCNDEFReaderSessionDelegate {

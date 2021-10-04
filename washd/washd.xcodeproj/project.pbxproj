@@ -34,6 +34,8 @@
 		11A01955270A192100BDF309 /* WasingTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01954270A192100BDF309 /* WasingTagCell.swift */; };
 		11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */; };
 		11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD33AA2708ED9800FBA29C /* Colors.swift */; };
+		11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B06270A7F8E00458E56 /* AreaPicker.swift */; };
+		11E41B09270A7FAF00458E56 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */; };
 		11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18C92708E71000473615 /* AppDelegate.swift */; };
 		11EF18CC2708E71000473615 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18CB2708E71000473615 /* SceneDelegate.swift */; };
 		11EF18CE2708E71000473615 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18CD2708E71000473615 /* NewEntryViewController.swift */; };
@@ -72,6 +74,8 @@
 		11A01954270A192100BDF309 /* WasingTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasingTagCell.swift; sourceTree = "<group>"; };
 		11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerCollectionViewManager.swift; sourceTree = "<group>"; };
 		11AD33AA2708ED9800FBA29C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		11E41B06270A7F8E00458E56 /* AreaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaPicker.swift; sourceTree = "<group>"; };
+		11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		11EF18C62708E71000473615 /* washd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = washd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11EF18C92708E71000473615 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11EF18CB2708E71000473615 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				1135AF30270929380030B003 /* Font.swift */,
 				1135AF36270930690030B003 /* TextField.swift */,
 				11A0194D270A03B500BDF309 /* UIView+Extensions.swift */,
+				11E41B06270A7F8E00458E56 /* AreaPicker.swift */,
+				11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				11A0194C27096E3A00BDF309 /* ClosetDatabase.swift in Sources */,
 				1135AF2627090B680030B003 /* DropdownOption.swift in Sources */,
 				1135AF2827090B890030B003 /* DropdownDataSource.swift in Sources */,
+				11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */,
 				11A0194A27096CF000BDF309 /* TagDatabase.swift in Sources */,
 				1135AF37270930690030B003 /* TextField.swift in Sources */,
 				11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */,
@@ -318,6 +325,7 @@
 				1135AF2A27090BA30030B003 /* SelfSizingTableView.swift in Sources */,
 				1135AF232708F8E60030B003 /* DropdownPicker.swift in Sources */,
 				11EF18CC2708E71000473615 /* SceneDelegate.swift in Sources */,
+				11E41B09270A7FAF00458E56 /* UIStackView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
