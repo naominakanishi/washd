@@ -1,57 +1,88 @@
 import UIKit
 
-final class ClothesCell: UITableViewCell {
+final class ClothesCell: UICollectionViewCell {
+    
+    var currentItemCount = 0
+    
+    var pickerLeadingConstraint: NSLayoutConstraint?
     
     let photoImageView: UIImageView = {
         let view = UIImageView()
-        view.layer.cornerRadius = 15
-        view.contentMode = .scaleAspectFit
+        view.layer.cornerRadius = 10
+        view.contentMode = .scaleAspectFill
         return view
     }()
-    
-    override var alignmentRectInsets: UIEdgeInsets {
-        .init(top: 100, left: 100, bottom: -100, right: -100)
-    }
     
     let containerView = UIView()
     
+    
+    let nameBackground: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 10
+        view.backgroundColor = .black.withAlphaComponent(0.5)
+        return view
+    }()
+    
     let nameLabel: UILabel = {
         let view = UILabel()
-        view.font = .appFont.montserrat(.bold, 18).uiFont
+        view.font = .appFont.montserrat(.regular, 11).uiFont
+        view.textColor = .white
+        view.textAlignment = .center
+        view.numberOfLines = 0
+        return view
+    }()
+    
+    let addToBasketButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.addTarget(self, action: #selector(didAdd), for: .touchUpInside)
+        button.tintColor = .black
+        return button
+    }()
+    
+    let removeFromBasketButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "trash"), for: .normal)
+        button.addTarget(self, action: #selector(didRemove), for: .touchUpInside)
+        button.tintColor = .black
+        button.isHidden = true
+        return button
+    }()
+    
+    let countLabel: UILabel = {
+        let view = UILabel()
+        view.font = .appFont.montserrat(.semiBold, 10).uiFont
         view.textColor = .black
-        view.textAlignment = .left
+        view.textAlignment = .center
+        view.numberOfLines = 0
+        view.isHidden = true
         return view
     }()
     
-    let clothingColor: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
-    
-    let iconsStackView: UIStackView = {
+    let itemPickingStackView: UIStackView = {
         let view = UIStackView()
+        
         view.axis = .horizontal
+        view.distribution = .equalSpacing
         view.spacing = 8
+        view.backgroundColor = .white
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.cornerRadius = 10
+        
         return view
     }()
-    
     let photoMargin: CGFloat = 20
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         addSubviews()
         constraintSubviews()
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = .clear
         containerView.layer.cornerRadius = 15
         containerView.clipsToBounds = true
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        iconsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
         
     required init?(coder: NSCoder) {
@@ -61,9 +92,14 @@ final class ClothesCell: UITableViewCell {
     private func addSubviews() {
         contentView.addSubview(containerView)
         containerView.addSubview(photoImageView)
+        containerView.addSubview(nameBackground)
         containerView.addSubview(nameLabel)
-        containerView.addSubview(clothingColor)
-        containerView.addSubview(iconsStackView)
+        containerView.addSubview(itemPickingStackView)
+        itemPickingStackView.addArrangedSubviews(
+            removeFromBasketButton,
+            countLabel,
+            addToBasketButton
+        )
     }
     
     private func constraintSubviews() {
@@ -71,63 +107,103 @@ final class ClothesCell: UITableViewCell {
         containerView.layout(using: [
             containerView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: 10),
+                constant: 0),
             containerView.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
-                constant: 10),
+                constant: 0),
             containerView.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
-                constant: -10),
+                constant: -0),
             containerView.bottomAnchor.constraint(
                 equalTo: contentView.bottomAnchor,
-                constant: -10),
+                constant: -0),
         ])
         
         photoImageView.layout(using: [
-            photoImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: photoMargin),
-            photoImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -photoMargin),
-            photoImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: photoMargin),
-            photoImageView.widthAnchor.constraint(equalToConstant: 70),
-            photoImageView.heightAnchor.constraint(equalToConstant: 70)
+            photoImageView.topAnchor.constraint(
+                equalTo: containerView.topAnchor),
+            photoImageView.bottomAnchor.constraint(
+                equalTo: containerView.bottomAnchor),
+            photoImageView.leadingAnchor.constraint(
+                equalTo: containerView.leadingAnchor),
+            photoImageView.trailingAnchor.constraint(
+                equalTo: containerView.trailingAnchor),
+        ])
+        
+        nameBackground.layout(using: [
+            nameBackground.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor),
+            nameBackground.leadingAnchor.constraint(equalTo: photoImageView.leadingAnchor),
+            nameBackground.trailingAnchor.constraint(equalTo: photoImageView.trailingAnchor),
+            nameBackground.heightAnchor.constraint(equalToConstant: 50)
         ])
         
         nameLabel.layout(using: [
-            nameLabel.topAnchor.constraint(equalTo: photoImageView.topAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: photoMargin),
+            nameLabel.widthAnchor.constraint(equalTo: nameBackground.widthAnchor, multiplier: 0.9),
+            nameLabel.centerXAnchor.constraint(equalTo: nameBackground.centerXAnchor),
+            nameLabel.centerYAnchor.constraint(equalTo: nameBackground.centerYAnchor)
         ])
         
-        clothingColor.layout(using: [
-            clothingColor.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -photoMargin),
-            clothingColor.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: photoMargin),
-            clothingColor.widthAnchor.constraint(equalToConstant: 24),
-            clothingColor.heightAnchor.constraint(equalTo: clothingColor.widthAnchor),
+        itemPickingStackView.layout(using: [
+            itemPickingStackView.topAnchor.constraint(
+                equalTo: containerView.topAnchor,
+                constant: 10),
+            itemPickingStackView.trailingAnchor.constraint(
+                equalTo: containerView.trailingAnchor,
+                constant: -10),
+            itemPickingStackView.heightAnchor.constraint(
+                equalTo: containerView.heightAnchor,
+                multiplier: 0.17),
         ])
         
-        iconsStackView.layout(using: [
-            iconsStackView.topAnchor.constraint(
-                equalTo: clothingColor.topAnchor),
-            iconsStackView.bottomAnchor.constraint(
-                equalTo: clothingColor.bottomAnchor),
-            iconsStackView.leadingAnchor.constraint(
-                equalTo: clothingColor.trailingAnchor,
-                constant: 8),
+        addToBasketButton.layout(using: [
+            addToBasketButton.widthAnchor.constraint(
+                equalTo: contentView.widthAnchor,
+                multiplier: 1/3.5),
+            addToBasketButton.heightAnchor.constraint(
+                equalTo: addToBasketButton.widthAnchor)
         ])
+        
+        removeFromBasketButton.layout(using: [
+            removeFromBasketButton.widthAnchor.constraint(
+                equalTo: contentView.widthAnchor,
+                multiplier: 1/3.5),
+            removeFromBasketButton.heightAnchor.constraint(
+                equalTo: removeFromBasketButton.widthAnchor,
+                constant: 38 / 47)
+        ])
+        
+        pickerLeadingConstraint = itemPickingStackView.leadingAnchor.constraint(
+            equalTo: containerView.leadingAnchor,
+            constant: 10)
     }
     
     func configure(using clothing: Clothing) {
         nameLabel.text = clothing.name
         photoImageView.image = UIImage(data: clothing.image) ?? .init(named: clothing.type.imageName)
-        clothingColor.image = UIImage(named: clothing.color.rawValue)
-        
-        clothing.washingTags.forEach {
-            let imageView = UIImageView(image: .init(named: $0.imageNames.first!))
-            iconsStackView.addArrangedSubview(imageView)
-            imageView.contentMode = .scaleAspectFit
-            imageView.layout(using: [
-                imageView.widthAnchor.constraint(
-                    equalTo: imageView.heightAnchor
-                )
-            ])
+    }
+    
+    @objc func didAdd() {
+        currentItemCount += 1
+        renderPickerState()
+    }
+    
+    @objc func didRemove() {
+        guard currentItemCount > 0 else { return }
+        currentItemCount -= 1
+        renderPickerState()
+    }
+    
+    func renderPickerState() {
+        let shouldPresentPicker = currentItemCount <= 0
+        countLabel.text = "\(currentItemCount)"
+        pickerLeadingConstraint?.isActive = !shouldPresentPicker
+        UIView.animate(withDuration: 0.1) {
+            self.countLabel.isHidden = shouldPresentPicker
+            self.removeFromBasketButton.isHidden = shouldPresentPicker
+            self.removeFromBasketButton.setImage(
+                .init(systemName: self.currentItemCount > 1 ? "minus" : "trash"),
+                for: .normal)
+            self.layoutIfNeeded()
         }
     }
 }

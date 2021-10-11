@@ -6,6 +6,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         let openIconPicker: () -> Void
         let openScanner: () -> Void
         let doneAction: () -> Void
+        let openCamera: () -> Void
     }
     
     enum LayoutMetrics {
@@ -133,7 +134,8 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         image: .init(systemName: "camera"),
         title: "Escolha uma foto",
         text: "Toque para escolher uma imagem",
-        tapAction: {})
+        tapAction: { self.actions?.openCamera()}
+    )
     
     private let doneButton: UIButton = {
         let button = UIButton()
@@ -228,6 +230,10 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
     
     func renderPickedNFC() {
         nfcPicker.renderDoneState(message: "Tag atrelada!")
+    }
+    
+    func renderPickedImage() {
+        photoPicker.renderDoneState(message: "Foto importada com sucesso!")
     }
 }
 

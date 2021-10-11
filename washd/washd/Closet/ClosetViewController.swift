@@ -3,15 +3,15 @@ import CoreNFC
 
 final class ClosetViewController: UIViewController {
  
-    private lazy var closetTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ClothesCell.self, forCellReuseIdentifier: "ClothesCell")
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
-        tableView.allowsSelection = false
-        return tableView
+    private lazy var closetTableView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(ClothesCell.self, forCellWithReuseIdentifier: "ClothesCell")
+        collectionView.backgroundColor = .clear
+        collectionView.allowsSelection = false
+        return collectionView
     }()
     
     override func viewDidLoad() {
@@ -62,29 +62,34 @@ final class ClosetViewController: UIViewController {
         controller.completion = {
             self.closetTableView.reloadData()
         }
-        present(controller, animated: true, completion: nil)
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 }
 
 
-extension ClosetViewController: UITableViewDelegate, UITableViewDataSource {
+extension ClosetViewController: UICollectionViewDelegate, UICollectionViewDataSource,
+ UICollectionViewDelegateFlowLayout {
     
     var closet: Closet { ClosetDatabase.instance.closet() }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return closet.clothes.count
     }
     
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ClothesCell") as! ClothesCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothesCell", for: indexPath) as! ClothesCell
         let clothing = closet.clothes[indexPath.item]
         cell.configure(using: clothing)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(
+            width: (collectionView.frame.width - 40) / 3,
+            height: 164)
+    }
 }
+
+
 
