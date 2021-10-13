@@ -19,6 +19,11 @@
 		1135AF3427092BBB0030B003 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1135AF1E2708F80E0030B003 /* Montserrat-Light.ttf */; };
 		1135AF3527092BBB0030B003 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1135AF202708F80E0030B003 /* Montserrat-SemiBold.ttf */; };
 		1135AF37270930690030B003 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1135AF36270930690030B003 /* TextField.swift */; };
+		115400012716306C00104A2C /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115400002716306C00104A2C /* BasketViewController.swift */; };
+		1154000327164CDA00104A2C /* Wash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154000227164CDA00104A2C /* Wash.swift */; };
+		1154000527164CF400104A2C /* WashViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154000427164CF400104A2C /* WashViewCell.swift */; };
+		1154FFFD2714E9B900104A2C /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154FFFC2714E9B900104A2C /* BasketView.swift */; };
+		1154FFFF2714EE4500104A2C /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154FFFE2714EE4500104A2C /* ClosetView.swift */; };
 		11A0193927094A2A00BDF309 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193827094A2A00BDF309 /* ClosetViewController.swift */; };
 		11A0193C2709538700BDF309 /* ClothesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193B2709538700BDF309 /* ClothesCell.swift */; };
 		11A0193F27096BEA00BDF309 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193E27096BEA00BDF309 /* Clothing.swift */; };
@@ -33,6 +38,7 @@
 		11A01953270A190A00BDF309 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01952270A190A00BDF309 /* HeaderCell.swift */; };
 		11A01955270A192100BDF309 /* WasingTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01954270A192100BDF309 /* WasingTagCell.swift */; };
 		11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */; };
+		11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AB2980271650B7001A89D2 /* BasketDatabase.swift */; };
 		11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD33AA2708ED9800FBA29C /* Colors.swift */; };
 		11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B06270A7F8E00458E56 /* AreaPicker.swift */; };
 		11E41B09270A7FAF00458E56 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */; };
@@ -58,6 +64,11 @@
 		1135AF2E27090FA30030B003 /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		1135AF30270929380030B003 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		1135AF36270930690030B003 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		115400002716306C00104A2C /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		1154000227164CDA00104A2C /* Wash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wash.swift; sourceTree = "<group>"; };
+		1154000427164CF400104A2C /* WashViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashViewCell.swift; sourceTree = "<group>"; };
+		1154FFFC2714E9B900104A2C /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
+		1154FFFE2714EE4500104A2C /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
 		11A0193827094A2A00BDF309 /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
 		11A0193A27094FF000BDF309 /* washd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = washd.entitlements; sourceTree = "<group>"; };
 		11A0193B2709538700BDF309 /* ClothesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCell.swift; sourceTree = "<group>"; };
@@ -73,6 +84,7 @@
 		11A01952270A190A00BDF309 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		11A01954270A192100BDF309 /* WasingTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasingTagCell.swift; sourceTree = "<group>"; };
 		11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerCollectionViewManager.swift; sourceTree = "<group>"; };
+		11AB2980271650B7001A89D2 /* BasketDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketDatabase.swift; sourceTree = "<group>"; };
 		11AD33AA2708ED9800FBA29C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		11E41B06270A7F8E00458E56 /* AreaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaPicker.swift; sourceTree = "<group>"; };
 		11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
@@ -144,11 +156,42 @@
 			path = NewEntry;
 			sourceTree = "<group>";
 		};
+		1154000727164D7C00104A2C /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				1154FFFC2714E9B900104A2C /* BasketView.swift */,
+				115400002716306C00104A2C /* BasketViewController.swift */,
+				1154000427164CF400104A2C /* WashViewCell.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		1154000827164D9C00104A2C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				1135AF2D27090F8E0030B003 /* NewEntry */,
+				11A0193727094A0F00BDF309 /* Closet */,
+				1154000727164D7C00104A2C /* Basket */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		1154000927164DB300104A2C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				11A01951270A18FC00BDF309 /* IconPicker */,
+				1135AF2427090B580030B003 /* Dropdown */,
+				1135AF192708F75B0030B003 /* DesignSystem */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		11A0193727094A0F00BDF309 /* Closet */ = {
 			isa = PBXGroup;
 			children = (
 				11A0193827094A2A00BDF309 /* ClosetViewController.swift */,
 				11A0193B2709538700BDF309 /* ClothesCell.swift */,
+				1154FFFE2714EE4500104A2C /* ClosetView.swift */,
 			);
 			path = Closet;
 			sourceTree = "<group>";
@@ -161,6 +204,7 @@
 				11A0194227096C5900BDF309 /* ClothingType.swift */,
 				11A0194427096C8100BDF309 /* TagCategory.swift */,
 				11A0194627096CA600BDF309 /* ClothingColor.swift */,
+				1154000227164CDA00104A2C /* Wash.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +215,7 @@
 				11A0193D27096BDF00BDF309 /* Model */,
 				11A0194927096CF000BDF309 /* TagDatabase.swift */,
 				11A0194B27096E3A00BDF309 /* ClosetDatabase.swift */,
+				11AB2980271650B7001A89D2 /* BasketDatabase.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -205,13 +250,10 @@
 		11EF18C82708E71000473615 /* washd */ = {
 			isa = PBXGroup;
 			children = (
-				11A01951270A18FC00BDF309 /* IconPicker */,
 				11A0194827096CE000BDF309 /* Data */,
+				1154000827164D9C00104A2C /* Scenes */,
+				1154000927164DB300104A2C /* UI */,
 				11A0193A27094FF000BDF309 /* washd.entitlements */,
-				11A0193727094A0F00BDF309 /* Closet */,
-				1135AF2D27090F8E0030B003 /* NewEntry */,
-				1135AF2427090B580030B003 /* Dropdown */,
-				1135AF192708F75B0030B003 /* DesignSystem */,
 				11EF18C92708E71000473615 /* AppDelegate.swift */,
 				11EF18CB2708E71000473615 /* SceneDelegate.swift */,
 				11EF18CF2708E71000473615 /* Main.storyboard */,
@@ -297,11 +339,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1154000327164CDA00104A2C /* Wash.swift in Sources */,
+				1154FFFD2714E9B900104A2C /* BasketView.swift in Sources */,
 				11A0193927094A2A00BDF309 /* ClosetViewController.swift in Sources */,
 				11A0193F27096BEA00BDF309 /* Clothing.swift in Sources */,
 				1135AF2C27090BD00030B003 /* OptionCell.swift in Sources */,
+				1154000527164CF400104A2C /* WashViewCell.swift in Sources */,
 				11EF18DE2708E89500473615 /* NFCReader.swift in Sources */,
 				11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */,
+				1154FFFF2714EE4500104A2C /* ClosetView.swift in Sources */,
 				11A0194327096C5900BDF309 /* ClothingType.swift in Sources */,
 				11A0194C27096E3A00BDF309 /* ClosetDatabase.swift in Sources */,
 				1135AF2627090B680030B003 /* DropdownOption.swift in Sources */,
@@ -309,6 +355,7 @@
 				11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */,
 				11A0194A27096CF000BDF309 /* TagDatabase.swift in Sources */,
 				1135AF37270930690030B003 /* TextField.swift in Sources */,
+				115400012716306C00104A2C /* BasketViewController.swift in Sources */,
 				11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */,
 				11A01953270A190A00BDF309 /* HeaderCell.swift in Sources */,
 				11A0193C2709538700BDF309 /* ClothesCell.swift in Sources */,
@@ -322,6 +369,7 @@
 				1135AF2F27090FA30030B003 /* NewEntryView.swift in Sources */,
 				11A0194127096C3600BDF309 /* WashingTag.swift in Sources */,
 				1135AF31270929380030B003 /* Font.swift in Sources */,
+				11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */,
 				1135AF2A27090BA30030B003 /* SelfSizingTableView.swift in Sources */,
 				1135AF232708F8E60030B003 /* DropdownPicker.swift in Sources */,
 				11EF18CC2708E71000473615 /* SceneDelegate.swift in Sources */,

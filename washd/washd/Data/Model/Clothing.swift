@@ -4,7 +4,7 @@ struct Closet: Codable {
     var clothes: [Clothing]
 }
 
-struct Clothing: Codable {
+struct Clothing: Codable, Equatable, Hashable {
     let name: String
     let image: Data?
     let type: ClothingType

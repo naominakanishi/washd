@@ -2,9 +2,9 @@ import UIKit
 
 final class ClothesCell: UICollectionViewCell {
     
-    var currentItemCount = 0
-    
-    var pickerLeadingConstraint: NSLayoutConstraint?
+    private var clothing: Clothing?
+    private var currentItemCount = 0
+    private var pickerLeadingConstraint: NSLayoutConstraint?
     
     let photoImageView: UIImageView = {
         let view = UIImageView()
@@ -178,6 +178,7 @@ final class ClothesCell: UICollectionViewCell {
     }
     
     func configure(using clothing: Clothing) {
+        self.clothing = clothing
         nameLabel.text = clothing.name
         photoImageView.image = UIImage(data: clothing.image) ?? .init(named: clothing.type.imageName)
     }
@@ -185,9 +186,15 @@ final class ClothesCell: UICollectionViewCell {
     @objc func didAdd() {
         currentItemCount += 1
         renderPickerState()
+        if let clothing = clothing {
+            BasketDatabase.shared.add(clothing: clothing)
+        }
     }
     
     @objc func didRemove() {
+        if let clothing = clothing {
+            BasketDatabase.shared.remove(clothing: clothing)
+        }
         guard currentItemCount > 0 else { return }
         currentItemCount -= 1
         renderPickerState()

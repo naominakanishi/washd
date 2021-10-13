@@ -2,47 +2,27 @@ import UIKit
 import CoreNFC
 
 final class ClosetViewController: UIViewController {
- 
-    private lazy var closetTableView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(ClothesCell.self, forCellWithReuseIdentifier: "ClothesCell")
-        collectionView.backgroundColor = .clear
-        collectionView.allowsSelection = false
-        return collectionView
-    }()
+    
+    private var closetView: ClosetView? { view as? ClosetView }
+    private let basketViewController = BasketViewController()
+    
+    //  MARK: - View lifecycle
+    
+    override func loadView() {
+        addChild(basketViewController)
+        view = ClosetView(
+            delegate: self,
+            dataSource: self,
+            basketView: basketViewController.view as! BasketView
+        )
+        closetView?.delegate = self
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        basketViewController.didMove(toParent: self)
         configureNavigationBar()
-        addSubviews()
-        constraintSubviews()
         view.backgroundColor = .washdColors.background
-    }
-    
-    private func addSubviews() {
-        view.addSubviews(closetTableView)
-    }
-    
-    private func constraintSubviews() {
-        closetTableView.layout(using: [
-            closetTableView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor
-            ),
-            closetTableView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: 30
-            ),
-            closetTableView.bottomAnchor.constraint(
-                equalTo: view.bottomAnchor
-            ),
-            closetTableView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -30
-            ),
-        ])
     }
     
     private func configureNavigationBar() {
@@ -54,18 +34,24 @@ final class ClosetViewController: UIViewController {
         title = "Suas roupas"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.layer.zPosition = 10
     }
     
     @objc
     private func handleAddPiece() {
         let controller = NewEntryViewController()
         controller.completion = {
-            self.closetTableView.reloadData()
+            self.closetView?.reloadData()
         }
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 }
 
+extension ClosetViewController: ClosetViewDelegate {
+    func updateNavigation(shouldPresent: Bool) {
+        navigationController?.setNavigationBarHidden(shouldPresent, animated: true)
+    }
+}
 
 extension ClosetViewController: UICollectionViewDelegate, UICollectionViewDataSource,
  UICollectionViewDelegateFlowLayout {
