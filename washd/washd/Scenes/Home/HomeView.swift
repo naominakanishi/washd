@@ -53,7 +53,38 @@ final class HomeView: UIView {
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.spacing = 15
-        
+        return view
+    }()
+    
+    private lazy var learningItemsTitle: UILabel = {
+        let view = UILabel()
+        view.font = .appFont.montserrat(.semiBold, 22).uiFont
+        view.textColor = .washdColors.text
+        view.textAlignment = .left
+        view.text = "Aprendizado"
+        return view
+    }()
+    
+    private lazy var fabricLearningButton: LearningButton = {
+        let view = LearningButton(image: "know-fabrics", label: "conheça\nfibras e tecidos")
+        return view
+    }()
+    
+    private lazy var understandSymbolsButton: LearningButton = {
+        let view = LearningButton(image: "understand-symbols", label: "entenda\nos símbolos nas etiquetas")
+        return view
+    }()
+    
+    private lazy var upcyclingButton: LearningButton = {
+        let view = LearningButton(image: "upcycling", label: "upcycling:\no que é, e como fazer")
+        return view
+    }()
+    
+    private lazy var learningButtonsStackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .equalSpacing
+        view.spacing = 15
         return view
     }()
     
@@ -73,11 +104,16 @@ final class HomeView: UIView {
         self.addSubview(welcomeMessage)
         self.addSubview(clothesAmount)
         self.addSubview(topButtonsStackView)
+        self.addSubview(learningItemsTitle)
+        self.addSubview(learningButtonsStackView)
         
         topButtonsStackView.addArrangedSubview(registerButton)
         topButtonsStackView.addArrangedSubview(closetButton)
         topButtonsStackView.addArrangedSubview(washButton)
 
+        learningButtonsStackView.addArrangedSubview(fabricLearningButton)
+        learningButtonsStackView.addArrangedSubview(understandSymbolsButton)
+        learningButtonsStackView.addArrangedSubview(upcyclingButton)
     }
     
     func constraintSubviews() {
@@ -113,6 +149,20 @@ final class HomeView: UIView {
             topButtonsStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             topButtonsStackView.heightAnchor.constraint(equalToConstant: 130)
            
+        ])
+        
+        learningItemsTitle.layout(using: [
+            learningItemsTitle.topAnchor.constraint(equalTo: topButtonsStackView.bottomAnchor, constant: 35),
+            learningItemsTitle.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            learningItemsTitle.centerXAnchor.constraint(equalTo: centerXAnchor)
+            
+        ])
+        
+        learningButtonsStackView.layout(using: [
+            learningButtonsStackView.topAnchor.constraint(equalTo: learningItemsTitle.bottomAnchor, constant: 15),
+            learningButtonsStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            learningButtonsStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+
         ])
    
     }

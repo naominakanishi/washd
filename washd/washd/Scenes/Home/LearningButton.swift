@@ -1,10 +1,10 @@
 import UIKit
 
-final class TopButton: UIView {
+final class LearningButton: UIView {
     
     private lazy var backgroundImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "top-buttons-bg")
+        view.image = UIImage(named: "learning-button-bg")
         return view
     }()
     
@@ -17,13 +17,8 @@ final class TopButton: UIView {
         let view = UILabel()
         view.font = UIFont.appFont.montserrat(.semiBold, 12).uiFont
         view.textColor = .white
-        view.textAlignment = .center
-        return view
-    }()
-    
-    private lazy var textBackground: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white.withAlphaComponent(0.1)
+        view.textAlignment = .left
+        view.numberOfLines = 0
         return view
     }()
     
@@ -54,37 +49,31 @@ final class TopButton: UIView {
     func addSubviews() {
         self.addSubview(backgroundImage)
         self.addSubview(buttonImage)
-        self.addSubview(textBackground)
         self.addSubview(buttonLabel)
     }
     
     func constraintSubviews() {
         backgroundImage.layout(using: [
             backgroundImage.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImage.widthAnchor.constraint(equalTo: widthAnchor),
+            backgroundImage.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 95/368),
             backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             backgroundImage.leadingAnchor.constraint(equalTo:leadingAnchor),
             backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         
         buttonImage.layout(using: [
-            buttonImage.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            buttonImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
-            buttonImage.heightAnchor.constraint(equalTo: buttonImage.widthAnchor),
-            buttonImage.centerXAnchor.constraint(equalTo: centerXAnchor)
+            buttonImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            buttonImage.heightAnchor.constraint(equalToConstant: 65),
+            buttonImage.widthAnchor.constraint(equalTo: buttonImage.heightAnchor),
+            
+            buttonImage.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
-        textBackground.layout(using: [
-            textBackground.topAnchor.constraint(equalTo: buttonImage.bottomAnchor, constant: 15),
-            textBackground.bottomAnchor.constraint(equalTo: bottomAnchor),
-            textBackground.leadingAnchor.constraint(equalTo:leadingAnchor),
-            textBackground.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
-        
+       
         buttonLabel.layout(using: [
-            buttonLabel.topAnchor.constraint(equalTo: buttonImage.bottomAnchor),
-            buttonLabel.centerYAnchor.constraint(equalTo: textBackground.centerYAnchor),
-            buttonLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            buttonLabel.leadingAnchor.constraint(equalTo:leadingAnchor),
+            buttonLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            buttonLabel.leadingAnchor.constraint(equalTo:buttonImage.trailingAnchor, constant: 24),
             buttonLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
             
         ])
