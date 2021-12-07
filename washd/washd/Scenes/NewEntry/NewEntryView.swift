@@ -50,6 +50,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         view.addTarget(self, action: #selector(dismissKeyboard), for: .editingDidEndOnExit)
         return view
     }()
+    
     var name: String? { nameEntryTextField.text }
     
     private lazy var categoryPrompt: UILabel = {
@@ -65,6 +66,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         view.setContentHuggingPriority(.required, for: .vertical)
         return view
     }()
+    
     var selectedType: ClothingType? {
         guard let selected = categoriesDropdown.currentSelectedIndex
         else { return nil }

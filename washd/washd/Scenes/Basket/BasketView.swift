@@ -24,10 +24,20 @@ final class BasketView: UIView {
         return view
     }()
     
+    private lazy var badgeView: UIView = {
+        let view = UIView()
+        
+        view.backgroundColor = .washdColors.vividSkyBlue
+        view.isHidden = true
+        
+        return view
+    }()
+    
     private lazy var badgeLabel: UILabel = {
         let label = UILabel()
-        
-        label.backgroundColor = .red
+    
+        label.textColor = .white
+        label.font = .appFont.montserrat(.semiBold, 12).uiFont
         
         return label
     }()
@@ -54,14 +64,18 @@ final class BasketView: UIView {
     }
     
     func badge(count: Int) {
-        badgeLabel.isHidden = count < 1
+        badgeView.isHidden = count < 1
         badgeLabel.text = "\(count)"
+        
+        layoutIfNeeded()
+        badgeView.layer.cornerRadius = badgeView.frame.height / 2
     }
     
     // MARK: - View lifecycle
     
     private func addSubviews() {
-        addSubviews(imageView, washesTableView, badgeLabel)
+        addSubviews(imageView, washesTableView, badgeView)
+        badgeView.addSubview(badgeLabel)
     }
     
     private func constraintSubviews() {
@@ -89,11 +103,27 @@ final class BasketView: UIView {
             washesTableView.bottomAnchor.constraint(
                 equalTo: bottomAnchor),
         ])
-        badgeLabel.layout(using: [
-            badgeLabel.centerXAnchor.constraint(
+        badgeView.layout(using: [
+            badgeView.centerXAnchor.constraint(
                 equalTo: imageView.trailingAnchor),
-            badgeLabel.centerYAnchor.constraint(
+            badgeView.centerYAnchor.constraint(
                 equalTo: imageView.topAnchor),
+            badgeView.widthAnchor.constraint(
+                equalTo: badgeView.heightAnchor)
+        ])
+        
+        badgeLabel.layout(using: [
+            badgeLabel.topAnchor.constraint(
+                equalTo: badgeView.topAnchor,
+                constant: 4),
+            badgeLabel.centerXAnchor.constraint(
+                equalTo: badgeView.centerXAnchor),
+//            badgeLabel.trailingAnchor.constraint(
+//                equalTo: badgeView.trailingAnchor,
+//                constant: -4),
+            badgeLabel.bottomAnchor.constraint(
+                equalTo: badgeView.bottomAnchor,
+                constant: -4),
         ])
     }
     

@@ -36,6 +36,12 @@ final class ClosetView: UIView {
     
     // MARK: - Components
     
+    private lazy var backgroundImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "background")
+        return view
+    }()
+    
     private lazy var closetCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -74,13 +80,21 @@ final class ClosetView: UIView {
     
     // MARK: - View lifecycle
     private func addSubviews() {
-        addSubviews(closetCollectionView, basketView)
+        addSubviews(backgroundImage, closetCollectionView, basketView)
     }
     
     private func constraintSubviews() {
         closetTopConstraint = closetCollectionView.topAnchor.constraint(
             equalTo: safeAreaLayoutGuide.topAnchor
         )
+        
+        backgroundImage.layout(using: [
+            backgroundImage.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+        
         closetCollectionView.layout(using: [
             closetTopConstraint!,
             closetCollectionView.leadingAnchor.constraint(

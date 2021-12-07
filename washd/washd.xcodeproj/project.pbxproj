@@ -24,6 +24,9 @@
 		1154000527164CF400104A2C /* WashViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154000427164CF400104A2C /* WashViewCell.swift */; };
 		1154FFFD2714E9B900104A2C /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154FFFC2714E9B900104A2C /* BasketView.swift */; };
 		1154FFFF2714EE4500104A2C /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154FFFE2714EE4500104A2C /* ClosetView.swift */; };
+		115CDE96275EA2C0007D82FB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDE95275EA2C0007D82FB /* HomeViewController.swift */; };
+		115CDE98275EA5D8007D82FB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDE97275EA5D8007D82FB /* HomeView.swift */; };
+		115CDE9A275FCE3E007D82FB /* TopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDE99275FCE3E007D82FB /* TopButton.swift */; };
 		11A0193927094A2A00BDF309 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193827094A2A00BDF309 /* ClosetViewController.swift */; };
 		11A0193C2709538700BDF309 /* ClothesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193B2709538700BDF309 /* ClothesCell.swift */; };
 		11A0193F27096BEA00BDF309 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193E27096BEA00BDF309 /* Clothing.swift */; };
@@ -69,6 +72,9 @@
 		1154000427164CF400104A2C /* WashViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashViewCell.swift; sourceTree = "<group>"; };
 		1154FFFC2714E9B900104A2C /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		1154FFFE2714EE4500104A2C /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
+		115CDE95275EA2C0007D82FB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		115CDE97275EA5D8007D82FB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		115CDE99275FCE3E007D82FB /* TopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButton.swift; sourceTree = "<group>"; };
 		11A0193827094A2A00BDF309 /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
 		11A0193A27094FF000BDF309 /* washd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = washd.entitlements; sourceTree = "<group>"; };
 		11A0193B2709538700BDF309 /* ClothesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCell.swift; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 		1154000827164D9C00104A2C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				115CDE94275EA2B4007D82FB /* Home */,
 				1135AF2D27090F8E0030B003 /* NewEntry */,
 				11A0193727094A0F00BDF309 /* Closet */,
 				1154000727164D7C00104A2C /* Basket */,
@@ -184,6 +191,16 @@
 				1135AF192708F75B0030B003 /* DesignSystem */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		115CDE94275EA2B4007D82FB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				115CDE95275EA2C0007D82FB /* HomeViewController.swift */,
+				115CDE97275EA5D8007D82FB /* HomeView.swift */,
+				115CDE99275FCE3E007D82FB /* TopButton.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		11A0193727094A0F00BDF309 /* Closet */ = {
@@ -362,6 +379,8 @@
 				11A01955270A192100BDF309 /* WasingTagCell.swift in Sources */,
 				11A0194527096C8100BDF309 /* TagCategory.swift in Sources */,
 				11A0194E270A03B500BDF309 /* UIView+Extensions.swift in Sources */,
+				115CDE98275EA5D8007D82FB /* HomeView.swift in Sources */,
+				115CDE96275EA2C0007D82FB /* HomeViewController.swift in Sources */,
 				11EF18CE2708E71000473615 /* NewEntryViewController.swift in Sources */,
 				11A01950270A09AC00BDF309 /* IconPickerViewController.swift in Sources */,
 				11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */,
@@ -372,6 +391,7 @@
 				11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */,
 				1135AF2A27090BA30030B003 /* SelfSizingTableView.swift in Sources */,
 				1135AF232708F8E60030B003 /* DropdownPicker.swift in Sources */,
+				115CDE9A275FCE3E007D82FB /* TopButton.swift in Sources */,
 				11EF18CC2708E71000473615 /* SceneDelegate.swift in Sources */,
 				11E41B09270A7FAF00458E56 /* UIStackView+Extensions.swift in Sources */,
 			);

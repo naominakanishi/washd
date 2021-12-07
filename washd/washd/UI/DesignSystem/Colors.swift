@@ -5,7 +5,10 @@ enum Colors {
     static let unitedNationsBlue: UIColor = .init(hex: 0x4A8FE7)
     static let lightGray: UIColor = .init(hex: 0xE5E5E5)
     static let celeste: UIColor = .init(hex: 0xC8EDF1)
+    static let vividSkyBlue: UIColor = .init(hex: 0x59D2FE)
+    static let blueCrayola: UIColor = .init(hex: 0x5C7AFF)
     static let hintText: UIColor = .init(hex: 0x333333).withAlphaComponent(0.5)
+    static let text: UIColor = .init(hex: 0x3F414E)
 }
  
 extension UIColor {

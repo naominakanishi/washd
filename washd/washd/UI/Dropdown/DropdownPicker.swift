@@ -140,8 +140,6 @@ final class DropdownPicker: UIView {
         } else {
             selectionLabel.text = "Selecionar"
         }
-        
-//        selectionLabel.alpha = currentState == .opened ? 0 : 1
     }
 }
 
@@ -177,12 +175,10 @@ extension DropdownPicker: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension UIScrollView {
-
     func resizeScrollViewContentSize() {
         let contentRect: CGRect = subviews.reduce(into: .zero) { rect, view in
             rect = rect.union(view.frame)
         }
         contentSize = contentRect.size
     }
-
 }

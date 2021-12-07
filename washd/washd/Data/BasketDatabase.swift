@@ -50,13 +50,13 @@ final class BasketDatabase {
     
     private func generateWashes() {
         self.washes.removeAll()
-        let washes: [Wash] = clothes
+        washes = clothes
             .map(generateWash)
         
-        for wash in washes {
-            if self.washes.contains(where: { $0.clothes.unique() == wash.clothes.unique() }) { continue }
-            self.washes.append(wash)
-        }
+//        for wash in washes {
+//            if self.washes.contains(where: { $0.clothes.unique() == wash.clothes.unique() }) { continue }
+//            self.washes.append(wash)
+//        }
         notificationCenter.post(name: basketDidChangeNotification, object: nil)
     }
     
@@ -64,7 +64,7 @@ final class BasketDatabase {
         .init(
             clothes: clothes
                 .filter { $0.washingTags.containsAny(piece.washingTags) },
-            name: "ädd")
+            name: "Sugestão \(washes.count + 1)")
     }
 }
 
