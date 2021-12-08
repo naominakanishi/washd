@@ -9,6 +9,7 @@ final class ClosetViewController: UIViewController {
     private let filterManager = ClosetFilterManager()
     
     private var filteredItems: [ClothingType] = []
+    private var filterText: String = ""
     
     //  MARK: - View lifecycle
     
@@ -58,6 +59,12 @@ extension ClosetViewController: ClosetViewDelegate {
     func updateNavigation(shouldPresent: Bool) {
         navigationController?.setNavigationBarHidden(shouldPresent, animated: true)
     }
+    
+    func searchTextDidChange(_ newText: String?) {
+        filterText = newText ?? ""
+        closetManager.apply(search: filterText)
+        closetView?.reloadCloset()
+    }
 }
 
 extension ClosetViewController: ClosetFilterManagerDelegate {
@@ -75,5 +82,4 @@ extension ClosetViewController: ClosetFilterManagerDelegate {
         closetManager.applyFilter(types: filteredItems)
         closetView?.reloadCloset()
     }
-    
 }

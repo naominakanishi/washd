@@ -7,17 +7,28 @@ final class ClosetManager: NSObject,
     var closet: Closet { ClosetDatabase.instance.closet() }
     
     private var allowedTypes: [ClothingType] = []
+    private var searchFilter: String = ""
+    
+    private var clothes: [Clothing] {
+        if searchFilter.isEmpty {
+            return closet.clothes
+        }
+        return closet.clothes.filter { $0.name.contains(searchFilter) }
+    }
     
     private var types: [ClothingType] {
         if allowedTypes.isEmpty {
-            return closet.clothes.types()
+            return clothes.types()
         }
-        return closet.clothes.types()
-            .filter { allowedTypes.contains($0) }
+        return clothes.types().filter { allowedTypes.contains($0) }
     }
     
     func applyFilter(types: [ClothingType]) {
         allowedTypes = types
+    }
+    
+    func apply(search: String) {
+        self.searchFilter = search
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -25,7 +36,7 @@ final class ClosetManager: NSObject,
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        closet.clothes.clothes(of: types[section]).count
+        clothes.clothes(of: types[section]).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -33,7 +44,7 @@ final class ClosetManager: NSObject,
         let section = indexPath.section
         let item = indexPath.item
         let type = types[section]
-        let clothes = closet.clothes.clothes(of: type)
+        let clothes = clothes.clothes(of: type)
         let clothing = clothes[item]
         cell.configure(using: clothing)
         return cell

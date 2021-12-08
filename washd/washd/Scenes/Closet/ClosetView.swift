@@ -2,6 +2,7 @@ import UIKit
 
 protocol ClosetViewDelegate: AnyObject {
     func updateNavigation(shouldPresent: Bool)
+    func searchTextDidChange(_ newText: String?)
 }
 
 final class ClosetView: UIView {
@@ -33,7 +34,6 @@ final class ClosetView: UIView {
     private lazy var DEFAULT_BOTTOM_CONSTANT: CGFloat = -7 * self.frame.height / 8
     private lazy var EXPANDED_BOTTOM_CONSTRAINT: CGFloat =  -100
     
-    
     // MARK: - Components
     
     private lazy var backgroundImage: UIImageView = {
@@ -42,6 +42,14 @@ final class ClosetView: UIView {
         return view
     }()
 
+    private lazy var searchBar: SearchBar = {
+        let view = SearchBar()
+        view.textDidChange = { [weak self] in
+            self?.delegate?.searchTextDidChange($0)
+        }
+        return view
+    }()
+    
     private lazy var filterCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -70,6 +78,7 @@ final class ClosetView: UIView {
     private let basketView: BasketView
     
     // MARK: - Initialization
+    
     init(closetDelegate: UICollectionViewDelegate,
          closetDataSource: UICollectionViewDataSource,
          filterDelegate: UICollectionViewDelegate,
@@ -98,16 +107,33 @@ final class ClosetView: UIView {
     
     // MARK: - View lifecycle
     private func addSubviews() {
-        addSubviews(backgroundImage, closetCollectionView, basketView,
-                    filterCollectionView)
+        addSubviews(
+            backgroundImage,
+            closetCollectionView,
+            basketView,
+            filterCollectionView,
+            searchBar)
     }
     
     private func constraintSubviews() {
-        let topConstraint = filterCollectionView.topAnchor.constraint(
-            equalTo: safeAreaLayoutGuide.topAnchor)
+        let topConstraint = searchBar.topAnchor.constraint(
+            equalTo: safeAreaLayoutGuide.topAnchor
+        )
         
-        filterCollectionView.layout {
+        searchBar.layout {
             topConstraint
+            $0.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: 20)
+            $0.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -20)
+        }
+        
+        filterCollectionView.layout { filterCollectionView.topAnchor.constraint(
+                equalTo: searchBar.bottomAnchor,
+                constant: 20
+            )
             $0.leadingAnchor.constraint(equalTo: leadingAnchor,
                                         constant: 20)
             $0.trailingAnchor.constraint(equalTo: trailingAnchor)
@@ -225,5 +251,96 @@ final class ClosetView: UIView {
             self.layoutIfNeeded()
         }
         self.delegate?.updateNavigation(shouldPresent: shouldPresent)
+    }
+}
+
+final class SearchBar: UIView {
+    private lazy var textField: UITextField = {
+        let view = InsetTextField(insets: .init(top: 0, left: 8, bottom: 0, right: 0))
+        view.font = .appFont.montserrat(.regular, 18).uiFont
+        view.placeholder = "Buscar"
+        view.addTarget(
+            self,
+            action: #selector(handleTextChange),
+            for: .editingChanged)
+        return view
+    }()
+    
+    private lazy var magnifyingGlassIcon: UIImageView = {
+        let view = UIImageView()
+        view.image = .add.withRenderingMode(.alwaysTemplate)
+        view.tintColor = .washdColors.text
+        return view
+    }()
+    
+    var textDidChange: ((String?) -> Void)?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubviews()
+        constraintSubviews()
+        backgroundColor = .white
+        layer.cornerRadius = 8
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addSubviews() {
+        addSubviews(textField,
+                    magnifyingGlassIcon)
+    }
+    
+    func constraintSubviews() {
+        textField.layout {
+            $0.topAnchor.constraint(equalTo: topAnchor)
+            $0.leadingAnchor.constraint(equalTo: leadingAnchor)
+            $0.trailingAnchor.constraint(equalTo: magnifyingGlassIcon.leadingAnchor)
+            $0.bottomAnchor.constraint(equalTo: bottomAnchor)
+        }
+        
+        magnifyingGlassIcon.layout {
+            $0.widthAnchor.constraint(equalToConstant: 24)
+            $0.heightAnchor.constraint(equalToConstant: 24)
+            $0.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -8)
+            $0.centerYAnchor.constraint(equalTo: centerYAnchor)
+            $0.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: 8)
+            $0.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -8)
+        }
+    }
+    
+    @objc
+    private func handleTextChange() {
+        textDidChange?(textField.text)
+    }
+}
+
+private class InsetTextField: UITextField {
+    var insets: UIEdgeInsets
+
+    init(insets: UIEdgeInsets) {
+        self.insets = insets
+        super.init(frame: .zero)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("not intended for use from a NIB")
+    }
+
+    // placeholder position
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+         return super.textRect(forBounds: bounds.inset(by: insets))
+    }
+ 
+    // text position
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+         return super.editingRect(forBounds: bounds.inset(by: insets))
     }
 }
