@@ -148,7 +148,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
     private lazy var doneButton: UIButton = {
         let view = UIButton()
         view.configuration = .filled()
-        view.configuration?.title = "leitura com tag NFC"
+        view.configuration?.title = "cadastrar peça"
         view.configuration?.baseForegroundColor = .white
         view.configuration?.baseBackgroundColor = .washdColors.vividSkyBlue
         view.configuration?.cornerStyle = .medium
@@ -345,6 +345,7 @@ extension NewEntryView {
                 equalTo: contentScrollView.centerXAnchor
             )
         ])
+        
         contentScrollView.layout(using: [
             contentScrollView.topAnchor.constraint(
                 equalTo: titleLabel.bottomAnchor,
@@ -360,8 +361,8 @@ extension NewEntryView {
                 equalTo: doneButton.topAnchor,
                 constant: -8
             )
-        
         ])
+        
         doneButton.layout(using: [
             doneButton.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
@@ -510,7 +511,6 @@ extension NewEntryView {
                 equalTo: openIconPickerView.trailingAnchor,
                 constant: -16
             ),
-//           
             
             iconPickerStackView.bottomAnchor.constraint(
                 equalTo: contentScrollView.bottomAnchor,

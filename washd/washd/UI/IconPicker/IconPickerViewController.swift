@@ -9,20 +9,24 @@ final class IconPickerViewController: UIViewController {
         return label
     }()
     
-    private let doneButton: UIButton = {
-        let button = UIButton()
-        
-        button.backgroundColor = .washdColors.unitedNationsBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.black.cgColor
-        button.setTitle("Pronto", for: .normal)
-        button.titleLabel?.font = .appFont.montserrat(.semiBold, 16).uiFont
-        button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
-        
-        return button
+    private lazy var doneButton: UIButton = {
+        let view = UIButton()
+        view.configuration = .filled()
+        view.configuration?.title = "escolher símbolos"
+        view.configuration?.baseForegroundColor = .white
+        view.configuration?.baseBackgroundColor = .washdColors.vividSkyBlue
+        view.configuration?.cornerStyle = .medium
+        view.configuration?.buttonSize = .large
+        view.configuration?.titleTextAttributesTransformer = .init {
+            var outcoming = $0
+            outcoming.font = .appFont.montserrat(.bold, 18).uiFont
+            return outcoming
+        }
+        view.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
+
+        return view
     }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.headerReferenceSize = .init(width: 100, height: 48)
