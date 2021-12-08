@@ -28,6 +28,8 @@
 		115CDE98275EA5D8007D82FB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDE97275EA5D8007D82FB /* HomeView.swift */; };
 		115CDE9A275FCE3E007D82FB /* TopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDE99275FCE3E007D82FB /* TopButton.swift */; };
 		115CDE9C275FDFA2007D82FB /* LearningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDE9B275FDFA2007D82FB /* LearningButton.swift */; };
+		115CDE9E275FE867007D82FB /* NewEntryOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDE9D275FE867007D82FB /* NewEntryOptionsView.swift */; };
+		115CDEA0276035B8007D82FB /* NewEntryOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDE9F276035B8007D82FB /* NewEntryOptionsViewController.swift */; };
 		11A0193927094A2A00BDF309 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193827094A2A00BDF309 /* ClosetViewController.swift */; };
 		11A0193C2709538700BDF309 /* ClothesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193B2709538700BDF309 /* ClothesCell.swift */; };
 		11A0193F27096BEA00BDF309 /* Clothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A0193E27096BEA00BDF309 /* Clothing.swift */; };
@@ -77,6 +79,8 @@
 		115CDE97275EA5D8007D82FB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		115CDE99275FCE3E007D82FB /* TopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButton.swift; sourceTree = "<group>"; };
 		115CDE9B275FDFA2007D82FB /* LearningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningButton.swift; sourceTree = "<group>"; };
+		115CDE9D275FE867007D82FB /* NewEntryOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryOptionsView.swift; sourceTree = "<group>"; };
+		115CDE9F276035B8007D82FB /* NewEntryOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryOptionsViewController.swift; sourceTree = "<group>"; };
 		11A0193827094A2A00BDF309 /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
 		11A0193A27094FF000BDF309 /* washd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = washd.entitlements; sourceTree = "<group>"; };
 		11A0193B2709538700BDF309 /* ClothesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCell.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			children = (
 				11EF18CD2708E71000473615 /* NewEntryViewController.swift */,
 				1135AF2E27090FA30030B003 /* NewEntryView.swift */,
+				115CDE9D275FE867007D82FB /* NewEntryOptionsView.swift */,
+				115CDE9F276035B8007D82FB /* NewEntryOptionsViewController.swift */,
 			);
 			path = NewEntry;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 				1135AF2827090B890030B003 /* DropdownDataSource.swift in Sources */,
 				11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */,
 				11A0194A27096CF000BDF309 /* TagDatabase.swift in Sources */,
+				115CDEA0276035B8007D82FB /* NewEntryOptionsViewController.swift in Sources */,
 				1135AF37270930690030B003 /* TextField.swift in Sources */,
 				115400012716306C00104A2C /* BasketViewController.swift in Sources */,
 				11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */,
@@ -390,6 +397,7 @@
 				11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */,
 				11A0194727096CA600BDF309 /* ClothingColor.swift in Sources */,
 				1135AF2F27090FA30030B003 /* NewEntryView.swift in Sources */,
+				115CDE9E275FE867007D82FB /* NewEntryOptionsView.swift in Sources */,
 				11A0194127096C3600BDF309 /* WashingTag.swift in Sources */,
 				1135AF31270929380030B003 /* Font.swift in Sources */,
 				11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */,
@@ -550,6 +558,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QM43B7QRF9;
 				INFOPLIST_FILE = washd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -572,6 +581,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QM43B7QRF9;
 				INFOPLIST_FILE = washd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

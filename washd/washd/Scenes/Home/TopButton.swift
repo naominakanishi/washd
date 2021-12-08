@@ -27,6 +27,8 @@ final class TopButton: UIView {
         return view
     }()
     
+    var action: (() -> Void)?
+    
     init(image: String, label: String) {
         super.init(frame: .zero)
         addSubviews()
@@ -34,6 +36,8 @@ final class TopButton: UIView {
         shadowAndBorderSettings()
         buttonImage.image = UIImage(named: image)
         buttonLabel.text = label
+        addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(handleTap)))
         
     }
     
@@ -89,5 +93,10 @@ final class TopButton: UIView {
             
         ])
         
+    }
+    
+    @objc
+    private func handleTap() {
+        action?()
     }
 }

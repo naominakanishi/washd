@@ -9,4 +9,15 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(constraints)
     }
+    
+    func layout(@ConstraintCollector using constraintCollection: (UIView) -> [NSLayoutConstraint]) {
+        self.layout(using: constraintCollection(self))
+    }
+}
+
+@resultBuilder
+struct ConstraintCollector {
+    static func buildBlock(_ components: NSLayoutConstraint...) -> [NSLayoutConstraint] {
+        components
+    }
 }

@@ -57,15 +57,25 @@ extension ClosetViewController: UICollectionViewDelegate, UICollectionViewDataSo
  UICollectionViewDelegateFlowLayout {
     
     var closet: Closet { ClosetDatabase.instance.closet() }
-    
+    var types: [ClothingType] { closet.clothes
+            .map { $0.type }
+            .unique()
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        types.count
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return closet.clothes.count
+        closet.clothes.filter { $0.type == types[section] }.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothesCell", for: indexPath) as! ClothesCell
-        let clothing = closet.clothes[indexPath.item]
+        let section = indexPath.section
+        let clothes = closet.clothes.filter { $0.type == types[section] }
+//        print(clothes.count, indexPath.item, indexPath.section)
+        let clothing = clothes[indexPath.item]
         cell.configure(using: clothing)
         return cell
     }
@@ -77,5 +87,13 @@ extension ClosetViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 }
 
-
-
+extension Array where Element: Equatable {
+    var unique: [Element] {
+        var uniqueValues: [Element] = []
+        forEach { item in
+            guard !uniqueValues.contains(item) else { return }
+            uniqueValues.append(item)
+        }
+        return uniqueValues
+    }
+}

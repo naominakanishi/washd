@@ -34,17 +34,19 @@ final class HomeView: UIView {
     
     private lazy var registerButton: TopButton = {
         let view = TopButton(image: "add-piece", label: "cadastrar peça")
-        
+        view.action = actions.registerItem
         return view
     }()
     
     private lazy var closetButton: TopButton = {
         let view = TopButton(image: "my-closet", label: "minhas roupas")
+        view.action = actions.openCloset
         return view
     }()
     
     private lazy var washButton: TopButton = {
         let view = TopButton(image: "wash-clothes", label: "lavar roupas")
+        view.action = actions.openWash
         return view
     }()
     
@@ -67,16 +69,19 @@ final class HomeView: UIView {
     
     private lazy var fabricLearningButton: LearningButton = {
         let view = LearningButton(image: "know-fabrics", label: "conheça\nfibras e tecidos")
+        view.callback = actions.learnFabric
         return view
     }()
     
     private lazy var understandSymbolsButton: LearningButton = {
         let view = LearningButton(image: "understand-symbols", label: "entenda\nos símbolos nas etiquetas")
+        view.callback = actions.understandSymbols
         return view
     }()
     
     private lazy var upcyclingButton: LearningButton = {
         let view = LearningButton(image: "upcycling", label: "upcycling:\no que é, e como fazer")
+        view.callback = actions.understandUpcycling
         return view
     }()
     
@@ -88,7 +93,19 @@ final class HomeView: UIView {
         return view
     }()
     
-    init() {
+    struct Actions {
+        let registerItem: () -> Void
+        let openCloset: () -> Void
+        let openWash: () -> Void
+        let learnFabric: () -> Void
+        let understandSymbols: () -> Void
+        let understandUpcycling: () -> Void
+    }
+    
+    private let actions: Actions
+    
+    init(actions: Actions) {
+        self.actions = actions
         super.init(frame: .zero)
         addSubviews()
         constraintSubviews()
@@ -166,4 +183,6 @@ final class HomeView: UIView {
         ])
    
     }
+    
+
 }

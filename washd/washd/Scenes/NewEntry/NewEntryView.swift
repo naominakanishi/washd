@@ -15,6 +15,12 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         static let innerPromptSpacing: CGFloat = 10
     }
     
+    private lazy var backgroundImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "add-new-background")
+        return view
+    }()
+    
     private lazy var contentScrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +46,7 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
     
     private lazy var nameEntryTextField: UITextField = {
         let view = TextField(inset: 15)
-        view.backgroundColor = .washdColors.lightGray
+        view.backgroundColor = .white
         view.attributedPlaceholder = .init(string: "Descrição básica da peça (ex.: camiseta branca)", attributes: [
             .font: UIFont.appFont.montserrat(.light, 14).uiFont,
             .foregroundColor: UIColor.washdColors.hintText
@@ -98,10 +104,11 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         label.font = .appFont.montserrat(.semiBold, 20).uiFont
         return label
     }()
+    
     private lazy var openIconPickerView: UIView = {
         let view = UIView()
         
-        view.backgroundColor = .washdColors.lightGray
+        view.backgroundColor = .white
         view.layer.cornerRadius = 10
         view.addGestureRecognizer(UITapGestureRecognizer(
             target: self, action: #selector(openIconPicker)
@@ -109,15 +116,20 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         
         return view
     }()
+    
     private lazy var iconPickerStackView: UIStackView = {
         let view = UIStackView()
+        view.layer.cornerRadius = 10
+        view.axis = .horizontal
         view.addArrangedSubview(selectedLabel)
         view.addArrangedSubview(chevronImage)
+        view.backgroundColor = .white
         view.spacing = 8
         return view
     }()
     
     private lazy var chevronImage = UIImageView(image: .init(systemName: "chevron.right"))
+    
     private lazy var selectedLabel: UILabel = {
         let label = UILabel()
         label.text = "Selecione"
@@ -126,12 +138,6 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         return label
     }()
     
-    private lazy var nfcPicker = AreaPicker(
-        image: .init(named: "nfc-scan-icon"),
-        title: "Atrelar a uma tag NFC?",
-        text: "Toque para escanear a tag",
-        tapAction: { self.actions?.openScanner() })
-    
     private lazy var photoPicker = AreaPicker(
         image: .init(systemName: "camera"),
         title: "Escolha uma foto",
@@ -139,20 +145,25 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
         tapAction: { self.actions?.openCamera()}
     )
     
-    private let doneButton: UIButton = {
-        let button = UIButton()
-        
-        button.backgroundColor = .washdColors.unitedNationsBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.black.cgColor
-        button.setTitle("Criar Item", for: .normal)
-        button.titleLabel?.font = .appFont.montserrat(.semiBold, 16).uiFont
-        button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
-        
-        return button
+    private lazy var doneButton: UIButton = {
+        let view = UIButton()
+        view.configuration = .filled()
+        view.configuration?.title = "leitura com tag NFC"
+        view.configuration?.baseForegroundColor = .white
+        view.configuration?.baseBackgroundColor = .washdColors.vividSkyBlue
+        view.configuration?.cornerStyle = .medium
+        view.configuration?.buttonSize = .large
+        view.configuration?.titleTextAttributesTransformer = .init {
+            var outcoming = $0
+            outcoming.font = .appFont.montserrat(.bold, 18).uiFont
+            return outcoming
+        }
+        view.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
+
+        return view
     }()
+    
+   
     
     var actions: Actions?
     var selectedTags: [WashingTag] = [] {
@@ -203,7 +214,8 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
     }
     
     func addSubviews() {
-        addSubviews(titleLabel,
+        addSubviews(backgroundImage,
+                    titleLabel,
                     contentScrollView,
                     doneButton
         )
@@ -216,7 +228,6 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
             colorsDropdown,
             iconsPromptLabel,
             openIconPickerView,
-            nfcPicker,
             photoPicker
         )
         openIconPickerView.addSubview(iconPickerStackView)
@@ -228,10 +239,6 @@ final class NewEntryView: UIView, UIScrollViewDelegate  {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         endEditing(true)
-    }
-    
-    func renderPickedNFC() {
-        nfcPicker.renderDoneState(message: "Tag atrelada!")
     }
     
     func renderPickedImage() {
@@ -318,6 +325,14 @@ extension NewEntryView: DropdownDataSource {
 // MARK: - Constraints
 extension NewEntryView {
     func constraintSubviews() {
+        
+        backgroundImage.layout(using: [
+            backgroundImage.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+        
         titleLabel.layout(using: [
             titleLabel.topAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.topAnchor,
@@ -363,9 +378,22 @@ extension NewEntryView {
             doneButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
+        photoPicker.layout(using: [
+            photoPicker.topAnchor.constraint(
+                equalTo: contentScrollView.topAnchor
+            ),
+            photoPicker.widthAnchor.constraint(
+                equalTo: contentScrollView.widthAnchor
+            ),
+            photoPicker.centerXAnchor.constraint(
+                equalTo: contentScrollView.centerXAnchor
+            ),
+        ])
+        
         namePrompt.layout(using: [
             namePrompt.topAnchor.constraint(
-                equalTo: contentScrollView.topAnchor
+                equalTo: photoPicker.bottomAnchor,
+                constant: LayoutMetrics.interPromptSpacing
             ),
             namePrompt.widthAnchor.constraint(
                 equalTo: contentScrollView.widthAnchor
@@ -374,6 +402,7 @@ extension NewEntryView {
                 equalTo: contentScrollView.centerXAnchor
             )
         ])
+        
         nameEntryTextField.layout(using: [
             nameEntryTextField.topAnchor.constraint(
                 equalTo: namePrompt.bottomAnchor,
@@ -449,6 +478,7 @@ extension NewEntryView {
                 equalTo: contentScrollView.centerXAnchor
             ),
         ])
+        
         openIconPickerView.layout(using: [
             openIconPickerView.topAnchor.constraint(
                 equalTo: iconsPromptLabel.bottomAnchor,
@@ -460,32 +490,10 @@ extension NewEntryView {
             openIconPickerView.centerXAnchor.constraint(
                 equalTo: contentScrollView.centerXAnchor
             ),
-        ])
-        
-        nfcPicker.layout(using: [
-            nfcPicker.topAnchor.constraint(
-                equalTo: openIconPickerView.bottomAnchor,
-                constant: LayoutMetrics.interPromptSpacing),
-            nfcPicker.widthAnchor.constraint(
-                equalTo: contentScrollView.widthAnchor
+            
+            openIconPickerView.widthAnchor.constraint(equalTo: colorsDropdown.widthAnchor
             ),
-            nfcPicker.centerXAnchor.constraint(
-                equalTo: contentScrollView.centerXAnchor
-            ),
-        ])
-        
-        photoPicker.layout(using: [
-            photoPicker.topAnchor.constraint(
-                equalTo: nfcPicker.bottomAnchor,
-                constant: LayoutMetrics.interPromptSpacing),
-            photoPicker.widthAnchor.constraint(
-                equalTo: contentScrollView.widthAnchor
-            ),
-            photoPicker.centerXAnchor.constraint(
-                equalTo: contentScrollView.centerXAnchor
-            ),
-            photoPicker.bottomAnchor.constraint(
-                equalTo: contentScrollView.bottomAnchor
+            openIconPickerView.heightAnchor.constraint(equalTo: colorsDropdown.heightAnchor
             ),
         ])
         
@@ -502,9 +510,11 @@ extension NewEntryView {
                 equalTo: openIconPickerView.trailingAnchor,
                 constant: -16
             ),
+//           
+            
             iconPickerStackView.bottomAnchor.constraint(
-                equalTo: openIconPickerView.bottomAnchor,
-                constant: -16
+                equalTo: contentScrollView.bottomAnchor,
+                constant: -LayoutMetrics.interPromptSpacing
             ),
         ])
     }

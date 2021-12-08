@@ -111,7 +111,7 @@ final class DropdownPicker: UIView {
     }
     
     private func configureAdditionalSettings() {
-        backgroundColor = .washdColors.lightGray
+        backgroundColor = .white
         layer.cornerRadius = 10
         headerStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleToggleMode)))
     }

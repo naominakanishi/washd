@@ -10,13 +10,7 @@ class NewEntryViewController: UIViewController {
     
     private var currentSession: NFCReader?
     
-    private var currentTag: WashdTag? {
-        didSet {
-            DispatchQueue.main.async {
-                self.newEntryView.renderPickedNFC()
-            }
-        }
-    }
+    private var currentTag: WashdTag?
     
     override func loadView() {
         newEntryView.actions = .init(

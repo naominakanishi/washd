@@ -22,6 +22,8 @@ final class LearningButton: UIView {
         return view
     }()
     
+    var callback: (() -> Void)?
+    
     init(image: String, label: String) {
         super.init(frame: .zero)
         addSubviews()
@@ -29,6 +31,8 @@ final class LearningButton: UIView {
         shadowAndBorderSettings()
         buttonImage.image = UIImage(named: image)
         buttonLabel.text = label
+        addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(handleTap)))
         
     }
     
@@ -78,5 +82,10 @@ final class LearningButton: UIView {
             
         ])
         
+    }
+    
+    @objc
+    private func handleTap() {
+        callback?()
     }
 }
