@@ -41,6 +41,17 @@ final class ClosetView: UIView {
         view.image = UIImage(named: "background")
         return view
     }()
+
+    private lazy var filterCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.itemSize = UICollectionViewFlowLayout.automaticSize
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.register(FilterTypeCell.self, forCellWithReuseIdentifier: "FilterTypeCell")
+        view.backgroundColor = .clear
+        view.allowsMultipleSelection = true
+        return view
+    }()
     
     private lazy var closetCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -54,12 +65,15 @@ final class ClosetView: UIView {
     }()
     
     // MARK: - Dependencies
+    
     weak var delegate: ClosetViewDelegate?
     private let basketView: BasketView
     
     // MARK: - Initialization
-    init(delegate: UICollectionViewDelegate,
-         dataSource: UICollectionViewDataSource,
+    init(closetDelegate: UICollectionViewDelegate,
+         closetDataSource: UICollectionViewDataSource,
+         filterDelegate: UICollectionViewDelegate,
+         filterDataSource: UICollectionViewDataSource,
          basketView: BasketView,
          frame: CGRect = .zero
     ) {
@@ -67,8 +81,10 @@ final class ClosetView: UIView {
         super.init(frame: frame)
         addSubviews()
         constraintSubviews()
-        closetCollectionView.dataSource = dataSource
-        closetCollectionView.delegate = delegate
+        closetCollectionView.dataSource = closetDataSource
+        closetCollectionView.delegate = closetDelegate
+        filterCollectionView.delegate = filterDelegate
+        filterCollectionView.dataSource = filterDataSource
         backgroundColor = .white
     
         basketView.addGestureRecognizer(UIPanGestureRecognizer(
@@ -82,23 +98,34 @@ final class ClosetView: UIView {
     
     // MARK: - View lifecycle
     private func addSubviews() {
-        addSubviews(backgroundImage, closetCollectionView, basketView)
+        addSubviews(backgroundImage, closetCollectionView, basketView,
+                    filterCollectionView)
     }
     
     private func constraintSubviews() {
-        closetTopConstraint = closetCollectionView.topAnchor.constraint(
-            equalTo: safeAreaLayoutGuide.topAnchor
-        )
+        let topConstraint = filterCollectionView.topAnchor.constraint(
+            equalTo: safeAreaLayoutGuide.topAnchor)
+        
+        filterCollectionView.layout {
+            topConstraint
+            $0.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                        constant: 20)
+            $0.trailingAnchor.constraint(equalTo: trailingAnchor)
+            $0.heightAnchor.constraint(equalToConstant: 50)
+        }
         
         backgroundImage.layout(using: [
-            backgroundImage.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         
         closetCollectionView.layout(using: [
-            closetTopConstraint!,
+            closetCollectionView.topAnchor.constraint(
+                equalTo: filterCollectionView.bottomAnchor,
+                constant: 20
+            ),
             closetCollectionView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 30
@@ -124,10 +151,16 @@ final class ClosetView: UIView {
                 equalTo: bottomAnchor),
             basketBottomConstraint!
         ])
+        
+        self.closetTopConstraint = topConstraint
     }
     
-    func reloadData() {
+    func reloadCloset() {
         closetCollectionView.reloadData()
+    }
+    
+    func reloadFilter() {
+        filterCollectionView.reloadData()
     }
     
     @objc func handlePanGesture(_ sender: Any?) {
