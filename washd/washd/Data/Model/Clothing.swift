@@ -6,7 +6,7 @@ struct Closet: Codable {
 
 struct Clothing: Codable, Equatable, Hashable {
     let name: String
-    let image: Data?
+    var image: Data? { nil }
     let type: ClothingType
     let color: ClothingColor
     let nfcTagId: UUID?

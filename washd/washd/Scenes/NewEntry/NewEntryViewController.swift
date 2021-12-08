@@ -48,7 +48,7 @@ class NewEntryViewController: UIViewController {
                 
         let clothing = Clothing(
             name: name,
-            image: currentImage,
+            
             type: type,
             color: color,
             nfcTagId: UUID(uuidString: currentTag?.id ?? ""),

@@ -78,9 +78,3 @@ extension Collection where Element: Equatable {
         return false
     }
 }
-
-extension Collection where Element: Hashable {
-    func unique() -> [Element] {
-        Array(Set(self))
-    }
-}

@@ -46,8 +46,10 @@ final class ClosetView: UIView {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ClothesCell.self, forCellWithReuseIdentifier: "ClothesCell")
+        collectionView.register(ClosetHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ClosetHeaderView")
         collectionView.backgroundColor = .clear
         collectionView.allowsSelection = false
+        layout.sectionInset = .init(top: 20, left: 0, bottom: 20, right: 0)
         return collectionView
     }()
     
