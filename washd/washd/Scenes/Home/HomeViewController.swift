@@ -10,7 +10,8 @@ final class HomeViewController: UIViewController {
         },
         openCloset: {
             let controller = ClosetViewController()
-            self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            self.navigationController?.pushViewController(controller, animated: true)
+
         },
         openWash: {
             let controller = WashingViewController()

@@ -1,6 +1,10 @@
 import UIKit
 
-final class WashingCell: UICollectionViewCell {
+protocol ClothingCell: UICollectionViewCell {
+    func configure(using clothing: Clothing)
+}
+
+final class WashingCell: UICollectionViewCell, ClothingCell {
     
     private var clothing: Clothing?
     private var currentItemCount = 0

@@ -40,13 +40,15 @@ final class ClothingManager: NSObject,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothesCell", for: indexPath) as! ClosetCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothesCell", for: indexPath)
         let section = indexPath.section
         let item = indexPath.item
         let type = types[section]
         let clothes = clothes.clothes(of: type)
         let clothing = clothes[item]
-        cell.configure(using: clothing)
+        if let cell = cell as? ClothingCell {
+            cell.configure(using: clothing)
+        }
         return cell
     }
     

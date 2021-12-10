@@ -99,7 +99,6 @@
 		1191F85227616678005B47AE /* ClothingFilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingFilterManager.swift; sourceTree = "<group>"; };
 		1191F85527616D23005B47AE /* FilterTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeCell.swift; sourceTree = "<group>"; };
 		11A0193827094A2A00BDF309 /* WashingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingViewController.swift; sourceTree = "<group>"; };
-		11A0193A27094FF000BDF309 /* washd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = washd.entitlements; sourceTree = "<group>"; };
 		11A0193B2709538700BDF309 /* WashingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingCell.swift; sourceTree = "<group>"; };
 		11A0193E27096BEA00BDF309 /* Clothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clothing.swift; sourceTree = "<group>"; };
 		11A0194027096C3600BDF309 /* WashingTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingTag.swift; sourceTree = "<group>"; };
@@ -333,7 +332,6 @@
 				11A0194827096CE000BDF309 /* Data */,
 				1154000827164D9C00104A2C /* Scenes */,
 				1154000927164DB300104A2C /* UI */,
-				11A0193A27094FF000BDF309 /* washd.entitlements */,
 				11EF18C92708E71000473615 /* AppDelegate.swift */,
 				11EF18CB2708E71000473615 /* SceneDelegate.swift */,
 				11EF18CF2708E71000473615 /* Main.storyboard */,
@@ -620,14 +618,14 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QM43B7QRF9;
+				DEVELOPMENT_TEAM = UL74FQ825B;
 				INFOPLIST_FILE = washd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.washd1;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.washd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -643,14 +641,14 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QM43B7QRF9;
+				DEVELOPMENT_TEAM = UL74FQ825B;
 				INFOPLIST_FILE = washd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.washd1;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.washd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
