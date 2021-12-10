@@ -1,6 +1,6 @@
 import UIKit
 
-final class ClothesCell: UICollectionViewCell {
+final class WashingCell: UICollectionViewCell {
     
     private var clothing: Clothing?
     private var currentItemCount = 0

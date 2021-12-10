@@ -12,7 +12,7 @@ final class HomeViewController: UIViewController {
             // TODO
         },
         openWash: {
-            let controller = ClosetViewController()
+            let controller = WashingViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         },
         learnFabric: {

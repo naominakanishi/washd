@@ -1,11 +1,11 @@
 import UIKit
 import CoreNFC
 
-final class ClosetViewController: UIViewController {
+final class WashingViewController: UIViewController {
     
-    private var closetView: ClosetView? { view as? ClosetView }
+    private var washingView: WashingView? { view as? WashingView }
     private let basketViewController = BasketViewController()
-    private let closetManager = ClosetManager()
+    private let clothingManager = ClothingManager()
     private let filterManager = ClosetFilterManager()
     
     private var filteredItems: [ClothingType] = []
@@ -15,15 +15,15 @@ final class ClosetViewController: UIViewController {
     
     override func loadView() {
         addChild(basketViewController)
-        view = ClosetView(
-            closetDelegate: closetManager,
-            closetDataSource: closetManager,
+        view = WashingView(
+            closetDelegate: clothingManager,
+            closetDataSource: clothingManager,
             filterDelegate: filterManager,
             filterDataSource: filterManager,
             basketView: basketViewController.view as! BasketView
         )
         filterManager.delegate = self
-        closetView?.delegate = self
+        washingView?.delegate = self
     }
     
     override func viewDidLoad() {
@@ -49,25 +49,25 @@ final class ClosetViewController: UIViewController {
     private func handleAddPiece() {
         let controller = NewEntryViewController()
         controller.completion = {
-            self.closetView?.reloadCloset()
+            self.washingView?.reloadCloset()
         }
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 }
 
-extension ClosetViewController: ClosetViewDelegate {
+extension WashingViewController: WashingViewDelegate {
     func updateNavigation(shouldPresent: Bool) {
         navigationController?.setNavigationBarHidden(shouldPresent, animated: true)
     }
     
     func searchTextDidChange(_ newText: String?) {
         filterText = newText ?? ""
-        closetManager.apply(search: filterText)
-        closetView?.reloadCloset()
+        clothingManager.apply(search: filterText)
+        washingView?.reloadCloset()
     }
 }
 
-extension ClosetViewController: ClosetFilterManagerDelegate {
+extension WashingViewController: ClosetFilterManagerDelegate {
     func select(type: ClothingType) {
         filteredItems.append(type)
         updateFilters()
@@ -79,7 +79,7 @@ extension ClosetViewController: ClosetFilterManagerDelegate {
     }
     
     private func updateFilters() {
-        closetManager.applyFilter(types: filteredItems)
-        closetView?.reloadCloset()
+        clothingManager.applyFilter(types: filteredItems)
+        washingView?.reloadCloset()
     }
 }

@@ -1,11 +1,11 @@
 import UIKit
 
-protocol ClosetViewDelegate: AnyObject {
+protocol WashingViewDelegate: AnyObject {
     func updateNavigation(shouldPresent: Bool)
     func searchTextDidChange(_ newText: String?)
 }
 
-final class ClosetView: UIView {
+final class WashingView: UIView {
     // MARK: - Inner properties
     
     enum PresentaionState {
@@ -64,7 +64,7 @@ final class ClosetView: UIView {
     private lazy var closetCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(ClothesCell.self, forCellWithReuseIdentifier: "ClothesCell")
+        collectionView.register(WashingCell.self, forCellWithReuseIdentifier: "ClothesCell")
         collectionView.register(ClosetHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ClosetHeaderView")
         collectionView.backgroundColor = .clear
         collectionView.allowsSelection = false
@@ -74,7 +74,7 @@ final class ClosetView: UIView {
     
     // MARK: - Dependencies
     
-    weak var delegate: ClosetViewDelegate?
+    weak var delegate: WashingViewDelegate?
     private let basketView: BasketView
     
     // MARK: - Initialization

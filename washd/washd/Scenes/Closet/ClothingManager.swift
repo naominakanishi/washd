@@ -1,6 +1,6 @@
 import UIKit
 
-final class ClosetManager: NSObject,
+final class ClothingManager: NSObject,
                            UICollectionViewDelegate,
                            UICollectionViewDataSource,
                            UICollectionViewDelegateFlowLayout {
@@ -40,7 +40,7 @@ final class ClosetManager: NSObject,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothesCell", for: indexPath) as! ClothesCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothesCell", for: indexPath) as! WashingCell
         let section = indexPath.section
         let item = indexPath.item
         let type = types[section]

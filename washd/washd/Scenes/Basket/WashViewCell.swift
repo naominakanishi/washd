@@ -28,7 +28,7 @@ final class WashViewCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(ClothesCell.self, forCellWithReuseIdentifier: "ClothesCell")
+        collectionView.register(WashingCell.self, forCellWithReuseIdentifier: "ClothesCell")
         collectionView.backgroundColor = .clear
         collectionView.allowsSelection = false
         collectionView.delegate = self
@@ -108,7 +108,7 @@ extension WashViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothesCell", for: indexPath)
-                as? ClothesCell
+                as? WashingCell
         else { return .init() }
         let clothing = clothes[indexPath.item]
         cell.configure(using: clothing)
