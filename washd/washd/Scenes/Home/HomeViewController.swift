@@ -9,7 +9,8 @@ final class HomeViewController: UIViewController {
             self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         },
         openCloset: {
-            // TODO
+            let controller = ClosetViewController()
+            self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         },
         openWash: {
             let controller = WashingViewController()

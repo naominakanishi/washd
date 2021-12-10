@@ -54,6 +54,8 @@
 		11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AB2980271650B7001A89D2 /* BasketDatabase.swift */; };
 		11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD33AA2708ED9800FBA29C /* Colors.swift */; };
 		11DB40BD2763FE6C00347F1D /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40BC2763FE6C00347F1D /* ClosetViewController.swift */; };
+		11DB40BF2763FEB400347F1D /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40BE2763FEB400347F1D /* ClosetView.swift */; };
+		11DB40C22763FEC900347F1D /* ClosetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40C12763FEC900347F1D /* ClosetCell.swift */; };
 		11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B06270A7F8E00458E56 /* AreaPicker.swift */; };
 		11E41B09270A7FAF00458E56 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */; };
 		11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18C92708E71000473615 /* AppDelegate.swift */; };
@@ -114,6 +116,8 @@
 		11AB2980271650B7001A89D2 /* BasketDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketDatabase.swift; sourceTree = "<group>"; };
 		11AD33AA2708ED9800FBA29C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		11DB40BC2763FE6C00347F1D /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
+		11DB40BE2763FEB400347F1D /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
+		11DB40C12763FEC900347F1D /* ClosetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetCell.swift; sourceTree = "<group>"; };
 		11E41B06270A7F8E00458E56 /* AreaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaPicker.swift; sourceTree = "<group>"; };
 		11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		11EF18C62708E71000473615 /* washd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = washd.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				11DB40BC2763FE6C00347F1D /* ClosetViewController.swift */,
+				11DB40BE2763FEB400347F1D /* ClosetView.swift */,
+				11DB40C12763FEC900347F1D /* ClosetCell.swift */,
 			);
 			path = Closet;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 				11A01950270A09AC00BDF309 /* IconPickerViewController.swift in Sources */,
 				11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */,
 				11A0194727096CA600BDF309 /* ClothingColor.swift in Sources */,
+				11DB40C22763FEC900347F1D /* ClosetCell.swift in Sources */,
 				1135AF2F27090FA30030B003 /* NewEntryView.swift in Sources */,
 				115CDE9E275FE867007D82FB /* NewEntryOptionsView.swift in Sources */,
 				11A0194127096C3600BDF309 /* WashingTag.swift in Sources */,
@@ -459,6 +466,7 @@
 				11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */,
 				1135AF2A27090BA30030B003 /* SelfSizingTableView.swift in Sources */,
 				1135AF232708F8E60030B003 /* DropdownPicker.swift in Sources */,
+				11DB40BF2763FEB400347F1D /* ClosetView.swift in Sources */,
 				115CDE9A275FCE3E007D82FB /* TopButton.swift in Sources */,
 				11EF18CC2708E71000473615 /* SceneDelegate.swift in Sources */,
 				11E41B09270A7FAF00458E56 /* UIStackView+Extensions.swift in Sources */,
