@@ -1,11 +1,11 @@
 import UIKit
 
-protocol ClosetFilterManagerDelegate: AnyObject {
+protocol ClothingFilterManagerDelegate: AnyObject {
     func select(type: ClothingType)
     func deselect(type: ClothingType)
 }
 
-final class ClosetFilterManager: NSObject,
+final class ClothingFilterManager: NSObject,
                                 UICollectionViewDelegate,
                                 UICollectionViewDataSource,
                                 UICollectionViewDelegateFlowLayout {
@@ -20,7 +20,7 @@ final class ClosetFilterManager: NSObject,
         .types()
         .map { .type($0) }
     
-    weak var delegate: ClosetFilterManagerDelegate?
+    weak var delegate: ClothingFilterManagerDelegate?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         filterOptions.count

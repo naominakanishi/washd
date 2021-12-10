@@ -1,6 +1,6 @@
 import UIKit
 
-final class ClosetHeaderView: UICollectionReusableView {
+final class ClothingHeaderView: UICollectionReusableView {
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()

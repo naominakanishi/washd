@@ -65,7 +65,7 @@ final class WashingView: UIView {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(WashingCell.self, forCellWithReuseIdentifier: "ClothesCell")
-        collectionView.register(ClosetHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ClosetHeaderView")
+        collectionView.register(ClothingHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ClosetHeaderView")
         collectionView.backgroundColor = .clear
         collectionView.allowsSelection = false
         layout.sectionInset = .init(top: 20, left: 0, bottom: 20, right: 0)

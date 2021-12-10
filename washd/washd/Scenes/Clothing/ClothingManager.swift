@@ -58,7 +58,7 @@ final class ClothingManager: NSObject,
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ClosetHeaderView", for: indexPath) as! ClosetHeaderView
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ClosetHeaderView", for: indexPath) as! ClothingHeaderView
         let type = types[indexPath.section]
         view.configure(using: type.name)
         return view
