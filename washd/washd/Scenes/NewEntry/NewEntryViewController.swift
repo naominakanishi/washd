@@ -52,7 +52,7 @@ class NewEntryViewController: UIViewController {
             type: type,
             color: color,
             nfcTagId: UUID(uuidString: currentTag?.id ?? ""),
-            washingTags: newEntryView.selectedTags
+            washingTags: newEntryView.selectedTags, description: nil
         )
         ClosetDatabase.instance.add(clothing: clothing)
         completion?()

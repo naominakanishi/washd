@@ -58,6 +58,8 @@
 		11DB40C22763FEC900347F1D /* ClosetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40C12763FEC900347F1D /* ClosetCell.swift */; };
 		11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B06270A7F8E00458E56 /* AreaPicker.swift */; };
 		11E41B09270A7FAF00458E56 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */; };
+		11EC079427641778004AFE05 /* ClothingSymbolsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC079327641778004AFE05 /* ClothingSymbolsCell.swift */; };
+		11EC079727641F91004AFE05 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC079627641F91004AFE05 /* UITableView+Extensions.swift */; };
 		11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18C92708E71000473615 /* AppDelegate.swift */; };
 		11EF18CC2708E71000473615 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18CB2708E71000473615 /* SceneDelegate.swift */; };
 		11EF18CE2708E71000473615 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18CD2708E71000473615 /* NewEntryViewController.swift */; };
@@ -119,6 +121,9 @@
 		11DB40C12763FEC900347F1D /* ClosetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetCell.swift; sourceTree = "<group>"; };
 		11E41B06270A7F8E00458E56 /* AreaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaPicker.swift; sourceTree = "<group>"; };
 		11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		11EC0792276409A2004AFE05 /* washd.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = washd.entitlements; path = washd/washd.entitlements; sourceTree = "<group>"; };
+		11EC079327641778004AFE05 /* ClothingSymbolsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingSymbolsCell.swift; sourceTree = "<group>"; };
+		11EC079627641F91004AFE05 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		11EF18C62708E71000473615 /* washd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = washd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11EF18C92708E71000473615 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11EF18CB2708E71000473615 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +224,7 @@
 				11A01951270A18FC00BDF309 /* IconPicker */,
 				1135AF2427090B580030B003 /* Dropdown */,
 				1135AF192708F75B0030B003 /* DesignSystem */,
+				11EC079627641F91004AFE05 /* UITableView+Extensions.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -300,19 +306,29 @@
 		11DB40BB2763ED9E00347F1D /* Clothing */ = {
 			isa = PBXGroup;
 			children = (
+				11EC079527641DCA004AFE05 /* ClothingInfoView */,
 				1191F85227616678005B47AE /* ClothingFilterManager.swift */,
 				1191F85027616621005B47AE /* ClothingHeaderView.swift */,
-				115CDEA1276130F4007D82FB /* ClothingDetailViewController.swift */,
-				115CDEA327613267007D82FB /* ClothingDetailView.swift */,
-				115CDEA727613E8E007D82FB /* ClotingInfoCell.swift */,
 				1191F84E276165CF005B47AE /* ClothingManager.swift */,
 			);
 			path = Clothing;
 			sourceTree = "<group>";
 		};
+		11EC079527641DCA004AFE05 /* ClothingInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				115CDEA1276130F4007D82FB /* ClothingDetailViewController.swift */,
+				115CDEA327613267007D82FB /* ClothingDetailView.swift */,
+				115CDEA727613E8E007D82FB /* ClotingInfoCell.swift */,
+				11EC079327641778004AFE05 /* ClothingSymbolsCell.swift */,
+			);
+			path = ClothingInfoView;
+			sourceTree = "<group>";
+		};
 		11EF18BD2708E71000473615 = {
 			isa = PBXGroup;
 			children = (
+				11EC0792276409A2004AFE05 /* washd.entitlements */,
 				11EF18C82708E71000473615 /* washd */,
 				11EF18C72708E71000473615 /* Products */,
 			);
@@ -450,9 +466,11 @@
 				1191F84F276165CF005B47AE /* ClothingManager.swift in Sources */,
 				11A0194E270A03B500BDF309 /* UIView+Extensions.swift in Sources */,
 				115CDE98275EA5D8007D82FB /* HomeView.swift in Sources */,
+				11EC079427641778004AFE05 /* ClothingSymbolsCell.swift in Sources */,
 				115CDEA427613267007D82FB /* ClothingDetailView.swift in Sources */,
 				115CDE96275EA2C0007D82FB /* HomeViewController.swift in Sources */,
 				11EF18CE2708E71000473615 /* NewEntryViewController.swift in Sources */,
+				11EC079727641F91004AFE05 /* UITableView+Extensions.swift in Sources */,
 				11A01950270A09AC00BDF309 /* IconPickerViewController.swift in Sources */,
 				11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */,
 				11A0194727096CA600BDF309 /* ClothingColor.swift in Sources */,
@@ -618,6 +636,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UL74FQ825B;
 				INFOPLIST_FILE = washd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -641,6 +660,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UL74FQ825B;
 				INFOPLIST_FILE = washd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

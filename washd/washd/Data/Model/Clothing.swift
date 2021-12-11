@@ -11,4 +11,5 @@ struct Clothing: Codable, Equatable, Hashable {
     let color: ClothingColor
     let nfcTagId: UUID?
     let washingTags: [WashingTag]
+    let description: String?
 }

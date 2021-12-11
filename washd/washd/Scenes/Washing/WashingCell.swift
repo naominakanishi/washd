@@ -69,7 +69,7 @@ final class WashingCell: UICollectionViewCell, ClothingCell {
         view.axis = .horizontal
         view.distribution = .equalSpacing
         view.spacing = 8
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.cornerRadius = 10

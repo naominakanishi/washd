@@ -18,7 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
-        window.rootViewController = UINavigationController(rootViewController: HomeViewController())
+        window.rootViewController = UINavigationController(rootViewController: ClothingDetailViewController(
+            clothing: Clothing(
+                name: "Blusa branca",
+                type: .top,
+                color: .white,
+                nfcTagId: nil,
+                washingTags: [.init(imageNames: ["2-do-not-bleach", "do-not-dry"], name: "Não lava", category: .bleaching)],
+                description: "A Camisa Ladrilho é confeccionada pela CALMA em 100% viscolinho, um tipo de tecido misto, com linho, viscose e algodão com uma textura fina e bem leve de manusear.Sua produção passou por um processo minucioso e manual dentro do nosso ateliê: Desde a criação de novos modelos até as últimas costurinhas. Cada etapa da produção é feita no Brasil com produtos de qualidade escolhidos à dedos com carinho e alma.Aqui na CALMA acreditamos na importância de amar e valorizar cada peça de nosso guarda-roupa, entendendo o processo de como a roupa foi pensada, confeccionada e finalizada para chegar até você. Ou seja, além de fazer bem pro visual, faz bem pro coração.")))
         window.backgroundColor = .washdColors.background
         window.makeKeyAndVisible()
         self.window = window
