@@ -1,9 +1,15 @@
 import UIKit
 
+protocol ClothingManagerDelegate: AnyObject {
+    func didSelect(clothing: Clothing)
+}
+
 final class ClothingManager: NSObject,
                            UICollectionViewDelegate,
                            UICollectionViewDataSource,
                            UICollectionViewDelegateFlowLayout {
+    weak var delegate: ClothingManagerDelegate?
+    
     var closet: Closet { ClosetDatabase.instance.closet() }
     
     private var allowedTypes: [ClothingType] = []
@@ -70,6 +76,15 @@ final class ClothingManager: NSObject,
         types[section].name.size(
             withConstrainedWidth: collectionView.frame.width,
             font: .appFont.montserrat(.semiBold, 22).uiFont!)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = indexPath.section
+        let item = indexPath.item
+        let type = types[section]
+        let clothes = clothes.clothes(of: type)
+        let clothing = clothes[item]
+        delegate?.didSelect(clothing: clothing)
     }
 }
 

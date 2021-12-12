@@ -67,7 +67,6 @@ final class ClosetView: UIView {
         collectionView.register(ClosetCell.self, forCellWithReuseIdentifier: "ClothesCell")
         collectionView.register(ClothingHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ClosetHeaderView")
         collectionView.backgroundColor = .clear
-        collectionView.allowsSelection = false
         layout.sectionInset = .init(top: 20, left: 0, bottom: 20, right: 0)
         return collectionView
     }()
@@ -95,10 +94,6 @@ final class ClosetView: UIView {
         filterCollectionView.delegate = filterDelegate
         filterCollectionView.dataSource = filterDataSource
         backgroundColor = .white
-    
-//        basketView.addGestureRecognizer(UIPanGestureRecognizer(
-//            target: self,
-//            action: #selector(handlePanGesture)))
     }
     
     required init?(coder: NSCoder) {
@@ -110,7 +105,6 @@ final class ClosetView: UIView {
         addSubviews(
             backgroundImage,
             closetCollectionView,
-//            basketView,
             filterCollectionView,
             searchBar)
     }
@@ -164,20 +158,6 @@ final class ClosetView: UIView {
                 constant: -30
             ),
         ])
-        
-//        basketBottomConstraint = basketView.topAnchor.constraint(
-//            equalTo: bottomAnchor,
-//            constant: EXPANDED_BOTTOM_CONSTRAINT)
-//        basketView.layout(using: [
-//            basketView.leadingAnchor.constraint(
-//                equalTo: leadingAnchor),
-//            basketView.trailingAnchor.constraint(
-//                equalTo: trailingAnchor),
-//            basketView.bottomAnchor.constraint(
-//                equalTo: bottomAnchor),
-//            basketBottomConstraint!
-//        ])
-        
         self.closetTopConstraint = topConstraint
     }
     
@@ -189,139 +169,6 @@ final class ClosetView: UIView {
         filterCollectionView.reloadData()
     }
 }
-    
-//    @objc func handlePanGesture(_ sender: Any?) {
-//        guard let recognizer = sender as? UIPanGestureRecognizer
-//        else { return }
-//        switch recognizer.state {
-//        case .began:
-//            updateUIState(to: self.presentationState.opposite)
-//            presentationProgress = transitionAnimator.fractionComplete
-//            transitionAnimator.pauseAnimation()
-//            self.updateNavigation(shouldPresent: presentationState == .open)
-//        case .changed:
-//            let translation = recognizer.translation(in: self)
-//            var fraction = -translation.y / DEFAULT_BOTTOM_CONSTANT
-//            if self.presentationState == .open { fraction *= -1 }
-//            transitionAnimator.fractionComplete = fraction + presentationProgress
-//        case .ended:
-//            transitionAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-//        default:
-//            ()
-//        }
-//
-//    }
-    
-//    func updateUIState(to state: PresentaionState, duration: TimeInterval = 1){
-//
-//        transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1, animations: {
-//            switch state {
-//            case .open:
-//                self.basketBottomConstraint?.constant = self.EXPANDED_BOTTOM_CONSTRAINT
-//            case .minimized:
-//                self.basketBottomConstraint?.constant = self.DEFAULT_BOTTOM_CONSTANT
-//            }
-//            self.layoutIfNeeded()
-//        })
-//
-//        transitionAnimator.addCompletion { position in
-//            switch position {
-//            case .start:
-//                self.presentationState = state.opposite
-//            case .end:
-//                self.presentationState = state
-//            case .current:
-//                ()
-//            }
-//            switch self.presentationState {
-//            case .open:
-//                self.basketBottomConstraint?.constant = self.EXPANDED_BOTTOM_CONSTRAINT
-//            case .minimized:
-//                self.basketBottomConstraint?.constant = self.DEFAULT_BOTTOM_CONSTANT
-//            }
-//
-//            self.updateNavigation(shouldPresent: self.presentationState == .minimized)
-//        }
-//        transitionAnimator.startAnimation()
-//        self.endEditing(true)
-//    }
-    
-//    private func updateNavigation(shouldPresent: Bool) {
-//        UIView.animate(withDuration: 0.3) {
-//            self.closetTopConstraint?.constant = shouldPresent ? 500 : 0
-//            self.layoutIfNeeded()
-//        }
-//        self.delegate?.updateNavigation(shouldPresent: shouldPresent)
-//    }
-//}
-
-//final class SearchBar: UIView {
-//    private lazy var textField: UITextField = {
-//        let view = InsetTextField(insets: .init(top: 0, left: 8, bottom: 0, right: 0))
-//        view.font = .appFont.montserrat(.regular, 18).uiFont
-//        view.placeholder = "Buscar"
-//        view.addTarget(
-//            self,
-//            action: #selector(handleTextChange),
-//            for: .editingChanged)
-//        return view
-//    }()
-//
-//    private lazy var magnifyingGlassIcon: UIImageView = {
-//        let view = UIImageView()
-//        view.image = .add.withRenderingMode(.alwaysTemplate)
-//        view.tintColor = .washdColors.text
-//        return view
-//    }()
-//
-//    var textDidChange: ((String?) -> Void)?
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        addSubviews()
-//        constraintSubviews()
-//        backgroundColor = .white
-//        layer.cornerRadius = 8
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    func addSubviews() {
-//        addSubviews(textField,
-//                    magnifyingGlassIcon)
-//    }
-//
-//    func constraintSubviews() {
-//        textField.layout {
-//            $0.topAnchor.constraint(equalTo: topAnchor)
-//            $0.leadingAnchor.constraint(equalTo: leadingAnchor)
-//            $0.trailingAnchor.constraint(equalTo: magnifyingGlassIcon.leadingAnchor)
-//            $0.bottomAnchor.constraint(equalTo: bottomAnchor)
-//        }
-//
-//        magnifyingGlassIcon.layout {
-//            $0.widthAnchor.constraint(equalToConstant: 24)
-//            $0.heightAnchor.constraint(equalToConstant: 24)
-//            $0.trailingAnchor.constraint(
-//                equalTo: trailingAnchor,
-//                constant: -8)
-//            $0.centerYAnchor.constraint(equalTo: centerYAnchor)
-//            $0.topAnchor.constraint(
-//                equalTo: topAnchor,
-//                constant: 8)
-//            $0.bottomAnchor.constraint(
-//                equalTo: bottomAnchor,
-//                constant: -8)
-//        }
-//    }
-//
-//    @objc
-//    private func handleTextChange() {
-//        textDidChange?(textField.text)
-//    }
-//}
 
 private class InsetTextField: UITextField {
     var insets: UIEdgeInsets

@@ -94,7 +94,7 @@
 		115CDE9D275FE867007D82FB /* NewEntryOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryOptionsView.swift; sourceTree = "<group>"; };
 		115CDE9F276035B8007D82FB /* NewEntryOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryOptionsViewController.swift; sourceTree = "<group>"; };
 		115CDEA1276130F4007D82FB /* ClothingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingDetailViewController.swift; sourceTree = "<group>"; };
-		115CDEA327613267007D82FB /* ClothingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingDetailView.swift; sourceTree = "<group>"; };
+		115CDEA327613267007D82FB /* ClothingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingDetailView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		115CDEA727613E8E007D82FB /* ClotingInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotingInfoCell.swift; sourceTree = "<group>"; };
 		1191F84E276165CF005B47AE /* ClothingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingManager.swift; sourceTree = "<group>"; };
 		1191F85027616621005B47AE /* ClothingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingHeaderView.swift; sourceTree = "<group>"; };

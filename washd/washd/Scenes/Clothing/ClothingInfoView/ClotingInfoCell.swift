@@ -37,22 +37,21 @@ class ClothingInfoCell: UITableViewCell {
     func addSubviews() {
         contentView.addSubview(contentsView)
         contentsView.addSubview(contentLabel)
-
     }
     
     func constraintSubviews() {
         contentsView.layout {
-            $0.topAnchor.constraint(equalTo: topAnchor, constant: 5)
-            $0.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
-            $0.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)
-            $0.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            $0.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16)
+            $0.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+            $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
+            $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         }
         
         contentLabel.layout {
-            $0.topAnchor.constraint(equalTo: contentsView.topAnchor, constant: 5)
-            $0.bottomAnchor.constraint(equalTo: contentsView.bottomAnchor, constant: -5)
-            $0.leadingAnchor.constraint(equalTo: contentsView.leadingAnchor, constant: 15)
-            $0.trailingAnchor.constraint(equalTo: contentsView.trailingAnchor, constant: -5)
+            $0.topAnchor.constraint(equalTo: contentsView.topAnchor, constant: 16)
+            $0.bottomAnchor.constraint(equalTo: contentsView.bottomAnchor, constant: -16)
+            $0.leadingAnchor.constraint(equalTo: contentsView.leadingAnchor, constant: 16)
+            $0.trailingAnchor.constraint(equalTo: contentsView.trailingAnchor, constant: -16)
         }
     }
 

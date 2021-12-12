@@ -13,30 +13,23 @@ class ClothingDetailView: UIView, UIScrollViewDelegate {
         view.image = UIImage(named: "clothing-detail-bg")
         return view
     }()
-//
-//    private lazy var contentScrollView: UIScrollView = {
-//        let view = UIScrollView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.isDirectionalLockEnabled = true
-//        view.delegate = self
-//        view.isDirectionalLockEnabled = true
-//        return view
-//    }()
     
     lazy var clothingInfoTableView: UITableView = {
         let view = UITableView()
+        view.estimatedRowHeight = 44.0
+        view.rowHeight = UITableView.automaticDimension
         view.separatorStyle = .none
         view.register(ClothingInfoCell.self)
         view.register(ClothingSymbolsCell.self)
         view.backgroundColor = .clear
-        view.estimatedRowHeight = UITableView.automaticDimension
-        view.rowHeight = UITableView.automaticDimension
         return view
     }()
     
     private lazy var clothingPhoto: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = 40
+        view.clipsToBounds = true
+        view.layer.masksToBounds = true
         view.backgroundColor = .black
         return view
     }()
@@ -53,9 +46,7 @@ class ClothingDetailView: UIView, UIScrollViewDelegate {
     
     func addSubviews() {
         self.addSubview(backgroundImage)
-       // self.addSubview(contentScrollView)
         self.addSubview(clothingInfoTableView)
-        
         self.addSubview(clothingPhoto)
     }
     
@@ -69,7 +60,7 @@ class ClothingDetailView: UIView, UIScrollViewDelegate {
         
         clothingPhoto.layout(using: [
             clothingPhoto.topAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.topAnchor),
+                equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             clothingPhoto.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
             clothingPhoto.heightAnchor.constraint(equalTo: clothingPhoto.widthAnchor, multiplier: 281/310),
             clothingPhoto.centerXAnchor.constraint(equalTo: centerXAnchor)
@@ -81,6 +72,9 @@ class ClothingDetailView: UIView, UIScrollViewDelegate {
             $0.leadingAnchor.constraint(equalTo: leadingAnchor)
             $0.trailingAnchor.constraint(equalTo: trailingAnchor)
         }
-            
+    }
+    
+    func set(clothingImage image: UIImage) {
+        clothingPhoto.image = image
     }
 }

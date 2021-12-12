@@ -184,7 +184,7 @@ final class WashingCell: UICollectionViewCell, ClothingCell {
     func configure(using clothing: Clothing) {
         self.clothing = clothing
         nameLabel.text = clothing.name
-        photoImageView.image = UIImage(data: clothing.image) ?? .init(named: clothing.type.imageName)
+        photoImageView.image = clothing.image
     }
     
     @objc func didAdd() {

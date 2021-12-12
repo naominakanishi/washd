@@ -28,7 +28,7 @@ final class HomeView: UIView {
         view.font = .appFont.montserrat(.regular, 18).uiFont
         view.textColor = .washdColors.text
         view.textAlignment = .center
-        view.text = "Você já tem x peças cadastradas"
+        view.text = "Você já tem \(ClosetDatabase.instance.closet().clothes.count) peças cadastradas"
         return view
     }()
     

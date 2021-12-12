@@ -26,9 +26,16 @@ final class ClothingDetailViewController: UIViewController {
 
         configureNavigationBar()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let image = clothing.image {
+            clothingDetailView.set(clothingImage: image)
+        }
+    }
+    
     
     private func configureNavigationBar() {
-        title = "Editar esse nome"
+        title = clothing.name
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
     }
@@ -63,5 +70,9 @@ extension ClothingDetailViewController: UITableViewDelegate, UITableViewDataSour
             return cell
         default: fatalError("Unexpeceted item count!")
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
 }

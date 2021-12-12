@@ -4,7 +4,6 @@ import CoreNFC
 final class ClosetViewController: UIViewController {
     
     private var closetView: ClosetView? { view as? ClosetView }
-//    private let basketViewController = BasketViewController()
     private let clothingManager = ClothingManager()
     private let filterManager = ClothingFilterManager()
     
@@ -22,6 +21,7 @@ final class ClosetViewController: UIViewController {
             filterDataSource: filterManager
 //            basketView: basketViewController.view as! BasketView
         )
+        clothingManager.delegate = self
         filterManager.delegate = self
         closetView?.delegate = self
     }
@@ -81,5 +81,12 @@ extension ClosetViewController: ClothingFilterManagerDelegate {
     private func updateFilters() {
         clothingManager.applyFilter(types: filteredItems)
         closetView?.reloadCloset()
+    }
+}
+
+extension ClosetViewController: ClothingManagerDelegate {
+    func didSelect(clothing: Clothing) {
+        let controller = ClothingDetailViewController(clothing: clothing)
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 }
