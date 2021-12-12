@@ -207,6 +207,7 @@
 		1154000827164D9C00104A2C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				11EC0798276578FC004AFE05 /* Fabric */,
 				11DB40BB2763ED9E00347F1D /* Clothing */,
 				11DB40BA2763EA8700347F1D /* Filter */,
 				11DB40B92763E96100347F1D /* Washing */,
@@ -323,6 +324,13 @@
 				11EC079327641778004AFE05 /* ClothingSymbolsCell.swift */,
 			);
 			path = ClothingInfoView;
+			sourceTree = "<group>";
+		};
+		11EC0798276578FC004AFE05 /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fabric;
 			sourceTree = "<group>";
 		};
 		11EF18BD2708E71000473615 = {
@@ -636,7 +644,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = UL74FQ825B;
 				INFOPLIST_FILE = washd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -660,7 +668,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = UL74FQ825B;
 				INFOPLIST_FILE = washd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

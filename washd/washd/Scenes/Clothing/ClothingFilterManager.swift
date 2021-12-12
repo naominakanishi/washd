@@ -23,11 +23,17 @@ final class ClothingFilterManager: NSObject,
     weak var delegate: ClothingFilterManagerDelegate?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        filterOptions.count
+        filterOptions.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch filterOptions[indexPath.item] {
+        if indexPath.item == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterTypeCell", for: indexPath) as! FilterTypeCell
+            cell.configure(using: "Todos")
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            return cell
+        }
+        switch filterOptions[indexPath.item - 1] {
         case let .type(clothingType):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterTypeCell", for: indexPath) as! FilterTypeCell
             cell.configure(using: clothingType.name)
@@ -36,7 +42,21 @@ final class ClothingFilterManager: NSObject,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let option = filterOptions[indexPath.item]
+        if indexPath.item == 0 {
+            collectionView.indexPathsForSelectedItems?.forEach({ indexPath in
+                guard indexPath.item != 0 else { return }
+                let option = filterOptions[indexPath.item - 1]
+                switch option {
+                case let .type(clothingType):
+                    delegate?.deselect(type: clothingType)
+                }
+                collectionView.deselectItem(at: indexPath, animated: true)
+            })
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
+            return
+        }
+        collectionView.deselectItem(at: .init(item: 0, section: 0), animated: true)
+        let option = filterOptions[indexPath.item - 1]
         switch option {
         case let .type(clothingType):
             delegate?.select(type: clothingType)
@@ -44,7 +64,10 @@ final class ClothingFilterManager: NSObject,
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let option = filterOptions[indexPath.item]
+        if indexPath.item == 0 {
+            return
+        }
+        let option = filterOptions[indexPath.item - 1]
         switch option {
         case let .type(clothingType):
             delegate?.deselect(type: clothingType)
