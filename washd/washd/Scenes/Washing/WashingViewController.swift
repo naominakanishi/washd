@@ -6,7 +6,7 @@ final class WashingViewController: UIViewController {
     private var washingView: WashingView? { view as? WashingView }
     private let basketViewController = BasketViewController()
     private let clothingManager = ClothingManager()
-    private let filterManager = ClothingFilterManager()
+    private let filterManager = ClothingFilterManager<Clothing>()
     
     private var filteredItems: [ClothingType] = []
     private var filterText: String = ""
@@ -22,6 +22,7 @@ final class WashingViewController: UIViewController {
             filterDataSource: filterManager,
             basketView: basketViewController.view as! BasketView
         )
+        
         filterManager.delegate = self
         washingView?.delegate = self
     }
@@ -67,13 +68,15 @@ extension WashingViewController: WashingViewDelegate {
     }
 }
 
-extension WashingViewController: ClothingFilterManagerDelegate {
-    func select(type: ClothingType) {
+extension WashingViewController: FilterDelegate {
+    func select(itemAt indexPath: IndexPath) {
+        let type = ClothingType.allCases[indexPath.item]
         filteredItems.append(type)
         updateFilters()
     }
     
-    func deselect(type: ClothingType) {
+    func deselect(itemAt indexPath: IndexPath) {
+        let type = ClothingType.allCases[indexPath.item]
         filteredItems.removeAll(where: { $0 == type })
         updateFilters()
     }

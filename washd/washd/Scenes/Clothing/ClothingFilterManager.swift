@@ -1,26 +1,30 @@
 import UIKit
 
-protocol ClothingFilterManagerDelegate: AnyObject {
-    func select(type: ClothingType)
-    func deselect(type: ClothingType)
+protocol FilterDelegate: AnyObject {
+    func select(itemAt indexPath: IndexPath)
+    func deselect(itemAt indexPath: IndexPath)
 }
 
-final class ClothingFilterManager: NSObject,
-                                UICollectionViewDelegate,
-                                UICollectionViewDataSource,
-                                UICollectionViewDelegateFlowLayout {
+
+protocol ClothingCellProtocol: UICollectionViewCell {
+    func configure(using title: String)
+}
+
+protocol FilterItem {
+    var name: String { get }
+}
+
+final class ClothingFilterManager<T: FilterItem>: NSObject,
+                                   UICollectionViewDelegate,
+                                   UICollectionViewDataSource,
+                                   UICollectionViewDelegateFlowLayout {
     
     enum FilterOption {
         case type(ClothingType)
     }
     
-    var filterOptions: [FilterOption] = ClosetDatabase.instance
-        .closet()
-        .clothes
-        .types()
-        .map { .type($0) }
-    
-    weak var delegate: ClothingFilterManagerDelegate?
+    var filterOptions: [T] = []
+    weak var delegate: FilterDelegate?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         filterOptions.count + 1
@@ -33,44 +37,30 @@ final class ClothingFilterManager: NSObject,
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
             return cell
         }
-        switch filterOptions[indexPath.item - 1] {
-        case let .type(clothingType):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterTypeCell", for: indexPath) as! FilterTypeCell
-            cell.configure(using: clothingType.name)
-            return cell
-        }
+        let item = filterOptions[indexPath.item - 1]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterTypeCell", for: indexPath) as! FilterTypeCell
+        cell.configure(using: item.name)
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
             collectionView.indexPathsForSelectedItems?.forEach({ indexPath in
                 guard indexPath.item != 0 else { return }
-                let option = filterOptions[indexPath.item - 1]
-                switch option {
-                case let .type(clothingType):
-                    delegate?.deselect(type: clothingType)
-                }
+                delegate?.deselect(itemAt: indexPath)
                 collectionView.deselectItem(at: indexPath, animated: true)
             })
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
             return
         }
         collectionView.deselectItem(at: .init(item: 0, section: 0), animated: true)
-        let option = filterOptions[indexPath.item - 1]
-        switch option {
-        case let .type(clothingType):
-            delegate?.select(type: clothingType)
-        }
+        delegate?.select(itemAt: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
             return
         }
-        let option = filterOptions[indexPath.item - 1]
-        switch option {
-        case let .type(clothingType):
-            delegate?.deselect(type: clothingType)
-        }
+        delegate?.deselect(itemAt: indexPath)
     }
 }

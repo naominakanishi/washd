@@ -53,13 +53,18 @@
 		11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */; };
 		11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AB2980271650B7001A89D2 /* BasketDatabase.swift */; };
 		11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD33AA2708ED9800FBA29C /* Colors.swift */; };
-		11DB40BD2763FE6C00347F1D /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40BC2763FE6C00347F1D /* ClosetViewController.swift */; };
 		11DB40BF2763FEB400347F1D /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40BE2763FEB400347F1D /* ClosetView.swift */; };
 		11DB40C22763FEC900347F1D /* ClosetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40C12763FEC900347F1D /* ClosetCell.swift */; };
 		11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B06270A7F8E00458E56 /* AreaPicker.swift */; };
 		11E41B09270A7FAF00458E56 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B08270A7FAF00458E56 /* UIStackView+Extensions.swift */; };
 		11EC079427641778004AFE05 /* ClothingSymbolsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC079327641778004AFE05 /* ClothingSymbolsCell.swift */; };
 		11EC079727641F91004AFE05 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC079627641F91004AFE05 /* UITableView+Extensions.swift */; };
+		11EC079A276580C0004AFE05 /* FabricViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC0799276580C0004AFE05 /* FabricViewController.swift */; };
+		11EC079C276580C9004AFE05 /* FabricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC079B276580C9004AFE05 /* FabricView.swift */; };
+		11EC079E276580D4004AFE05 /* FabricCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC079D276580D4004AFE05 /* FabricCell.swift */; };
+		11EC07A0276581A5004AFE05 /* Fabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC079F276581A5004AFE05 /* Fabric.swift */; };
+		11EC07A227658EE8004AFE05 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC07A127658EE8004AFE05 /* ClosetViewController.swift */; };
+		11EEB86F27693CC9000257F0 /* UnderstandingSymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EEB86E27693CC9000257F0 /* UnderstandingSymbolsViewController.swift */; };
 		11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18C92708E71000473615 /* AppDelegate.swift */; };
 		11EF18CC2708E71000473615 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18CB2708E71000473615 /* SceneDelegate.swift */; };
 		11EF18CE2708E71000473615 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18CD2708E71000473615 /* NewEntryViewController.swift */; };
@@ -116,7 +121,6 @@
 		11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerCollectionViewManager.swift; sourceTree = "<group>"; };
 		11AB2980271650B7001A89D2 /* BasketDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketDatabase.swift; sourceTree = "<group>"; };
 		11AD33AA2708ED9800FBA29C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		11DB40BC2763FE6C00347F1D /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
 		11DB40BE2763FEB400347F1D /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
 		11DB40C12763FEC900347F1D /* ClosetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetCell.swift; sourceTree = "<group>"; };
 		11E41B06270A7F8E00458E56 /* AreaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaPicker.swift; sourceTree = "<group>"; };
@@ -124,6 +128,12 @@
 		11EC0792276409A2004AFE05 /* washd.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = washd.entitlements; path = washd/washd.entitlements; sourceTree = "<group>"; };
 		11EC079327641778004AFE05 /* ClothingSymbolsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingSymbolsCell.swift; sourceTree = "<group>"; };
 		11EC079627641F91004AFE05 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		11EC0799276580C0004AFE05 /* FabricViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricViewController.swift; sourceTree = "<group>"; };
+		11EC079B276580C9004AFE05 /* FabricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricView.swift; sourceTree = "<group>"; };
+		11EC079D276580D4004AFE05 /* FabricCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricCell.swift; sourceTree = "<group>"; };
+		11EC079F276581A5004AFE05 /* Fabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fabric.swift; sourceTree = "<group>"; };
+		11EC07A127658EE8004AFE05 /* ClosetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
+		11EEB86E27693CC9000257F0 /* UnderstandingSymbolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderstandingSymbolsViewController.swift; sourceTree = "<group>"; };
 		11EF18C62708E71000473615 /* washd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = washd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11EF18C92708E71000473615 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11EF18CB2708E71000473615 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -207,13 +217,14 @@
 		1154000827164D9C00104A2C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				11EEB86D27693CA3000257F0 /* UnderstandingSymbols */,
+				11A0193727094A0F00BDF309 /* Closet */,
 				11EC0798276578FC004AFE05 /* Fabric */,
 				11DB40BB2763ED9E00347F1D /* Clothing */,
 				11DB40BA2763EA8700347F1D /* Filter */,
 				11DB40B92763E96100347F1D /* Washing */,
 				115CDE94275EA2B4007D82FB /* Home */,
 				1135AF2D27090F8E0030B003 /* NewEntry */,
-				11A0193727094A0F00BDF309 /* Closet */,
 				1154000727164D7C00104A2C /* Basket */,
 			);
 			path = Scenes;
@@ -244,7 +255,7 @@
 		11A0193727094A0F00BDF309 /* Closet */ = {
 			isa = PBXGroup;
 			children = (
-				11DB40BC2763FE6C00347F1D /* ClosetViewController.swift */,
+				11EC07A127658EE8004AFE05 /* ClosetViewController.swift */,
 				11DB40BE2763FEB400347F1D /* ClosetView.swift */,
 				11DB40C12763FEC900347F1D /* ClosetCell.swift */,
 			);
@@ -329,8 +340,20 @@
 		11EC0798276578FC004AFE05 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
+				11EC0799276580C0004AFE05 /* FabricViewController.swift */,
+				11EC079B276580C9004AFE05 /* FabricView.swift */,
+				11EC079D276580D4004AFE05 /* FabricCell.swift */,
+				11EC079F276581A5004AFE05 /* Fabric.swift */,
 			);
 			path = Fabric;
+			sourceTree = "<group>";
+		};
+		11EEB86D27693CA3000257F0 /* UnderstandingSymbols */ = {
+			isa = PBXGroup;
+			children = (
+				11EEB86E27693CC9000257F0 /* UnderstandingSymbolsViewController.swift */,
+			);
+			path = UnderstandingSymbols;
 			sourceTree = "<group>";
 		};
 		11EF18BD2708E71000473615 = {
@@ -452,6 +475,7 @@
 				1154000527164CF400104A2C /* WashViewCell.swift in Sources */,
 				11EF18DE2708E89500473615 /* NFCReader.swift in Sources */,
 				1191F85127616621005B47AE /* ClothingHeaderView.swift in Sources */,
+				11EC079C276580C9004AFE05 /* FabricView.swift in Sources */,
 				115CDE9C275FDFA2007D82FB /* LearningButton.swift in Sources */,
 				11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */,
 				1154FFFF2714EE4500104A2C /* WashingView.swift in Sources */,
@@ -466,24 +490,28 @@
 				1135AF37270930690030B003 /* TextField.swift in Sources */,
 				115400012716306C00104A2C /* BasketViewController.swift in Sources */,
 				11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */,
+				11EC07A227658EE8004AFE05 /* ClosetViewController.swift in Sources */,
 				11A01953270A190A00BDF309 /* HeaderCell.swift in Sources */,
 				11A0193C2709538700BDF309 /* WashingCell.swift in Sources */,
 				11A01955270A192100BDF309 /* WasingTagCell.swift in Sources */,
-				11DB40BD2763FE6C00347F1D /* ClosetViewController.swift in Sources */,
 				11A0194527096C8100BDF309 /* TagCategory.swift in Sources */,
 				1191F84F276165CF005B47AE /* ClothingManager.swift in Sources */,
 				11A0194E270A03B500BDF309 /* UIView+Extensions.swift in Sources */,
 				115CDE98275EA5D8007D82FB /* HomeView.swift in Sources */,
+				11EC079E276580D4004AFE05 /* FabricCell.swift in Sources */,
 				11EC079427641778004AFE05 /* ClothingSymbolsCell.swift in Sources */,
 				115CDEA427613267007D82FB /* ClothingDetailView.swift in Sources */,
 				115CDE96275EA2C0007D82FB /* HomeViewController.swift in Sources */,
 				11EF18CE2708E71000473615 /* NewEntryViewController.swift in Sources */,
 				11EC079727641F91004AFE05 /* UITableView+Extensions.swift in Sources */,
 				11A01950270A09AC00BDF309 /* IconPickerViewController.swift in Sources */,
+				11EC079A276580C0004AFE05 /* FabricViewController.swift in Sources */,
 				11EF18CA2708E71000473615 /* AppDelegate.swift in Sources */,
 				11A0194727096CA600BDF309 /* ClothingColor.swift in Sources */,
 				11DB40C22763FEC900347F1D /* ClosetCell.swift in Sources */,
 				1135AF2F27090FA30030B003 /* NewEntryView.swift in Sources */,
+				11EC07A0276581A5004AFE05 /* Fabric.swift in Sources */,
+				11EEB86F27693CC9000257F0 /* UnderstandingSymbolsViewController.swift in Sources */,
 				115CDE9E275FE867007D82FB /* NewEntryOptionsView.swift in Sources */,
 				11A0194127096C3600BDF309 /* WashingTag.swift in Sources */,
 				1135AF31270929380030B003 /* Font.swift in Sources */,
@@ -644,7 +672,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = UL74FQ825B;
 				INFOPLIST_FILE = washd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -668,7 +696,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = washd/washd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = UL74FQ825B;
 				INFOPLIST_FILE = washd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

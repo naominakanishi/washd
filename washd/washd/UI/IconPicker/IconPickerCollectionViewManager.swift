@@ -26,6 +26,8 @@ final class IconPickerCollectionViewManager: NSObject, UICollectionViewDataSourc
     var sections = TagCategory.allCases.map { SectionModel(category: $0) }
     
     var selectedItems: [SectionModel.Item] = []
+    var isSelectable: Bool  = true
+    var shouldRenderText = false
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         sections.count
@@ -48,13 +50,9 @@ final class IconPickerCollectionViewManager: NSObject, UICollectionViewDataSourc
             let change : ([IndexPath]) -> Void = !section.isOpened ?
                 collectionView.deleteItems :
                 collectionView.insertItems
-            change(section
-                    .tags
-                    .indices
-                    .map { .init(
-                        item: $0,
-                        section: indexPath.section) }
-            )
+            change(section.tags.indices.map {
+                .init(item: $0, section: indexPath.section)
+            })
         }
         view.titleLabel.text = section.category.name
         
@@ -69,14 +67,20 @@ final class IconPickerCollectionViewManager: NSObject, UICollectionViewDataSourc
             withReuseIdentifier: "WasingTagCell",
             for: indexPath) as? WasingTagCell
         else { return .init() }
-        
-        cell.imageView.image = UIImage(named: item.imageName)?.withRenderingMode(.alwaysTemplate)
-        cell.tintColor = selectedItems.contains(where: { $0.imageName == item.imageName }) ? .washdColors.unitedNationsBlue : .washdColors.celeste
+        cell.configure(using: .init(image: UIImage(
+                                    named: item.imageName)?.withRenderingMode(.alwaysTemplate),
+                                    name: shouldRenderText ? item.tag.name : nil))
+        if isSelectable {
+            cell.tintColor = selectedItems.contains(where: { $0.imageName == item.imageName }) ? .washdColors.unitedNationsBlue : .washdColors.celeste
+        }  else {
+            cell.tintColor = .washdColors.unitedNationsBlue
+        }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard isSelectable else { return }
         let item = sections[indexPath.section].tags[indexPath.item]
         if let index = selectedItems.firstIndex(where: { $0.imageName == item.imageName }) {
             selectedItems.remove(at: index)

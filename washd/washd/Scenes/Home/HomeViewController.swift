@@ -5,13 +5,12 @@ final class HomeViewController: UIViewController {
     
     private lazy var homeView = HomeView(actions: .init(
         registerItem: {
-            let controller = NewEntryOptionsViewController()
+            let controller = NewEntryViewController()
             self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         },
         openCloset: {
             let controller = ClosetViewController()
             self.navigationController?.pushViewController(controller, animated: true)
-
         },
         openWash: {
             let controller = WashingViewController()
@@ -21,7 +20,8 @@ final class HomeViewController: UIViewController {
             // TODO
         },
         understandSymbols: {
-            // TODO
+            let contoller = UnderstandingSymbolsViewController()
+            self.present(contoller, animated: true, completion: nil)
         },
         understandUpcycling: {
             // TODO

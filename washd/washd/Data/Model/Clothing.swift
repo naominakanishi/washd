@@ -52,3 +52,5 @@ struct Clothing: Codable, Equatable, Hashable {
         case name, type, color, nfcTagId, washingTags, description, image
     }
 }
+
+extension Clothing: FilterItem {}

@@ -5,7 +5,7 @@ final class ClosetViewController: UIViewController {
     
     private var closetView: ClosetView? { view as? ClosetView }
     private let clothingManager = ClothingManager()
-    private let filterManager = ClothingFilterManager()
+    private let filterManager = ClothingFilterManager<Clothing>()
     
     private var filteredItems: [ClothingType] = []
     private var filterText: String = ""
@@ -13,13 +13,11 @@ final class ClosetViewController: UIViewController {
     //  MARK: - View lifecycle
     
     override func loadView() {
-//        addChild(basketViewController)
         view = ClosetView(
             closetDelegate: clothingManager,
             closetDataSource: clothingManager,
             filterDelegate: filterManager,
             filterDataSource: filterManager
-//            basketView: basketViewController.view as! BasketView
         )
         clothingManager.delegate = self
         filterManager.delegate = self
@@ -28,7 +26,6 @@ final class ClosetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        basketViewController.didMove(toParent: self)
         configureNavigationBar()
         view.backgroundColor = .washdColors.background
     }
@@ -67,13 +64,15 @@ extension ClosetViewController: ClosetViewDelegate {
     }
 }
 
-extension ClosetViewController: ClothingFilterManagerDelegate {
-    func select(type: ClothingType) {
+extension ClosetViewController: FilterDelegate {
+    func select(itemAt indexPath: IndexPath) {
+        let type = ClothingType.allCases[indexPath.item]
         filteredItems.append(type)
         updateFilters()
     }
     
-    func deselect(type: ClothingType) {
+    func deselect(itemAt indexPath: IndexPath) {
+        let type = ClothingType.allCases[indexPath.item]
         filteredItems.removeAll(where: { $0 == type })
         updateFilters()
     }

@@ -79,11 +79,11 @@ final class HomeView: UIView {
         return view
     }()
     
-    private lazy var upcyclingButton: LearningButton = {
-        let view = LearningButton(image: "upcycling", label: "upcycling:\no que é, e como fazer")
-        view.callback = actions.understandUpcycling
-        return view
-    }()
+//    private lazy var upcyclingButton: LearningButton = {
+//        let view = LearningButton(image: "upcycling", label: "upcycling:\no que é, e como fazer")
+//        view.callback = actions.understandUpcycling
+//        return view
+//    }()
     
     private lazy var learningButtonsStackView: UIStackView = {
         let view = UIStackView()
@@ -130,7 +130,7 @@ final class HomeView: UIView {
 
         learningButtonsStackView.addArrangedSubview(fabricLearningButton)
         learningButtonsStackView.addArrangedSubview(understandSymbolsButton)
-        learningButtonsStackView.addArrangedSubview(upcyclingButton)
+   //     learningButtonsStackView.addArrangedSubview(upcyclingButton)
     }
     
     func constraintSubviews() {
