@@ -17,7 +17,8 @@ final class HomeViewController: UIViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         },
         learnFabric: {
-            // TODO
+            let controller = FabricViewController()
+            self.present(controller, animated: true, completion: nil)
         },
         understandSymbols: {
             let contoller = UnderstandingSymbolsViewController()

@@ -5,7 +5,7 @@ struct Fabrics {
     var fabrics: [Fabric]
 }
 
-enum FabricNature {
+enum FabricNature: CaseIterable {
     case natural
     case synthetic
     case mixed
@@ -28,5 +28,18 @@ struct Fabric: Equatable, Hashable {
         self.image = image
     }
     
+}
+
+extension FabricNature: FilterItem {
+    var name: String {
+        switch self {
+        case .natural:
+            return "Natural"
+        case .synthetic:
+            return "Sintético"
+        case .mixed:
+            return "Mix"
+        }
+    }
 }
 

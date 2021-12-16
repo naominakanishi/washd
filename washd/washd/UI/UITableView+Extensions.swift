@@ -29,6 +29,21 @@ extension UITableView {
     }
 }
 
+extension UICollectionView {
+    func register<T>(_ type: T.Type) where T: UICollectionViewCell {
+        register(type, forCellWithReuseIdentifier: type.reuseIdentifier)
+    }
+    
+    func dequeue<T>(_ type: T.Type, at indexPath: IndexPath) -> T where T: UICollectionViewCell {
+        guard let cell = dequeueReusableCell(
+            withReuseIdentifier: type.reuseIdentifier,
+            for: indexPath) as? T
+        else { fatalError("Mano, vc esqueceu de registrar a celula.Ve la") }
+        return cell
+    }
+    
+}
+
 extension NSObject {
     static var reuseIdentifier: String { String(describing: self) }
 }

@@ -64,8 +64,7 @@ final class FabricView: UIView {
     private lazy var fabricCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(ClosetCell.self, forCellWithReuseIdentifier: "ClothesCell")
-        collectionView.register(ClothingHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ClosetHeaderView")
+        collectionView.register(FabricCell.self)
         collectionView.backgroundColor = .clear
         layout.sectionInset = .init(top: 20, left: 0, bottom: 20, right: 0)
         return collectionView
