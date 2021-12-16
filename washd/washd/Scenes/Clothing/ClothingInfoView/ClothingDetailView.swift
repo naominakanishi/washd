@@ -31,6 +31,7 @@ class ClothingDetailView: UIView, UIScrollViewDelegate {
         view.clipsToBounds = true
         view.layer.masksToBounds = true
         view.backgroundColor = .black
+        view.contentMode = .scaleAspectFill
         return view
     }()
     

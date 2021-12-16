@@ -6,7 +6,8 @@ final class HomeViewController: UIViewController {
     private lazy var homeView = HomeView(actions: .init(
         registerItem: {
             let controller = NewEntryViewController()
-            self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            self.present(UINavigationController(rootViewController: controller),
+                         animated: true, completion: nil)
         },
         openCloset: {
             let controller = ClosetViewController()
@@ -18,7 +19,8 @@ final class HomeViewController: UIViewController {
         },
         learnFabric: {
             let controller = FabricViewController()
-            self.present(controller, animated: true, completion: nil)
+            self.present(UINavigationController(rootViewController: controller),
+                         animated: true, completion: nil)
         },
         understandSymbols: {
             let contoller = UnderstandingSymbolsViewController()

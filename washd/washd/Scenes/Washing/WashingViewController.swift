@@ -6,10 +6,13 @@ final class WashingViewController: UIViewController {
     private var washingView: WashingView? { view as? WashingView }
     private let basketViewController = BasketViewController()
     private let clothingManager = ClothingManager()
-    private let filterManager = ClothingFilterManager<Clothing>()
+    private let filterManager = ClothingFilterManager<ClothingType>()
     
     private var filteredItems: [ClothingType] = []
     private var filterText: String = ""
+    private var allTypes: [ClothingType] {
+        ClosetDatabase.instance.closet().clothes.map { $0.type }.unique
+    }
     
     //  MARK: - View lifecycle
     
@@ -32,6 +35,7 @@ final class WashingViewController: UIViewController {
         basketViewController.didMove(toParent: self)
         configureNavigationBar()
         view.backgroundColor = .washdColors.background
+        filterManager.filterOptions = allTypes
     }
     
     private func configureNavigationBar() {

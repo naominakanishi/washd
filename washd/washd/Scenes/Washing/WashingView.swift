@@ -54,10 +54,14 @@ final class WashingView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.itemSize = UICollectionViewFlowLayout.automaticSize
+        layout.scrollDirection = .horizontal
+        
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(FilterTypeCell.self, forCellWithReuseIdentifier: "FilterTypeCell")
         view.backgroundColor = .clear
         view.allowsMultipleSelection = true
+        view.showsHorizontalScrollIndicator = false
+        
         return view
     }()
     
@@ -268,7 +272,7 @@ final class SearchBar: UIView {
     
     private lazy var magnifyingGlassIcon: UIImageView = {
         let view = UIImageView()
-        view.image = .add.withRenderingMode(.alwaysTemplate)
+        view.image = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
         view.tintColor = .washdColors.text
         return view
     }()

@@ -60,7 +60,7 @@ final class FabricViewController: UIViewController {
         moreButton.tintColor = .black
         moreButton.addTarget(self, action: #selector(handleAddPiece), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
-        title = "Suas roupas"
+        title = "Fibras e Tecidos"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.layer.zPosition = 10

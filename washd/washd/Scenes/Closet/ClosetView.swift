@@ -55,10 +55,13 @@ final class ClosetView: UIView {
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.itemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
+        
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(FilterTypeCell.self, forCellWithReuseIdentifier: "FilterTypeCell")
         view.backgroundColor = .clear
         view.allowsMultipleSelection = true
+        view.showsHorizontalScrollIndicator = false
+        
         return view
     }()
     

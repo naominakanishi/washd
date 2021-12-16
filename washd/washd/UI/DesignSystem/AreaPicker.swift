@@ -12,9 +12,10 @@ final class AreaPicker: UIView {
     private let contentView: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
+        view.layer.borderWidth = 0
         view.layer.cornerRadius = 10
         view.isUserInteractionEnabled = true
+        view.backgroundColor = .white
         return view
     }()
     
@@ -55,7 +56,6 @@ final class AreaPicker: UIView {
             target: self,
             action: #selector(handleTap)
         ))
-       
     }
     
     required init?(coder: NSCoder) {
