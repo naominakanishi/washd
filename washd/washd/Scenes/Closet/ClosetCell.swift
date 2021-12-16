@@ -105,7 +105,7 @@ final class ClosetCell: UICollectionViewCell, ClothingCell {
     func configure(using clothing: Clothing) {
         self.clothing = clothing
         nameLabel.text = clothing.name
-        photoImageView.image = clothing.image
+        photoImageView.image = UIImage(fileNamed: clothing.image)
     }
     
 //    @objc func didAdd() {

@@ -33,7 +33,6 @@
 		115CDEA2276130F4007D82FB /* ClothingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDEA1276130F4007D82FB /* ClothingDetailViewController.swift */; };
 		115CDEA427613267007D82FB /* ClothingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDEA327613267007D82FB /* ClothingDetailView.swift */; };
 		115CDEA827613E8E007D82FB /* ClotingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CDEA727613E8E007D82FB /* ClotingInfoCell.swift */; };
-		1166C778276A4F5300DEACE2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1166C777276A4F5300DEACE2 /* FirebaseAnalytics */; };
 		1191F84F276165CF005B47AE /* ClothingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191F84E276165CF005B47AE /* ClothingManager.swift */; };
 		1191F85127616621005B47AE /* ClothingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191F85027616621005B47AE /* ClothingHeaderView.swift */; };
 		1191F85327616678005B47AE /* ClothingFilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191F85227616678005B47AE /* ClothingFilterManager.swift */; };
@@ -55,10 +54,11 @@
 		11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AB2980271650B7001A89D2 /* BasketDatabase.swift */; };
 		11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD33AA2708ED9800FBA29C /* Colors.swift */; };
 		11AE70A0276A504300DB640A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11AE709F276A504300DB640A /* GoogleService-Info.plist */; };
-		11AE70A3276A519700DB640A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 11AE70A2276A519700DB640A /* FirebaseDatabase */; };
-		11AE70A7276AADBB00DB640A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 11AE70A6276AADBB00DB640A /* FirebaseStorage */; };
 		11AE70A9276AC64A00DB640A /* FabricDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE70A8276AC64A00DB640A /* FabricDetailViewController.swift */; };
 		11AE70AB276AC68B00DB640A /* FabricDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE70AA276AC68B00DB640A /* FabricDetailView.swift */; };
+		11B22401276ACB1A001BD374 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 11B22400276ACB1A001BD374 /* FirebaseStorage */; };
+		11B22403276ACB2B001BD374 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 11B22402276ACB2B001BD374 /* FirebaseAnalytics */; };
+		11B22405276ACB2B001BD374 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 11B22404276ACB2B001BD374 /* FirebaseDatabase */; };
 		11DB40BF2763FEB400347F1D /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40BE2763FEB400347F1D /* ClosetView.swift */; };
 		11DB40C22763FEC900347F1D /* ClosetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB40C12763FEC900347F1D /* ClosetCell.swift */; };
 		11E41B07270A7F8E00458E56 /* AreaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E41B06270A7F8E00458E56 /* AreaPicker.swift */; };
@@ -161,9 +161,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11AE70A3276A519700DB640A /* FirebaseDatabase in Frameworks */,
-				1166C778276A4F5300DEACE2 /* FirebaseAnalytics in Frameworks */,
-				11AE70A7276AADBB00DB640A /* FirebaseStorage in Frameworks */,
+				11B22405276ACB2B001BD374 /* FirebaseDatabase in Frameworks */,
+				11B22403276ACB2B001BD374 /* FirebaseAnalytics in Frameworks */,
+				11B22401276ACB1A001BD374 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,9 +433,9 @@
 			);
 			name = washd;
 			packageProductDependencies = (
-				1166C777276A4F5300DEACE2 /* FirebaseAnalytics */,
-				11AE70A2276A519700DB640A /* FirebaseDatabase */,
-				11AE70A6276AADBB00DB640A /* FirebaseStorage */,
+				11B22400276ACB1A001BD374 /* FirebaseStorage */,
+				11B22402276ACB2B001BD374 /* FirebaseAnalytics */,
+				11B22404276ACB2B001BD374 /* FirebaseDatabase */,
 			);
 			productName = washd;
 			productReference = 11EF18C62708E71000473615 /* washd.app */;
@@ -784,20 +784,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1166C777276A4F5300DEACE2 /* FirebaseAnalytics */ = {
+		11B22400276ACB1A001BD374 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1166C776276A4F5300DEACE2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		11B22402276ACB2B001BD374 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1166C776276A4F5300DEACE2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		11AE70A2276A519700DB640A /* FirebaseDatabase */ = {
+		11B22404276ACB2B001BD374 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1166C776276A4F5300DEACE2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
-		};
-		11AE70A6276AADBB00DB640A /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1166C776276A4F5300DEACE2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

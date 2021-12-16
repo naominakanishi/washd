@@ -28,9 +28,8 @@ final class ClothingDetailViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let image = clothing.image {
-            clothingDetailView.set(clothingImage: image)
-        }
+        clothingDetailView.set(clothingImage: .init(
+            fileNamed: clothing.image))
     }
     
     
@@ -74,5 +73,19 @@ extension ClothingDetailViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+}
+
+extension UIImage {
+    convenience init?(fileNamed name: String?) {
+        guard let name = name,
+              let file = try? FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: false)
+                .appendingPathComponent(name)
+        else { return nil }
+        self.init(contentsOfFile: file.path)
     }
 }

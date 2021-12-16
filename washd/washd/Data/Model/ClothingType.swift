@@ -36,7 +36,7 @@ enum ClothingType: Codable, CaseIterable {
         case .sleepwear:
             return "Pijamas"
         case .fitness:
-            return "Maromba"
+            return "Fitness"
         }
     }
     

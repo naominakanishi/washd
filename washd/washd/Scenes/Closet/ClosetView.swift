@@ -54,6 +54,7 @@ final class ClosetView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.itemSize = UICollectionViewFlowLayout.automaticSize
+        layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(FilterTypeCell.self, forCellWithReuseIdentifier: "FilterTypeCell")
         view.backgroundColor = .clear
@@ -68,6 +69,7 @@ final class ClosetView: UIView {
         collectionView.register(ClothingHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ClosetHeaderView")
         collectionView.backgroundColor = .clear
         layout.sectionInset = .init(top: 20, left: 0, bottom: 20, right: 0)
+        collectionView.keyboardDismissMode = .interactive
         return collectionView
     }()
     

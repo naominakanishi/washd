@@ -4,7 +4,7 @@ class NewEntryViewController: UIViewController {
 
     let newEntryView = NewEntryView()
     
-    var currentImage: Data?
+    var currentImage: String?
     
     var completion: (() -> Void)?
     
@@ -48,12 +48,11 @@ class NewEntryViewController: UIViewController {
                 
         let clothing = Clothing(
             name: name,
-            
             type: type,
             color: color,
             nfcTagId: UUID(uuidString: currentTag?.id ?? ""),
             washingTags: newEntryView.selectedTags, description: nil,
-            image: UIImage(data: currentImage)
+            image: currentImage
         )
         ClosetDatabase.instance.add(clothing: clothing)
         completion?()
@@ -103,15 +102,18 @@ extension NewEntryViewController:  UIImagePickerControllerDelegate, UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         defer { picker.dismiss(animated: true, completion: nil) }
         
-        var image = info[.originalImage] as? UIImage
-        if let metadata = info[.mediaMetadata] as? NSDictionary,
-           let orientation = metadata["Orientation"] as? Int,
-           orientation != 1 {
-            image = image?.rotate(radians: 2 * .pi)
+        let image = info[.originalImage] as? UIImage
+        let data = image?.pngData()
+        let fileName = UUID().uuidString + ".png"
+        do {
+            let file = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(fileName)
+            try data?.write(to: file)
+            newEntryView.renderPickedImage()
+            currentImage = fileName
+            print("CREATED", file)
+        } catch {
+            print("DEU ERRO!!!", error)
         }
-           
-        newEntryView.renderPickedImage()
-        currentImage = image?.pngData()
     }
 }
 
@@ -132,26 +134,5 @@ extension NewEntryViewController: NFCReaderDelegate {
     
 }
 
-extension UIImage {
-    func rotate(radians: Float) -> UIImage? {
-        var newSize = CGRect(origin: CGPoint.zero, size: self.size).applying(CGAffineTransform(rotationAngle: CGFloat(radians))).size
-        // Trim off the extremely small float value to prevent core graphics from rounding it up
-        newSize.width = floor(newSize.width)
-        newSize.height = floor(newSize.height)
-
-        UIGraphicsBeginImageContextWithOptions(newSize, false, self.scale)
-        let context = UIGraphicsGetCurrentContext()!
-
-        // Move origin to middle
-        context.translateBy(x: newSize.width/2, y: newSize.height/2)
-        // Rotate around middle
-        context.rotate(by: CGFloat(radians))
-        // Draw the image at its center
-        self.draw(in: CGRect(x: -self.size.width/2, y: -self.size.height/2, width: self.size.width, height: self.size.height))
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage
-    }
-}
+// file:///var/mobile/Containers/Data/Application/F6A2B3DD-7867-4954-A785-0C7E35FEF8AF/Documents/3AFD1808-BA36-4C82-9A46-B98D4DDE71B7.png
+// file:///var/mobile/Containers/Data/Application/8675FF4A-A5D6-42BF-8ED6-4560FC411F03/Documents/47AC3A11-9B17-46FA-81B6-AA31043B7CD1.png

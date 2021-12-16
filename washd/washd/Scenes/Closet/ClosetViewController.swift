@@ -5,10 +5,14 @@ final class ClosetViewController: UIViewController {
     
     private var closetView: ClosetView? { view as? ClosetView }
     private let clothingManager = ClothingManager()
-    private let filterManager = ClothingFilterManager<Clothing>()
+    private let filterManager = ClothingFilterManager<ClothingType>()
     
     private var filteredItems: [ClothingType] = []
     private var filterText: String = ""
+    
+    private var allTypes: [ClothingType] {
+        ClosetDatabase.instance.closet().clothes.map { $0.type }.unique
+    }
     
     //  MARK: - View lifecycle
     
@@ -28,6 +32,7 @@ final class ClosetViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         view.backgroundColor = .washdColors.background
+        filterManager.filterOptions = allTypes
     }
     
     private func configureNavigationBar() {
@@ -46,6 +51,7 @@ final class ClosetViewController: UIViewController {
     private func handleAddPiece() {
         let controller = NewEntryViewController()
         controller.completion = {
+            self.filterManager.filterOptions = self.allTypes
             self.closetView?.reloadCloset()
         }
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
@@ -66,13 +72,21 @@ extension ClosetViewController: ClosetViewDelegate {
 
 extension ClosetViewController: FilterDelegate {
     func select(itemAt indexPath: IndexPath) {
-        let type = ClothingType.allCases[indexPath.item]
+        defer { updateFilters() }
+        if indexPath.row == 0 {
+            filteredItems.removeAll()
+            return
+        }
+        let type = allTypes[indexPath.item - 1]
         filteredItems.append(type)
-        updateFilters()
     }
     
     func deselect(itemAt indexPath: IndexPath) {
-        let type = ClothingType.allCases[indexPath.item]
+        if indexPath.row == 0 {
+            // Selecionou todos
+            return
+        }
+        let type = allTypes[indexPath.item - 1]
         filteredItems.removeAll(where: { $0 == type })
         updateFilters()
     }
@@ -88,4 +102,8 @@ extension ClosetViewController: ClothingManagerDelegate {
         let controller = ClothingDetailViewController(clothing: clothing)
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
+}
+
+extension ClothingType: FilterItem {
+    
 }

@@ -74,7 +74,7 @@ class ClothingDetailView: UIView, UIScrollViewDelegate {
         }
     }
     
-    func set(clothingImage image: UIImage) {
+    func set(clothingImage image: UIImage?) {
         clothingPhoto.image = image
     }
 }

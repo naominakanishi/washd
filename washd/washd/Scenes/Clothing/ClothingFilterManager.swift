@@ -62,5 +62,8 @@ final class ClothingFilterManager<T: FilterItem>: NSObject,
             return
         }
         delegate?.deselect(itemAt: indexPath)
+        if collectionView.indexPathsForSelectedItems?.isEmpty ?? true {
+            collectionView.selectItem(at: .init(item: 0, section: 0), animated: true, scrollPosition: .left)
+        }
     }
 }
