@@ -5,6 +5,7 @@ final class BasketView: UIView {
     // MARK: - Properties
     
     var washes: [Wash] = []
+    var openInstructions: ((Wash) -> Void)?
     
     // MARK: - Components
     
@@ -118,9 +119,6 @@ final class BasketView: UIView {
                 constant: 4),
             badgeLabel.centerXAnchor.constraint(
                 equalTo: badgeView.centerXAnchor),
-//            badgeLabel.trailingAnchor.constraint(
-//                equalTo: badgeView.trailingAnchor,
-//                constant: -4),
             badgeLabel.bottomAnchor.constraint(
                 equalTo: badgeView.bottomAnchor,
                 constant: -4),
@@ -215,5 +213,10 @@ extension BasketView: UITableViewDataSource, UITableViewDelegate {
         let wash = washes[indexPath.row]
         cell.configure(using: wash)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let wash = washes[indexPath.row]
+        openInstructions?(wash)
     }
 }

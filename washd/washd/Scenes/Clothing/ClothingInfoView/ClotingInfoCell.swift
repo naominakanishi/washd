@@ -28,6 +28,7 @@ class ClothingInfoCell: UITableViewCell {
         constraintSubviews()
         backgroundColor = .clear
       //  configure(using: Wash)
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {

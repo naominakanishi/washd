@@ -17,7 +17,6 @@ final class ClosetCell: UICollectionViewCell, ClothingCell {
     
     let containerView = UIView()
     
-    
     let nameBackground: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
@@ -107,42 +106,4 @@ final class ClosetCell: UICollectionViewCell, ClothingCell {
         nameLabel.text = clothing.name
         photoImageView.image = UIImage(fileNamed: clothing.image)
     }
-    
-//    @objc func didAdd() {
-//        currentItemCount += 1
-//        renderPickerState()
-//        if let clothing = clothing {
-//            BasketDatabase.shared.add(clothing: clothing)
-//        }
-//    }
-//
-//    @objc func didRemove() {
-//        if let clothing = clothing {
-//            BasketDatabase.shared.remove(clothing: clothing)
-//        }
-//        guard currentItemCount > 0 else { return }
-//        currentItemCount -= 1
-//        renderPickerState()
-//    }
-//
-//    func renderPickerState() {
-//        let shouldPresentPicker = currentItemCount <= 0
-//        countLabel.text = "\(currentItemCount)"
-//        pickerLeadingConstraint?.isActive = !shouldPresentPicker
-//        UIView.animate(withDuration: 0.1) {
-//            self.countLabel.isHidden = shouldPresentPicker
-//            self.removeFromBasketButton.isHidden = shouldPresentPicker
-//            self.removeFromBasketButton.setImage(
-//                .init(systemName: self.currentItemCount > 1 ? "minus" : "trash"),
-//                for: .normal)
-//            self.layoutIfNeeded()
-//        }
-//    }
 }
-
-//extension UIImage {
-//    convenience init?(data: Data?) {
-//        guard let data = data else { return nil }
-//        self.init(data: data)
-//    }
-//}

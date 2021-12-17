@@ -10,10 +10,7 @@ final class WashViewCell: UITableViewCell {
     
     private lazy var washNameLabel: UILabel = {
         let view = UILabel()
-        
-        view.text = "Lavar com alvejante"
         view.font = .appFont.montserrat(.semiBold, 22).uiFont
-        
         return view
     }()
     
@@ -93,7 +90,6 @@ final class WashViewCell: UITableViewCell {
     }
     
     func configure(using wash: Wash) {
-        washNameLabel.text = wash.name
         clothes = wash.clothes
         piecesCollectionView.reloadData()
     }

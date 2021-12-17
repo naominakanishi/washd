@@ -184,5 +184,8 @@ final class HomeView: UIView {
    
     }
     
+    func updateClothingCount() {
+        clothesAmount.text = "Você já tem \(ClosetDatabase.instance.closet().clothes.count) peças cadastradas"
+    }
 
 }

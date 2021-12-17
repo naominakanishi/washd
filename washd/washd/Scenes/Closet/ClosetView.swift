@@ -26,13 +26,11 @@ final class ClosetView: UIView {
     
     private var transitionAnimator: UIViewPropertyAnimator!
     private var presentationProgress: CGFloat = 0
-//    private var basketBottomConstraint: NSLayoutConstraint?
     private var closetTopConstraint: NSLayoutConstraint?
     
     // MARK: - Presentation constants
     
     private lazy var DEFAULT_BOTTOM_CONSTANT: CGFloat = -7 * self.frame.height / 8
-    private lazy var EXPANDED_BOTTOM_CONSTRAINT: CGFloat =  -100
     
     // MARK: - Components
     
@@ -79,7 +77,6 @@ final class ClosetView: UIView {
     // MARK: - Dependencies
     
     weak var delegate: ClosetViewDelegate?
-//    private let basketView: BasketView
     
     // MARK: - Initialization
     
@@ -87,10 +84,8 @@ final class ClosetView: UIView {
          closetDataSource: UICollectionViewDataSource,
          filterDelegate: UICollectionViewDelegate,
          filterDataSource: UICollectionViewDataSource,
-//         basketView: BasketView,
          frame: CGRect = .zero
     ) {
-//        self.basketView = basketView
         super.init(frame: frame)
         addSubviews()
         constraintSubviews()
@@ -172,28 +167,5 @@ final class ClosetView: UIView {
     
     func reloadFilter() {
         filterCollectionView.reloadData()
-    }
-}
-
-private class InsetTextField: UITextField {
-    var insets: UIEdgeInsets
-
-    init(insets: UIEdgeInsets) {
-        self.insets = insets
-        super.init(frame: .zero)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("not intended for use from a NIB")
-    }
-
-    // placeholder position
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-         return super.textRect(forBounds: bounds.inset(by: insets))
-    }
- 
-    // text position
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-         return super.editingRect(forBounds: bounds.inset(by: insets))
     }
 }

@@ -6,6 +6,12 @@ final class BasketViewController: UIViewController {
     
     override func loadView() {
         view = BasketView()
+        basketView?.openInstructions = { [navigationController] wash in
+            let controller = WashingInstructionsViewController(clothes: wash.clothes)
+            navigationController?.present(controller,
+                                          animated: true,
+                                          completion: nil)
+        }
     }
     
     override func viewDidLoad() {

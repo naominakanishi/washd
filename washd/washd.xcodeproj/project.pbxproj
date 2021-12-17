@@ -19,6 +19,10 @@
 		1135AF3427092BBB0030B003 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1135AF1E2708F80E0030B003 /* Montserrat-Light.ttf */; };
 		1135AF3527092BBB0030B003 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1135AF202708F80E0030B003 /* Montserrat-SemiBold.ttf */; };
 		1135AF37270930690030B003 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1135AF36270930690030B003 /* TextField.swift */; };
+		113DB8D3276BED9900860934 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DB8D2276BED9900860934 /* InsetTextField.swift */; };
+		113DB8D5276C131500860934 /* TagBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DB8D4276C131500860934 /* TagBlocking.swift */; };
+		113DB8D9276C29CF00860934 /* WashingInstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DB8D8276C29CF00860934 /* WashingInstructionsViewController.swift */; };
+		113DB8DB276C29E800860934 /* WashingInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DB8DA276C29E800860934 /* WashingInstructionsView.swift */; };
 		115400012716306C00104A2C /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115400002716306C00104A2C /* BasketViewController.swift */; };
 		1154000327164CDA00104A2C /* Wash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154000227164CDA00104A2C /* Wash.swift */; };
 		1154000527164CF400104A2C /* WashViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154000427164CF400104A2C /* WashViewCell.swift */; };
@@ -94,6 +98,10 @@
 		1135AF2E27090FA30030B003 /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		1135AF30270929380030B003 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		1135AF36270930690030B003 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		113DB8D2276BED9900860934 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
+		113DB8D4276C131500860934 /* TagBlocking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBlocking.swift; sourceTree = "<group>"; };
+		113DB8D8276C29CF00860934 /* WashingInstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingInstructionsViewController.swift; sourceTree = "<group>"; };
+		113DB8DA276C29E800860934 /* WashingInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingInstructionsView.swift; sourceTree = "<group>"; };
 		115400002716306C00104A2C /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		1154000227164CDA00104A2C /* Wash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wash.swift; sourceTree = "<group>"; };
 		1154000427164CF400104A2C /* WashViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashViewCell.swift; sourceTree = "<group>"; };
@@ -218,6 +226,15 @@
 			path = NewEntry;
 			sourceTree = "<group>";
 		};
+		113DB8D7276C29AF00860934 /* WashingInstructions */ = {
+			isa = PBXGroup;
+			children = (
+				113DB8D8276C29CF00860934 /* WashingInstructionsViewController.swift */,
+				113DB8DA276C29E800860934 /* WashingInstructionsView.swift */,
+			);
+			path = WashingInstructions;
+			sourceTree = "<group>";
+		};
 		1154000727164D7C00104A2C /* Basket */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +248,7 @@
 		1154000827164D9C00104A2C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				113DB8D7276C29AF00860934 /* WashingInstructions */,
 				11EEB86D27693CA3000257F0 /* UnderstandingSymbols */,
 				11A0193727094A0F00BDF309 /* Closet */,
 				11EC0798276578FC004AFE05 /* Fabric */,
@@ -251,6 +269,7 @@
 				1135AF2427090B580030B003 /* Dropdown */,
 				1135AF192708F75B0030B003 /* DesignSystem */,
 				11EC079627641F91004AFE05 /* UITableView+Extensions.swift */,
+				113DB8D2276BED9900860934 /* InsetTextField.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -285,6 +304,7 @@
 				11A0194427096C8100BDF309 /* TagCategory.swift */,
 				11A0194627096CA600BDF309 /* ClothingColor.swift */,
 				1154000227164CDA00104A2C /* Wash.swift */,
+				113DB8D4276C131500860934 /* TagBlocking.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,9 +313,9 @@
 			isa = PBXGroup;
 			children = (
 				11A0193D27096BDF00BDF309 /* Model */,
-				11A0194927096CF000BDF309 /* TagDatabase.swift */,
 				11A0194B27096E3A00BDF309 /* ClosetDatabase.swift */,
 				11AB2980271650B7001A89D2 /* BasketDatabase.swift */,
+				11A0194927096CF000BDF309 /* TagDatabase.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -525,6 +545,7 @@
 				11A0194A27096CF000BDF309 /* TagDatabase.swift in Sources */,
 				115CDEA0276035B8007D82FB /* NewEntryOptionsViewController.swift in Sources */,
 				1135AF37270930690030B003 /* TextField.swift in Sources */,
+				113DB8DB276C29E800860934 /* WashingInstructionsView.swift in Sources */,
 				115400012716306C00104A2C /* BasketViewController.swift in Sources */,
 				11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */,
 				11EC07A227658EE8004AFE05 /* ClosetViewController.swift in Sources */,
@@ -538,6 +559,7 @@
 				11EC079E276580D4004AFE05 /* FabricCell.swift in Sources */,
 				11EC079427641778004AFE05 /* ClothingSymbolsCell.swift in Sources */,
 				115CDEA427613267007D82FB /* ClothingDetailView.swift in Sources */,
+				113DB8D9276C29CF00860934 /* WashingInstructionsViewController.swift in Sources */,
 				115CDE96275EA2C0007D82FB /* HomeViewController.swift in Sources */,
 				11EF18CE2708E71000473615 /* NewEntryViewController.swift in Sources */,
 				11EC079727641F91004AFE05 /* UITableView+Extensions.swift in Sources */,
@@ -550,6 +572,8 @@
 				11EC07A0276581A5004AFE05 /* Fabric.swift in Sources */,
 				11EEB86F27693CC9000257F0 /* UnderstandingSymbolsViewController.swift in Sources */,
 				115CDE9E275FE867007D82FB /* NewEntryOptionsView.swift in Sources */,
+				113DB8D5276C131500860934 /* TagBlocking.swift in Sources */,
+				113DB8D3276BED9900860934 /* InsetTextField.swift in Sources */,
 				11A0194127096C3600BDF309 /* WashingTag.swift in Sources */,
 				1135AF31270929380030B003 /* Font.swift in Sources */,
 				11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */,

@@ -35,7 +35,8 @@ final class HomeViewController: UIViewController {
         self.view = homeView
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        homeView.updateClothingCount()
     }
 }

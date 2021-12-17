@@ -304,16 +304,7 @@ extension NewEntryView: DropdownDataSource {
             }
         } else {
             let item: ClothingColor = .allCases[index.row]
-            switch item {
-            case .white:
-                name = "Branca"
-            case .black:
-                name = "Preta"
-            case .lightColors:
-                name = "Colorida clara"
-            case .darkColors:
-                name = "Colorida escura"
-            }
+            name = item.name
         }
         
         return .init(name: name)

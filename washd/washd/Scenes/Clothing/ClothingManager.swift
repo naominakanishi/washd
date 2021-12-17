@@ -10,7 +10,11 @@ final class ClothingManager: NSObject,
                            UICollectionViewDelegateFlowLayout {
     weak var delegate: ClothingManagerDelegate?
     
-    var closet: Closet { ClosetDatabase.instance.closet() }
+    private let closet: Closet
+    
+    init(closet: Closet = ClosetDatabase.instance.closet()) {
+        self.closet = closet
+    }
     
     private var allowedTypes: [ClothingType] = []
     private var searchFilter: String = ""

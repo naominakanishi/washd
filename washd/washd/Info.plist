@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NFCReaderUsageDescription</key>
-	<string>asdads</string>
+	<string>Você permite que o washd escaneie tags?</string>
 	<key>NSCameraUsageDescription</key>
-	<string>asdfgh</string>
+	<string>Você permite que o washd use sua câmera?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Regular.ttf</string>

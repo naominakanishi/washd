@@ -113,10 +113,10 @@ final class WashingView: UIView {
     private func addSubviews() {
         addSubviews(
             backgroundImage,
-            closetCollectionView,
-            basketView,
             filterCollectionView,
-            searchBar)
+            searchBar,
+            closetCollectionView,
+            basketView)
     }
     
     private func constraintSubviews() {
