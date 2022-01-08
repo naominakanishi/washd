@@ -30,6 +30,7 @@ final class FabricManager: NSObject,
     
     func add(fabric: Fabric) {
         allFabrics.append(fabric)
+        allFabrics.sort(by: { $0.name < $1.name })
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

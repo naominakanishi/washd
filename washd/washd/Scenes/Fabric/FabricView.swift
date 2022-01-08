@@ -26,7 +26,6 @@ final class FabricView: UIView {
     
     private var transitionAnimator: UIViewPropertyAnimator!
     private var presentationProgress: CGFloat = 0
-//    private var basketBottomConstraint: NSLayoutConstraint?
     private var fabricTopConstraint: NSLayoutConstraint?
     
     // MARK: - Presentation constants
@@ -35,6 +34,14 @@ final class FabricView: UIView {
     private lazy var EXPANDED_BOTTOM_CONSTRAINT: CGFloat =  -100
     
     // MARK: - Components
+    
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.style = .large
+        view.startAnimating()
+        view.hidesWhenStopped = true
+        return view
+    }()
     
     private lazy var backgroundImage: UIImageView = {
         let view = UIImageView()
@@ -80,10 +87,8 @@ final class FabricView: UIView {
          fabricDataSource: UICollectionViewDataSource,
          filterDelegate: UICollectionViewDelegate,
          filterDataSource: UICollectionViewDataSource,
-//         basketView: BasketView,
          frame: CGRect = .zero
     ) {
-//        self.basketView = basketView
         super.init(frame: frame)
         addSubviews()
         constraintSubviews()
@@ -104,13 +109,19 @@ final class FabricView: UIView {
             backgroundImage,
             fabricCollectionView,
             filterCollectionView,
-            searchBar)
+            searchBar,
+            activityIndicator)
     }
     
     private func constraintSubviews() {
         let topConstraint = searchBar.topAnchor.constraint(
             equalTo: safeAreaLayoutGuide.topAnchor
         )
+        
+        activityIndicator.layout {
+            $0.centerXAnchor.constraint(equalTo: centerXAnchor)
+            $0.centerYAnchor.constraint(equalTo: centerYAnchor)
+        }
         
         searchBar.layout {
             topConstraint
@@ -124,12 +135,12 @@ final class FabricView: UIView {
         
         filterCollectionView.layout { filterCollectionView.topAnchor.constraint(
                 equalTo: searchBar.bottomAnchor,
-                constant: 20
+                constant: 0
             )
             $0.leadingAnchor.constraint(equalTo: leadingAnchor,
                                         constant: 20)
             $0.trailingAnchor.constraint(equalTo: trailingAnchor)
-            $0.heightAnchor.constraint(equalToConstant: 50)
+            $0.heightAnchor.constraint(equalToConstant: 0)
         }
         
         backgroundImage.layout(using: [
@@ -165,6 +176,11 @@ final class FabricView: UIView {
     
     func reloadFilter() {
         filterCollectionView.reloadData()
+    }
+    
+    func stopLoading() {
+        guard activityIndicator.isAnimating else { return }
+        activityIndicator.stopAnimating()
     }
 }
 

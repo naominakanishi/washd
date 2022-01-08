@@ -29,20 +29,22 @@ final class FabricViewController: UIViewController {
             guard let dict = snapshot.value as? [String : Any],
                   let name = dict["name"] as? String ,
                   let description = dict["description"] as? String,
-                  let biodegradable = dict["biodegradable"] as? Double,
                   let imageName = dict["image"]
             else { return }
             
+            let biodegradable = dict["biodegradable"] as? Bool ?? false
             Storage.storage().reference().child("fabrics/\(imageName)").getData(maxSize: .max) { data, error in
+                assert(error == nil)
                 DispatchQueue.main.async {
                     let newFabric = Fabric(
                         name: name,
                         nature: .natural,
-                        biodegradable: biodegradable,
+                        biodegradable: biodegradable ? 0 : 1,
                         description: description,
                         image: .init(data: data))
                     self.fabricManager.add(fabric: newFabric)
                     self.fabricView?.reloadCloset()
+                    self.fabricView?.stopLoading()
                 }
             }
         }
@@ -55,11 +57,6 @@ final class FabricViewController: UIViewController {
     }
 
     private func configureNavigationBar() {
-        let moreButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        moreButton.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
-        moreButton.tintColor = .black
-        moreButton.addTarget(self, action: #selector(handleAddPiece), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
         title = "Fibras e Tecidos"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
