@@ -3,7 +3,7 @@ import UIKit
 final class WashingInstructionsViewController: UIViewController {
     
     private var instructionsView: WashingInstructionsView? { view as? WashingInstructionsView }
-    private lazy var clothingManager = ClothingManager(closet: .init(clothes: clothes))
+    private lazy var clothingManager = ClothingManager()
     private let clothes: [Clothing]
     
     init(clothes: [Clothing]) {

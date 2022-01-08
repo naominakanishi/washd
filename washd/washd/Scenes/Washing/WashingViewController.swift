@@ -39,12 +39,7 @@ final class WashingViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        let moreButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        moreButton.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
-        moreButton.tintColor = .black
-        moreButton.addTarget(self, action: #selector(handleAddPiece), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
-        title = "Suas roupas"
+        title = "Lavar roupas"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.layer.zPosition = 10
@@ -54,6 +49,7 @@ final class WashingViewController: UIViewController {
     private func handleAddPiece() {
         let controller = NewEntryViewController()
         controller.completion = {
+            self.washingView?.reloadFilter()
             self.washingView?.reloadCloset()
         }
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)

@@ -10,14 +10,18 @@ final class ClothingManager: NSObject,
                            UICollectionViewDelegateFlowLayout {
     weak var delegate: ClothingManagerDelegate?
     
-    private let closet: Closet
+    private let closetDatabase: ClosetDatabase
     
-    init(closet: Closet = ClosetDatabase.instance.closet()) {
-        self.closet = closet
+    init(closet: ClosetDatabase = ClosetDatabase.instance) {
+        self.closetDatabase = closet
     }
     
     private var allowedTypes: [ClothingType] = []
     private var searchFilter: String = ""
+    
+    private var closet: Closet {
+        closetDatabase.closet()
+    }
     
     private var clothes: [Clothing] {
         if searchFilter.isEmpty {

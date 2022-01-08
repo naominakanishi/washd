@@ -12,6 +12,7 @@ final class BasketView: UIView {
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "wash-icon")
+        view.alpha = 1
         return view
     }()
     
@@ -47,7 +48,6 @@ final class BasketView: UIView {
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
-        configureLayer()
         addSubviews()
         constraintSubviews()
         configureAdditionalSettings()
@@ -83,7 +83,7 @@ final class BasketView: UIView {
         imageView.layout(using: [
             imageView.topAnchor.constraint(
                 equalTo: topAnchor,
-                constant: -20),
+                constant: -35),
             imageView.centerXAnchor.constraint(
                 equalTo: centerXAnchor),
             imageView.widthAnchor.constraint(
@@ -125,69 +125,77 @@ final class BasketView: UIView {
         ])
     }
     
+    override func draw(_ rect: CGRect) {
+        configureLayer()
+    }
+    
     private func configureLayer() {
         let shapeLayer = CAShapeLayer()
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: 289.9, y: 69.3))
-        path.addCurve(
-            to: CGPoint(x: 260.4, y: 64),
-            controlPoint1: CGPoint(x: 279.9, y: 69.3),
-            controlPoint2: CGPoint(x: 269.9, y: 67.6))
-        path.addCurve(
-            to: CGPoint(x: 254.3, y: 61.5),
-            controlPoint1: CGPoint(x: 258.4, y: 63.3),
-            controlPoint2: CGPoint(x: 256.4, y: 62.5))
-        path.addCurve(
-            to: CGPoint(x: 241.6, y: 54.9),
-            controlPoint1: CGPoint(x: 250, y: 59.6),
-            controlPoint2: CGPoint(x: 245.7, y: 57.4))
-        path.addCurve(
-            to: CGPoint(x: 234.7, y: 49.7),
-            controlPoint1: CGPoint(x: 239.2, y: 53.4),
-            controlPoint2: CGPoint(x: 236.9, y: 51.6))
-        path.addCurve(
-            to: CGPoint(x: 208.5, y: 40),
-            controlPoint1: CGPoint(x: 227.6, y: 43.2),
-            controlPoint2: CGPoint(x: 218.2, y: 39.7))
-        path.addCurve(
-            to: CGPoint(x: 182.8, y: 51),
-            controlPoint1: CGPoint(x: 198.8, y: 40.2),
-            controlPoint2: CGPoint(x: 189.6, y: 44.2))
-        path.addCurve(
-            to: CGPoint(x: 170.8, y: 59.9),
-            controlPoint1: CGPoint(x: 179.3, y: 54.6),
-            controlPoint2: CGPoint(x: 175.2, y: 57.6))
-        path.addCurve(
-            to: CGPoint(x: 167.3, y: 61.5),
-            controlPoint1: CGPoint(x: 169.7, y: 60.5),
-            controlPoint2: CGPoint(x: 168.5, y: 61))
-        path.addCurve(
-            to: CGPoint(x: 159.3, y: 64.7),
-            controlPoint1: CGPoint(x: 164.6, y: 62.7),
-            controlPoint2: CGPoint(x: 161.9, y: 63.7))
-        path.addCurve(
-            to: CGPoint(x: 131.8, y: 69.3),
-            controlPoint1: CGPoint(x: 150.4, y: 67.8),
-            controlPoint2: CGPoint(x: 141.1, y: 69.3))
-        path.close()
-
+        let imageCenter = imageView.frame.center
+        let imageRadius = imageView.frame.width / 2 + 6
+        let circleOpening: CGFloat = .pi / 3
+        let startAngle: CGFloat =  -.pi / 2 + circleOpening
+        let endAngle: CGFloat = -.pi / 2 - circleOpening
+        let tailLenght: CGFloat = frame.size.width * 0.3
         
-        shapeLayer.frame.origin.y -= 69.3
-        shapeLayer.frame.origin.x -= 13.5
+        
+        let pA = CGPoint(
+            x: imageCenter.x + imageRadius * cos(endAngle),
+            y: imageCenter.y + imageRadius * sin(endAngle)
+        )
+        let pB = CGPoint(
+            x: imageCenter.x + imageRadius * cos(startAngle),
+            y: imageCenter.y + imageRadius * sin(startAngle)
+        )
+        
+        path.move(to: imageCenter)
+        path.moveBy(x: -tailLenght)
+        path.addQuadCurve(
+            to: pA,
+            controlPoint: imageCenter.translating(x: -imageRadius))
+        path.addLine(to: .init(x: path.currentPoint.x, y: imageCenter.y))
+        path.close()
+        
+        path.move(to: imageCenter)
+        path.addArc(
+            withCenter: imageCenter,
+            radius: imageRadius,
+            startAngle: startAngle,
+            endAngle: endAngle,
+            clockwise: false)
+        path.move(to: pA)
+        path.addLine(to: .init(x: path.currentPoint.x, y: imageCenter.y))
+        path.addLine(to: path.currentPoint.translating(x: imageRadius * 2))
+        path.addLine(to: pB)
+        path.close()
+        
+        
+        path.move(to: imageCenter)
+        path.moveBy(x: tailLenght)
+        path.addQuadCurve(
+            to: pB,
+            controlPoint: imageCenter.translating(x: imageRadius))
+        path.addLine(to: .init(x: path.currentPoint.x, y: imageCenter.y))
+        path.close()
+        
+//        shapeLayer.strokeColor = UIColor.systemPink.cgColor
         shapeLayer.fillColor = UIColor.white.cgColor
         shapeLayer.path = path.cgPath
         
-        shapeLayer.shadowColor = UIColor.black.cgColor
-        shapeLayer.shadowOffset = .init(width: 0, height: -6)
-        shapeLayer.shadowRadius = 3
-        shapeLayer.shadowOpacity = 0.05
-        
+//        shapeLayer.shadowColor = UIColor.clear.cgColor
+//        shapeLayer.shadowOffset = .init(width: 0, height: -6)
+//        shapeLayer.shadowRadius = 3
+//        shapeLayer.shadowOpacity = 0.05
+//
         layer.addSublayer(shapeLayer)
         
-        layer.shadowColor = shapeLayer.shadowColor
-        layer.shadowOffset = shapeLayer.shadowOffset
-        layer.shadowRadius = shapeLayer.shadowRadius
-        layer.shadowOpacity = shapeLayer.shadowOpacity
+//        layer.shadowColor = shapeLayer.shadowColor
+//        layer.shadowOffset = shapeLayer.shadowOffset
+//        layer.shadowRadius = shapeLayer.shadowRadius
+//        layer.shadowOpacity = shapeLayer.shadowOpacity
+        
+        bringSubviewToFront(imageView)
     }
     
     private func configureAdditionalSettings() {
@@ -218,5 +226,33 @@ extension BasketView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let wash = washes[indexPath.row]
         openInstructions?(wash)
+    }
+}
+
+extension UIBezierPath {
+    func moveBy(x: CGFloat = 0, y: CGFloat = 0) {
+        move(to: .init(x: currentPoint.x + x, y: currentPoint.y + y))
+    }
+}
+
+extension CGRect {
+    var center: CGPoint { .init(x: midX, y: midY) }
+}
+
+extension CGPoint {
+    func translating(x xOffset: CGFloat = 0, y yOffset: CGFloat = 0) -> Self {
+        .init(
+            x: x + xOffset,
+            y: y + yOffset)
+    }
+}
+
+
+extension UIBezierPath {
+    func addDebugCircle() {
+        addArc(
+            withCenter: currentPoint,
+            radius: 8,
+            startAngle: 0, endAngle: .pi * 2, clockwise: true)
     }
 }

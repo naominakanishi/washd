@@ -145,7 +145,7 @@ final class WashingView: UIView {
         }
         
         backgroundImage.layout(using: [
-            backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundImage.topAnchor.constraint(equalTo: topAnchor),
             backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor)
@@ -161,7 +161,7 @@ final class WashingView: UIView {
                 constant: 30
             ),
             closetCollectionView.bottomAnchor.constraint(
-                equalTo: bottomAnchor
+                equalTo: basketView.topAnchor
             ),
             closetCollectionView.trailingAnchor.constraint(
                 equalTo: trailingAnchor,

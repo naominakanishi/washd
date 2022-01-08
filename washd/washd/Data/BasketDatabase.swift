@@ -84,7 +84,7 @@ struct TagGenerator: BasketModifier {
                 let descriptors = clothing.washingTags.map { $0.blockingDescriptor }
                 let allBlockers = possibility
                     .excluding(clothing)
-                    .flatMap { $0.washingTags.flatMap { $0.blockingDescriptor } }
+                    .flatMap { $0.washingTags.flatMap { $0.blockingDescriptor }}
                 if allBlockers.containsAny(descriptors) { continue }
             }
             clothing.append(possibility)

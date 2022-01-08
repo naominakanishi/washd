@@ -55,8 +55,8 @@ class NewEntryViewController: UIViewController {
             image: currentImage
         )
         ClosetDatabase.instance.add(clothing: clothing)
-        completion?()
         dismiss(animated: true, completion: nil)
+        completion?()
     }
     
     private func pickPhoto() {

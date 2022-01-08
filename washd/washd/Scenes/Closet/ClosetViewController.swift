@@ -53,6 +53,7 @@ final class ClosetViewController: UIViewController {
         controller.completion = {
             self.filterManager.filterOptions = self.allTypes
             self.closetView?.reloadCloset()
+            self.closetView?.reloadFilter()
         }
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }

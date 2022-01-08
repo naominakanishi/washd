@@ -57,7 +57,6 @@
 		11A01957270A193A00BDF309 /* IconPickerCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */; };
 		11AB2981271650B7001A89D2 /* BasketDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AB2980271650B7001A89D2 /* BasketDatabase.swift */; };
 		11AD33AB2708ED9800FBA29C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD33AA2708ED9800FBA29C /* Colors.swift */; };
-		11AE70A0276A504300DB640A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11AE709F276A504300DB640A /* GoogleService-Info.plist */; };
 		11AE70A9276AC64A00DB640A /* FabricDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE70A8276AC64A00DB640A /* FabricDetailViewController.swift */; };
 		11AE70AB276AC68B00DB640A /* FabricDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE70AA276AC68B00DB640A /* FabricDetailView.swift */; };
 		11B22401276ACB1A001BD374 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 11B22400276ACB1A001BD374 /* FirebaseStorage */; };
@@ -83,6 +82,7 @@
 		11EF18D32708E71200473615 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11EF18D22708E71200473615 /* Assets.xcassets */; };
 		11EF18D62708E71200473615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11EF18D42708E71200473615 /* LaunchScreen.storyboard */; };
 		11EF18DE2708E89500473615 /* NFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF18DD2708E89500473615 /* NFCReader.swift */; };
+		D7868BED27862FC4001F3606 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7868BEC27862FC4001F3606 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,7 +136,6 @@
 		11A01956270A193A00BDF309 /* IconPickerCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerCollectionViewManager.swift; sourceTree = "<group>"; };
 		11AB2980271650B7001A89D2 /* BasketDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketDatabase.swift; sourceTree = "<group>"; };
 		11AD33AA2708ED9800FBA29C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		11AE709F276A504300DB640A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../assets/fabrics/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11AE70A8276AC64A00DB640A /* FabricDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FabricDetailViewController.swift; path = washd/Scenes/Fabric/FabricDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		11AE70AA276AC68B00DB640A /* FabricDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricDetailView.swift; sourceTree = "<group>"; };
 		11DB40BE2763FEB400347F1D /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
@@ -162,6 +161,7 @@
 		11EF18D52708E71200473615 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11EF18D72708E71200473615 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11EF18DD2708E89500473615 /* NFCReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCReader.swift; sourceTree = "<group>"; };
+		D7868BEC27862FC4001F3606 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +421,7 @@
 		11EF18C82708E71000473615 /* washd */ = {
 			isa = PBXGroup;
 			children = (
+				D7868BEC27862FC4001F3606 /* GoogleService-Info.plist */,
 				11A0194827096CE000BDF309 /* Data */,
 				1154000827164D9C00104A2C /* Scenes */,
 				1154000927164DB300104A2C /* UI */,
@@ -430,7 +431,6 @@
 				11EF18D22708E71200473615 /* Assets.xcassets */,
 				11EF18D42708E71200473615 /* LaunchScreen.storyboard */,
 				11EF18D72708E71200473615 /* Info.plist */,
-				11AE709F276A504300DB640A /* GoogleService-Info.plist */,
 				11EF18DD2708E89500473615 /* NFCReader.swift */,
 			);
 			path = washd;
@@ -502,7 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1135AF3427092BBB0030B003 /* Montserrat-Light.ttf in Resources */,
-				11AE70A0276A504300DB640A /* GoogleService-Info.plist in Resources */,
+				D7868BED27862FC4001F3606 /* GoogleService-Info.plist in Resources */,
 				1135AF3227092BBB0030B003 /* Montserrat-Bold.ttf in Resources */,
 				11EF18D62708E71200473615 /* LaunchScreen.storyboard in Resources */,
 				1135AF3527092BBB0030B003 /* Montserrat-SemiBold.ttf in Resources */,
