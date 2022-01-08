@@ -179,21 +179,20 @@ final class BasketView: UIView {
         path.addLine(to: .init(x: path.currentPoint.x, y: imageCenter.y))
         path.close()
         
-//        shapeLayer.strokeColor = UIColor.systemPink.cgColor
         shapeLayer.fillColor = UIColor.white.cgColor
         shapeLayer.path = path.cgPath
         
-//        shapeLayer.shadowColor = UIColor.clear.cgColor
-//        shapeLayer.shadowOffset = .init(width: 0, height: -6)
-//        shapeLayer.shadowRadius = 3
-//        shapeLayer.shadowOpacity = 0.05
-//
+        shapeLayer.shadowColor = UIColor.black.cgColor
+        shapeLayer.shadowOffset = .init(width: 0, height: -6)
+        shapeLayer.shadowRadius = 3
+        shapeLayer.shadowOpacity = 0.05
+        
         layer.addSublayer(shapeLayer)
         
-//        layer.shadowColor = shapeLayer.shadowColor
-//        layer.shadowOffset = shapeLayer.shadowOffset
-//        layer.shadowRadius = shapeLayer.shadowRadius
-//        layer.shadowOpacity = shapeLayer.shadowOpacity
+        layer.shadowColor = shapeLayer.shadowColor
+        layer.shadowOffset = shapeLayer.shadowOffset
+        layer.shadowRadius = shapeLayer.shadowRadius
+        layer.shadowOpacity = shapeLayer.shadowOpacity
         
         bringSubviewToFront(imageView)
     }
